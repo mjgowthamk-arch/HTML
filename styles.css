@@ -1,0 +1,14 @@
+ body {
+        background-color: lightgray;
+        font-family: verdana;
+        margin: 50px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: tomato;
+    }
+
+    p {
+        color: blue;
+        padding: 10px;
+    }

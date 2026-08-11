@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <title>HTML practice</title> 
+
+     <link rel="icon" type="image/x-icon" href="images/1.gif">
+
+    <!--linking external css file to the page-->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--definings styles for the page in head-->
+    <style>
+    body {
+        background-color: lightgray;
+        font-family: verdana;
+        margin: 50px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: rgb(8, 8, 8);
+        background-color: rgb(109, 116, 135);
+        border: 3px solid rgb(181, 192, 65);
+        padding: 10px;
+    }
+
+    p {
+        color: Green;
+        padding: 10px;
+        
+    }
+
+    /* Class selector (starts with .) */
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: blue;
+        color: white;
+    }
+
+    /* ID selector (starts with #) */
+    #submit-btn {
+        background-color: green; /* Overrides blue because ID has higher precedence */
+        border: 2px solid darkgreen;
+    }
+
+    table, th, td {
+        border:1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+        width: 10%;
+    }
+
+    tr:nth-child(even) {
+        background-color: silver;
+    }
+
+    div {
+        width:300px;
+        margin: 25px;
+}
+
+</style>  
+   </head>
+   <body>
+
+<!--heading tag-->
+
+<h1>This is heading h1</h1>
+<!--<h2>This is heading h2</h2>
+<h3>This is heading h3</h3>
+<h4>This is heading h4</h4>
+<h5>This is heading h5</h5> 
+<h6>This is heading h6</h6>-->
+
+<hr>
+
+<!--paragraph tag-->
+
+<p>This is a paragraph.</p>
+
+<!--HTML Formatting elements-->
+
+<p>This is a paragraph with <b>bold</b> text.</p>
+<P>This is a paragraph with <strong>strong</strong> text.</P>
+
+<p>This is a paragraph with <i>italic</i> text.</p>
+<p>This is a paragraph with <em>emphasized</em> text.</p>
+
+<p>This is a paragraph with <u>underlined</u> text.</p> 
+
+<p>This is a paragraph with <mark>highlighted</mark> text.</p>
+
+<p>This is a paragraph with <small>small</small> text.</p>
+
+<p>This is a paragraph with <del>deleted</del> text.</p>    
+<p>This is a paragraph with <ins>inserted</ins> text.</p>
+
+<p>This is a paragraph with <sub>subscript</sub> text.</p>
+<p>This is a paragraph with <sup>superscript</sup> text.</p>
+
+
+<hr><!-- This is a horizontal rule -->
+<br><!-- This is a line break -->
+
+<!--HTML Quotation tag-->
+
+<q>This is a short quotation.</q>
+
+<blockquote cite="https://www.example.com">
+    <p>This is a blockquote.</p>
+</blockquote>
+
+<hr>
+
+<!--HTML Address tag-->
+
+<address>
+    <p>John Doe</p>
+    <p>123 Main Street</p>
+    <p>Anytown, USA</p>
+</address>
+
+<hr>
+
+<!--HTML Abbreviation tag-->
+
+<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+
+<hr>
+
+<!--HTML Citation tag-->
+
+<p><cite>The Scream</cite> by Edvard Munch. Painted in 1893.</p>
+
+<hr>
+
+<!--HTML Bidirectional override tag-->
+
+<p><bdo dir="rtl">This text will be written from right to left</bdo></p>
+
+<hr>
+
+<!--definings styles as attributes-->      
+
+<p style="color:Blue;">paragraph 1</p>
+<p style="color:Green;">paragraph 2</p>
+
+<h1 style="color:Tomato; background-color:lightgray; border:10px solid Tomato;">Hello World</h1>
+<h1 style="color:Blue; background-color:lightgray; border:10px solid Blue;">Hello World</h1>
+<h1 style="color:Violet; background-color:lightgray; border:10px solid Violet;">Hello World</h1>
+
+<hr>
+
+<!--HTML Link tag -- anchor tag -->
+
+<a href="https://www.google.com">Open Google in same page</a>
+
+<hr>
+
+<a href="https://www.google.com" target="_blank">Open Google in new page</a>
+
+<hr>
+
+<!--HTML Button tag-->
+
+<button class="btn" onclick="window.open('https://www.google.com', '_blank');">
+  Click Me to open google
+</button>
+
+<hr>
+
+<!--HTML Button tag with anchor tag-->
+
+<a href="https://www.google.com" target="_blank">
+  <button id="submit-btn" type="button">Click Me to open google</button>
+</a>
+
+<hr>
+
+<!--Disabled button-->
+
+<button disabled>Disabled Button</button>
+
+<hr>
+
+<!--image tag-->
+
+<img src="images/1.gif" title="img1" class='images' alt="gif" width="150" height="100">
+<p>Programmer</p>
+<hr>
+<img src="2.jpg" title="img2" class='images' alt="image not available" width="150" height="100">
+<p>Sunset</p>
+<hr>
+<img src="images/3.jpg" title="img3" class='images' alt="jpg" style="width:150px;height:100px;">
+<p>Beach</p>
+
+<hr>
+
+<!--HTML Table tag-->
+
+<p>Table Example</p>
+
+<table>
+    <colgroup>
+    <col span="3" style="background-color: rgb(151, 135, 135);">
+  </colgroup>
+  <tr>
+    <th colspan="1">Name</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td rowspan="1">Gowtham</td>
+    <td>mjgowthamk@gmail.com</td>
+    <td>India</td>
+  </tr>
+  <tr>
+    <td>Tony</td>
+    <td>Tony@example.com</td>
+    <td>India</td>
+  </tr>
+</table>
+
+<hr>
+
+<!--HTML list tags-->
+
+<!--Unordered List-->
+
+<p>Unordered List Example</p>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Juice</li>
+</ul>
+
+<hr>
+
+<!--Ordered List-->
+
+<p>Ordered List Example</p>
+
+<ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Juice</li>
+</ol>
+
+<!--Description List-->
+
+<p>Description List Example</p>
+
+<dl>
+  <dt>Coffee</dt>
+  <dd>- Hot drink</dd>
+  <dt>Tea</dt>
+  <dd>- Hot drink</dd>
+  <dt>Juice</dt>
+  <dd>- Cold drink</dd>
+</dl>
+
+<hr>
+
+<!--HTML div element-->
+
+<div style="background-color: lightblue; padding: 20px; border: 2px solid blue;">
+
+  <h2>This is a div element</h2>
+  <p>This is a paragraph inside the div element.</p>    
+
+</div>
+
+<hr>
+
+<!--Iframe-->
+
+<iframe src="tags.html" height="200" width="500" title="Iframe Example"></iframe>
+
+<hr>
+
+<!--HTML script tag-->
+
+<h1>JavaScript Example</h1>
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = Date()">
+Click me to display Date and Time.</button>
+
+<p id="demo"></p>
+
+
+
+
+
+
+
+   </body>
+</html>
