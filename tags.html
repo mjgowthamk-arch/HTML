@@ -5,10 +5,10 @@
 
      <link rel="icon" type="image/x-icon" href="images/1.gif">
 
-    <!--linking external css file to the page-->
+    <!-- linking external css file to the page -->
     <link rel="stylesheet" href="styles.css">
 
-    <!--definings styles for the page in head-->
+    <!-- defining styles for the page in head -->
     <style>
     body {
         background-color: lightgray;
@@ -26,7 +26,6 @@
     p {
         color: rgb(60, 147, 60);
         padding: 2px;
-        
     }
 
     /* Class selector (starts with .) */
@@ -35,6 +34,10 @@
         font-size: 16px;
         background-color: blue;
         color: white;
+        text-decoration: none; /* Added to ensure <a> buttons don't have underlines */
+        display: inline-block; /* Ensures <a> behaves like a proper button element */
+        border: none;
+        cursor: pointer;
     }
 
     /* ID selector (starts with #) */
@@ -43,11 +46,14 @@
         border: 2px solid darkgreen;
     }
 
-    table, th, td {
-        border:1px solid black;
+    table {
+        width: 100%;
         border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
         padding: 10px;
-        width: 10%;
     }
 
     tr:nth-child(even) {
@@ -55,15 +61,14 @@
     }
 
     div {
-        width:300px;
+        width: 300px;
         margin: 25px;
-}
-
-</style>  
+    }
+    </style>   
    </head>
    <body>
 
-<!--heading tag-->
+<!-- heading tag -->
 
 <h1>This is heading h1</h1>
 <h2>This is heading h2</h2>
@@ -74,14 +79,14 @@
 
 <hr>
 
-<!--paragraph tag-->
+<!-- paragraph tag -->
 
 <p>This is a paragraph.</p>
 
-<!--HTML Formatting elements-->
+<!-- HTML Formatting elements -->
 
 <p>This is a paragraph with <b>bold</b> text.</p>
-<P>This is a paragraph with <strong>strong</strong> text.</P>
+<p>This is a paragraph with <strong>strong</strong> text.</p>
 
 <p>This is a paragraph with <i>italic</i> text.</p>
 <p>This is a paragraph with <em>emphasized</em> text.</p>
@@ -98,11 +103,10 @@
 <p>This is a paragraph with <sub>subscript</sub> text.</p>
 <p>This is a paragraph with <sup>superscript</sup> text.</p>
 
-
 <hr><!-- This is a horizontal rule -->
 <br><!-- This is a line break -->
 
-<!--HTML Quotation tag-->
+<!-- HTML Quotation tag -->
 
 <q>This is a short quotation.</q>
 <p>This is a paragraph with a <q>short quotation</q> inside it.</p>
@@ -117,7 +121,7 @@
 
 <hr>
 
-<!--HTML Address tag-->
+<!-- HTML Address tag -->
 
 <address>
     <p>David Smith</p>
@@ -127,7 +131,7 @@
 
 <hr>
 
-<!--HTML Abbreviation tag-->
+<!-- HTML Abbreviation tag -->
 
 <p>The <abbr title="Open Systems Interconnection" style="color: brown;">OSI</abbr> model conceptualizes network communication across seven layers.</p>
 <p>A <abbr title="Virtual Private Network" style="color: brown;">VPN</abbr> encrypts your internet connection to protect online privacy.</p>
@@ -183,7 +187,7 @@
 
 <hr>
 
-<!--definings styles as attributes-->      
+<!-- defining styles as attributes -->      
 
 <p style="color:Blue;">paragraph 1 in blue</p>
 <p style="color:Green;">paragraph 2 in Green</p>
@@ -194,11 +198,12 @@
 
 <hr>
 
-<!--HTML Link tag -- anchor tag -->
+<!-- HTML Link tag -- anchor tag -->
 
-<a href="https://www.google.com">Open Google _default</a>  <!--_self-->
+<a href="https://www.google.com">Open Google _default</a>                             <!-- _self -->
 <hr>
-<a href="https://www.google.com" target="_blank">Open Google _bank</a>
+<!-- FIXED: Corrected spelling typo from _bank to _blank -->
+<a href="https://www.google.com" target="_blank">Open Google _blank</a>
 <hr>
 <a href="https://www.google.com" target="_parent">Open Google _parent</a>
 <hr>
@@ -208,57 +213,57 @@
 
 <hr>
 
-<!--HTML Button tag-->
+<!-- HTML Button tag -->
 
-<button class="btn" onclick="window.open('https://www.google.com');"> <!--_blank-->
+<button class="btn" onclick="window.open('https://www.google.com');">                 <!-- _blank -->
   Click Me to open google
 </button>
 
 <hr>
 
 <button class="btn" onclick="window.open('https://www.google.com', '_blank');">
-  Click Me to open google
+  Click Me _blank
 </button>
 
 <hr>
 
 <button class="btn" onclick="window.open('https://www.google.com', '_parent');">
-  Click Me to open google
+  Click Me _parent
 </button>
 
 <hr>
 
 <button class="btn" onclick="window.open('https://www.google.com', '_self');">
-  Click Me to open google
+  Click Me _self
 </button>
 
 <hr>
 
 <button class="btn" onclick="window.open('https://www.google.com', '_top');">
-  Click Me to open google
+  Click Me _top
 </button>
 
 <hr>
 
-<!--HTML Button tag with anchor tag-->
+<!-- HTML Button styled anchor tags (Standard valid alternative to <button> inside <a>) -->
 
-<a href="tags.html" target="_blank">
-  <button class="btn">Click Me to open tags.html</button> <hr>
-</a>
-
-<a href="https://www.google.com" target="_blank">
-  <button id="submit-btn" type="button">Click Me to open google</button>
-</a>
+<!-- <a> styled using CSS class .btn -->
+<a href="tags.html" target="_blank" class="btn">Click Me to open tags.html</a>
 
 <hr>
 
-<!--Disabled button-->
+<!-- <a> tag styled using CSS ID #submit-btn -->
+<a href="https://www.google.com" target="_blank" class="btn" id="submit-btn">Click Me to open google</a>
+
+<hr>
+
+<!-- Disabled button -->
 
 <button disabled>Disabled Button</button>
 
 <hr>
 
-<!--image tag-->
+<!-- image tag -->
 
 <img src="images/1.gif" title="img1" class='images' alt="gif" width="150" height="100">
 <p>Programmer</p>
@@ -271,21 +276,21 @@
 
 <hr>
 
-<!--HTML Table tag-->
+<!-- HTML Table tag -->
 
 <p>Table Example</p>
 
 <table>
-    <colgroup>
+  <colgroup>
     <col span="3" style="background-color: rgb(151, 135, 135);">
   </colgroup>
   <tr>
-    <th colspan="1">Name</th>
+    <th colspan="1">Name</th>  <!---- colspan default=1 -->
     <th>Contact</th>
     <th>Country</th>
   </tr>
   <tr>
-    <td rowspan="1">Gowtham</td>
+    <td rowspan="1">Gowtham</td>  <!---- rowspan default=1 -->
     <td>mjgowthamk@gmail.com</td>
     <td>India</td>
   </tr>
@@ -298,9 +303,9 @@
 
 <hr>
 
-<!--HTML list tags-->
+<!-- HTML list tags -->
 
-<!--Unordered List-->
+<!-- Unordered List -->
 
 <p>Unordered List Example</p>
 
@@ -312,7 +317,7 @@
 
 <hr>
 
-<!--Ordered List-->
+<!-- Ordered List -->
 
 <p>Ordered List Example</p>
 
@@ -322,7 +327,7 @@
   <li>Juice</li>
 </ol>
 
-<!--Description List-->
+<!-- Description List -->
 
 <p>Description List Example</p>
 
@@ -337,7 +342,7 @@
 
 <hr>
 
-<!--HTML div element-->
+<!-- HTML div element -->
 
 <div style="background-color: lightblue; padding: 20px; border: 2px solid blue;">
 
@@ -348,13 +353,13 @@
 
 <hr>
 
-<!--Iframe tag-->
+<!-- Iframe tag -->
 
 <iframe src="tags.html" height="200" width="500" title="Iframe Example"></iframe>
 
 <hr>
 
-<!--HTML script tag-->
+<!-- HTML script tag -->
 
 <h1>JavaScript Example</h1>
 
@@ -366,7 +371,7 @@ Click me to display Date and Time.</button>
 
 <hr>
 
-<!--HTML Form tag-->
+<!-- HTML Form tag -->
 
 <form>
 
@@ -382,13 +387,13 @@ Click me to display Date and Time.</button>
 
 <hr>
 
-<!--canvas tag-->
+<!-- canvas tag -->
 
 <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
 
 <hr>
 
-<!--HTML SVG tag-->
+<!-- HTML SVG tag -->
 
 <svg width="100" height="100">
   <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
@@ -400,34 +405,35 @@ Click me to display Date and Time.</button>
 
 <hr>
 
-<!--HTML video tag-->
+<!-- HTML video tag -->
 
 <video width="320" height="240" controls>
-  <source src="" type="video/mp4">
-  <source src="" type="video/mp4">
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
 </video>
 
 <hr>
 
-<!--HTML audio tag-->
+<!-- HTML audio tag -->
 
 <audio controls>
-  <source src="" type="audio/mpeg">
-  <source src="" type="audio/mpeg">
+  <source src="audio.mp3" type="audio/mpeg">
+  <source src="audio.ogg" type="audio/ogg">
 </audio>
 
 <hr>
 
 <audio controls autoplay>
-  <source src="" type="audio/mpeg">
-  <source src="" type="audio/mpeg">
+  <source src="audio.mp3" type="audio/mpeg">
+  <source src="audio.ogg" type="audio/ogg">
 </audio>
 
 <hr>
 
-<!--HTML object tag-->
+<!-- HTML object tag -->
 
 <object width="100%" height="500px" data="data.html"></object>
 
 </body>
 </html>
+
