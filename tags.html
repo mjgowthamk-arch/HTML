@@ -17,15 +17,15 @@
     }
 
     h1, h2, h3, h4, h5, h6 {
-        color: rgb(8, 8, 8);
-        background-color: rgb(109, 116, 135);
-        border: 3px solid rgb(181, 192, 65);
+        color: rgb(89, 26, 100);
+        background-color: rgb(205, 210, 55);
+        border: 3px solid rgb(169, 50, 92);
         padding: 10px;
     }
 
     p {
-        color: Green;
-        padding: 10px;
+        color: rgb(60, 147, 60);
+        padding: 2px;
         
     }
 
@@ -66,11 +66,11 @@
 <!--heading tag-->
 
 <h1>This is heading h1</h1>
-<!--<h2>This is heading h2</h2>
+<h2>This is heading h2</h2>
 <h3>This is heading h3</h3>
 <h4>This is heading h4</h4>
 <h5>This is heading h5</h5> 
-<h6>This is heading h6</h6>-->
+<h6>This is heading h6</h6>
 
 <hr>
 
@@ -105,9 +105,14 @@
 <!--HTML Quotation tag-->
 
 <q>This is a short quotation.</q>
+<p>This is a paragraph with a <q>short quotation</q> inside it.</p>
+
+<blockquote>
+    <p>This is a blockquote.</p>
+</blockquote>
 
 <blockquote cite="https://www.example.com">
-    <p>This is a blockquote.</p>
+  <p style="color: blueviolet;">This is a blockquote with citation.</p>
 </blockquote>
 
 <hr>
@@ -115,7 +120,7 @@
 <!--HTML Address tag-->
 
 <address>
-    <p>John Doe</p>
+    <p>David Smith</p>
     <p>123 Main Street</p>
     <p>Anytown, USA</p>
 </address>
@@ -124,26 +129,64 @@
 
 <!--HTML Abbreviation tag-->
 
-<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+<p>The <abbr title="Open Systems Interconnection" style="color: brown;">OSI</abbr> model conceptualizes network communication across seven layers.</p>
+<p>A <abbr title="Virtual Private Network" style="color: brown;">VPN</abbr> encrypts your internet connection to protect online privacy.</p>
+<p>The <abbr title="Domain Name System" style="color: brown;">DNS</abbr> translates human-readable domain names into IP addresses.</p>
+<p>The <abbr title="Dynamic Host Configuration Protocol" style="color: brown;">DHCP</abbr> automatically assigns IP addresses to devices on a network.</p>
+<p><abbr title="Internet Control Message Protocol" style="color: brown;">ICMP</abbr> is used by network devices to send diagnostics and error messages.</p>
+<p><abbr title="User Datagram Protocol" style="color: brown;">UDP</abbr> provides low-latency, connectionless transmission for time-sensitive data.</p>
+<p>The <abbr title="Hypertext Transfer Protocol" style="color: brown;">HTTP</abbr> is the foundation of data communication for the web.</p>
+<p><abbr title="Hypertext Transfer Protocol Secure" style="color: brown;">HTTPS</abbr> encrypts web traffic to ensure secure data transfer.</p>
+<p>The <abbr title="File Transfer Protocol" style="color: brown;">FTP</abbr> is used to transfer files between a client and a server.</p>
+<p><abbr title="Simple Mail Transfer Protocol" style="color: brown;">SMTP</abbr> is responsible for sending outgoing email messages.</p>
+<p><abbr title="Post Office Protocol Version 3" style="color: brown;">POP3</abbr> downloads emails from a server to a single local device.</p>
+<p><abbr title="Internet Message Access Protocol" style="color: brown;">IMAP</abbr> syncs email messages across multiple devices directly on the server.</p>
+<p><abbr title="Media Access Control" style="color: brown;">MAC</abbr> filtering restricts network access based on device hardware addresses.</p>
 
 <hr>
 
-<!--HTML Citation tag-->
+<!-- HTML Citation Tag -->
+<p style="color: red;">--HTML citation tag--</p>
 
+<!-- Without <p> tags -->
+<cite>The Scream</cite> by Edvard Munch. Painted in 1893.<br><br>
+<cite>The Mona Lisa</cite> by Leonardo da Vinci. Painted in 1503.<br><br>
+<cite>The Starry Night</cite> by Vincent van Gogh. Painted in 1889.<br><br>
+<cite>The Last Supper</cite> by Leonardo da Vinci. Painted in 1498.<br><br>
+<cite>The Persistence of Memory</cite> by Salvador Dalí. Painted in 1931.<br><br>
+
+<!-- With <p> tags -->
 <p><cite>The Scream</cite> by Edvard Munch. Painted in 1893.</p>
+<p><cite>The Mona Lisa</cite> by Leonardo da Vinci. Painted in 1503.</p>
+<p><cite>The Starry Night</cite> by Vincent van Gogh. Painted in 1889.</p>
+<p><cite>The Last Supper</cite> by Leonardo da Vinci. Painted in 1498.</p>
+<p><cite>The Persistence of Memory</cite> by Salvador Dalí. Painted in 1931.</p>
 
 <hr>
 
-<!--HTML Bidirectional override tag-->
+<!-- HTML Bidirectional Override Tag -->
+<p style="color: red;">--HTML Bidirectional override tag--</p>
 
-<p><bdo dir="rtl">This text will be written from right to left</bdo></p>
+<!-- Without <p> tags -->
+<bdo dir="ltr">This text will be written from left to right.</bdo><br><br>
+<bdo dir="rtl">This text will be written from right to left.</bdo><br><br>
+<bdo dir="ltr">This text will be written from left to right.</bdo><br><br>
+<bdo dir="rtl">This text will be written from right to left.</bdo><br><br>
+<bdo dir="ltr">This text will be written from left to right.</bdo><br><br>
+
+<!-- With <p> tags -->
+<p><bdo dir="rtl">This text will be written from right to left inside paragraph tag.</bdo></p>
+<p><bdo dir="ltr">This text will be written from left to right inside paragraph tag.</bdo></p>
+<p><bdo dir="rtl">This text will be written from right to left inside paragraph tag.</bdo></p>
+<p><bdo dir="ltr">This text will be written from left to right inside paragraph tag.</bdo></p>
+<p><bdo dir="rtl">This text will be written from right to left inside paragraph tag.</bdo></p>
 
 <hr>
 
 <!--definings styles as attributes-->      
 
-<p style="color:Blue;">paragraph 1</p>
-<p style="color:Green;">paragraph 2</p>
+<p style="color:Blue;">paragraph 1 in blue</p>
+<p style="color:Green;">paragraph 2 in Green</p>
 
 <h1 style="color:Tomato; background-color:lightgray; border:10px solid Tomato;">Hello World</h1>
 <h1 style="color:Blue; background-color:lightgray; border:10px solid Blue;">Hello World</h1>
@@ -153,15 +196,25 @@
 
 <!--HTML Link tag -- anchor tag -->
 
-<a href="https://www.google.com">Open Google in same page</a>
-
+<a href="https://www.google.com">Open Google _default</a>  <!--_self-->
 <hr>
-
-<a href="https://www.google.com" target="_blank">Open Google in new page</a>
+<a href="https://www.google.com" target="_blank">Open Google _bank</a>
+<hr>
+<a href="https://www.google.com" target="_parent">Open Google _parent</a>
+<hr>
+<a href="https://www.google.com" target="_self">Open Google _self</a>
+<hr>
+<a href="https://www.google.com" target="_top">Open Google _top</a>
 
 <hr>
 
 <!--HTML Button tag-->
+
+<button class="btn" onclick="window.open('https://www.google.com');"> <!--_blank-->
+  Click Me to open google
+</button>
+
+<hr>
 
 <button class="btn" onclick="window.open('https://www.google.com', '_blank');">
   Click Me to open google
@@ -169,7 +222,29 @@
 
 <hr>
 
+<button class="btn" onclick="window.open('https://www.google.com', '_parent');">
+  Click Me to open google
+</button>
+
+<hr>
+
+<button class="btn" onclick="window.open('https://www.google.com', '_self');">
+  Click Me to open google
+</button>
+
+<hr>
+
+<button class="btn" onclick="window.open('https://www.google.com', '_top');">
+  Click Me to open google
+</button>
+
+<hr>
+
 <!--HTML Button tag with anchor tag-->
+
+<a href="tags.html" target="_blank">
+  <button class="btn">Click Me to open tags.html</button> <hr>
+</a>
 
 <a href="https://www.google.com" target="_blank">
   <button id="submit-btn" type="button">Click Me to open google</button>
@@ -289,12 +364,70 @@ Click me to display Date and Time.</button>
 
 <p id="demo"></p>
 
+<hr>
 
+<!--HTML Form tag-->
 
+<form>
 
+<label for="uid">user name:</label><br>
+<input type="text" id="uid" name="firstname"><br>
 
+<label for="pwd">password:</label><br>
+<input type="password" id="pwd" name="pwd"><br><br>
 
+<input type="submit" value="submit">
 
+</form>
+
+<hr>
+
+<!--canvas tag-->
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<hr>
+
+<!--HTML SVG tag-->
+
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+
+<svg width="400" height="120">
+  <rect x="10" y="10" width="200" height="100" stroke="red" stroke-width="6" fill="blue" />
+</svg>
+
+<hr>
+
+<!--HTML video tag-->
+
+<video width="320" height="240" controls>
+  <source src="" type="video/mp4">
+  <source src="" type="video/mp4">
+</video>
+
+<hr>
+
+<!--HTML audio tag-->
+
+<audio controls>
+  <source src="" type="audio/mpeg">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<hr>
+
+<audio controls autoplay>
+  <source src="" type="audio/mpeg">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<hr>
+
+<!--HTML object tag-->
+
+<object width="100%" height="500px" data="data.html"></object>
 
 </body>
 </html>
