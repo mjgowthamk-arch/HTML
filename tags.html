@@ -557,66 +557,6 @@ Click me to display Date and Time.</button>
 
 <embed src="/tags.html" width="25%" height="25%" style="border: 2px solid black;">
 
-  <hr>
-
-  <!-- HTML Geolocation -->
-
-<h1>HTML Geolocation</h1>
-<p>Click the button to get your coordinates.</p>
-
-<button onclick="getLocation()">Try It</button>
-
-<p id="demo"></p>
-
-<script>
-const x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function success(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
-
-function error() {
-  alert("Sorry, no position available.");
-}
-</script>
-
-<hr>
-
-<!-- HTML drag and drop -->
-
-<script>
-function dragstartHandler(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function dragoverHandler(ev) {
-  ev.preventDefault();
-}
-
-function dropHandler(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-</script>
-
-<h1>Drag and Drop API</h1>
-
-<p>Drag the image into the rectangle:</p>
-
-<div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
-
-<img id="img1" src="/images/3.jpg" draggable="true" ondragstart="dragstartHandler(event)" width="350" height="80">
-
 <hr>
 
 </body>
