@@ -1,14 +1,119 @@
- body {
-        background-color: lightgray;
-        font-family: verdana;
-        margin: 50px;
-    }
+body {
+  background-color: lightgray;
+  font-family: verdana;
+  font-size: larger;
+  font-weight: normal;
+  margin: 50px;
+  background-image: url('/images/3.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
-    h1, h2, h3, h4, h5, h6 {
-        color: tomato;
-    }
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(89, 26, 100);
+  background-color: goldenrod;
+  border: 3px solid rgb(169, 50, 92);
+  padding: 10px;
+}
 
-    p {
-        color: blue;
-        padding: 10px;
-    }
+p {
+  color: rgb(12, 88, 8);
+  padding: 2px;
+  font-size: larger;
+}
+
+/* Class selector */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+/* ID selector */
+#submit-btn {
+  background-color: green;
+  border: 2px solid darkgreen;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: silver;
+}
+
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+nav {
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+nav ul {
+  padding: 5px;
+}
+
+article {
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+.flex-layout {
+  display: flex;
+}
+
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .flex-layout {
+    flex-direction: column;
+  }
+} 
+
+.box-container {
+  width: 300px;
+  margin: 25px;
+}
+
+#div1 {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 2px dashed #aaaaaa;
+}    
+
+.ab {
+  background-color: gray;
+  margin: 10px;
+  padding: 50px;
+}
+
+.b {
+  background: white;
+}

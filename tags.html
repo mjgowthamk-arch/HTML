@@ -1,121 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-    <title>HTML practice</title> 
+<head>
+  <title>HTML tags</title>
+  <link rel="icon" type="image/x-icon" href="images/1.gif">
+  <!-- linking external css file to the page -->
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-     <link rel="icon" type="image/x-icon" href="images/1.gif">
-
-    <!-- linking external css file to the page -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- defining styles for the page in head -->
-
-  <style>
-    body {
-        background-color: lightgray;
-        font-family: verdana;
-        margin: 50px;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        color: rgb(89, 26, 100);
-        background-color: goldenrod;
-        border: 3px solid rgb(169, 50, 92);
-        padding: 10px;
-    }
-
-    p {
-        color: rgb(21, 88, 21);
-        padding: 2px;
-    }
-
-    /* Class selector */
-    .btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: blue;
-        color: white;
-        text-decoration: none;
-        display: inline-block;
-        border: none;
-        cursor: pointer;
-    }
-
-    /* ID selector */
-    #submit-btn {
-        background-color: green;
-        border: 2px solid darkgreen;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid black;
-        padding: 10px;
-    }
-
-    tr:nth-child(even) {
-        background-color: silver;
-    }
-
-    header {
-      background-color: #666;
-      padding: 30px;
-      text-align: center;
-      font-size: 35px;
-      color: white;
-    }
-
-    section {
-      display: flex;
-    }
-
-    nav {
-      flex: 1;
-      background: #ccc;
-      padding: 20px;
-    }
-
-    nav ul {
-      padding: 5px;
-    }
-
-    article {
-      flex: 3;
-      background-color: #f1f1f1;
-      padding: 10px;
-    }
-
-    footer {
-      background-color: #777;
-      padding: 10px;
-      text-align: center;
-      color: white;
-    }
-
-    /* Responsive layout */
-    @media (max-width: 600px) {
-      section {
-        flex-direction: column;
-      }
-    } 
-
-    div {
-        width: 300px;
-        margin: 25px;
-    }
-
-    #div1 {
-    width: 350px;
-    height: 70px;
-    padding: 10px;
-    border: 2px dashed #aaaaaa;
-  }
-
-</style>
+<body>
 
 <!-- heading tag -->
 
@@ -195,6 +87,7 @@
 <p><abbr title="Post Office Protocol Version 3" style="color: brown;">POP3</abbr> downloads emails from a server to a single local device.</p>
 <p><abbr title="Internet Message Access Protocol" style="color: brown;">IMAP</abbr> syncs email messages across multiple devices directly on the server.</p>
 <p><abbr title="Media Access Control" style="color: brown;">MAC</abbr> filtering restricts network access based on device hardware addresses.</p>
+
 
 <hr>
 
@@ -342,7 +235,7 @@
 
 <!-- HTML div element -->
 
-<div style="background-color: lightblue; padding: 20px; border: 2px solid blue;">
+<div class="box-container" style="background-color: lightblue; padding: 20px; border: 2px solid blue;">
 
   <h2>This is a div element</h2>
   <p>This is a paragraph inside the div element.</p>    
@@ -401,6 +294,10 @@
 
 <hr>
 
+<button onclick="alert('Hello!')">Click to say hi</button>
+
+<hr>
+
 <!-- Iframe tag -->
 
 <iframe src="tags.html" height="200" width="500" title="Iframe Example" style="border: 2px solid black;"></iframe>  
@@ -425,7 +322,7 @@ Click me to display Date and Time.</button>
   <h1 style="color: rgb(252, 252, 255); background-color:Transparent; border: none;">Cities</h1>
 </header>
 
-<section>
+<section class="flex-layout">
   <nav>
     <ul>
       <li><a href="https://en.wikipedia.org/wiki/London" target="_blank">London</a></li>
@@ -449,7 +346,7 @@ Click me to display Date and Time.</button>
 
 <!-- HTML Responsive -->
 
-<h1 style="font-size:10vw">Hello World</h1>                       <!-- 10vw= view window = 10% -->
+<h1 style="font-size:5vw">Hello</h1>                       <!-- 10vw= view window = 10% -->
 
 <img src="/images/3.jpg" style="max-width:100%;height:auto;">
 
@@ -560,6 +457,26 @@ Click me to display Date and Time.</button>
 <embed src="/tags.html" width="800" height="250" style="border: 2px solid black;">
 
 <hr>
+
+<article class="ab">
+  <h1 style="background-color: white;">Browsers</h1>
+  <article class='b'>
+    <h2  style="background-color: lightgray;">google</h2>
+    <p>google is a famous web browser.</p>
+  </article>
+  <article class="b">
+    <h2  style="background-color: lightgrey;">firefox</h2>
+    <p>firefox is a known web browser.</p>
+  </article>
+  <article class="b">
+    <h2  style="background-color: lightgray;">microsoft edge</h2>
+    <p>microsoft edge is a famous web browser.</p>
+  </article>
+</article>
+
+
+
+
 
 </body>
 </html>
