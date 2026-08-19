@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration Form</title>
+</head>
+<body>
+
+  <form>
+    <fieldset>
+      <legend>Personal Information</legend>
+
+      <label for="fullname">Full Name:</label><br>
+      <input type="text" id="fullname" name="Name" placeholder="eg.Gowtham" required autofocus><br><br>
+
+      <label for="email">Email Address:</label><br>
+      <input type="email" id="email" name="email" placeholder="name@example.com" required><br><br>
+
+      <label for="phone">Phone Number:</label><br>
+      <input type="tel" id="phone" name="phone" placeholder="10-digit number" pattern="[0-9]{10}" required><br><br>
+
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" name="age" min="16" max="100" placeholder="Min: 16"><br><br>
+      
+      <label>Gender:</label><br>
+      <input type="radio" id="gender1" name="gender" value="male">
+      <label for="gender1">Male</label>
+
+      <input type="radio" id="gender2" name="gender" value="female">
+      <label for="gender2">Female</label>
+
+      <input type="radio" id="gender3" name="gender" value="other">
+      <label for="gender3">Other</label>
+    </fieldset><br>
+
+    <fieldset>
+      <legend>Event Details</legend>
+
+      <label for="ticket">Select Pass Type:</label><br>
+      <select id="ticket" name="ticketType" required>
+
+        <option value="" disabled selected>-- Select an option --</option>
+        <option value="student">Student Pass (Free)</option>
+        <option value="standard">Standard Pass (&#8377;250)</option>
+        <option value="vip">VIP Access (&#8377;500)</option>
+
+      </select><br><br>
+
+      <label for="eventdate">Preferred Attendance Date:</label><br>
+      <input type="date" id="eventdate" name="event-Date" min="2026-08-20" required><br><br>
+
+      <label>Workshop Topics:</label><br>
+      <input type="radio" id="ws1" name="workshops" value="coding">
+      <label for="ws1">Web Development</label><br>
+
+      <input type="radio" id="ws2" name="workshops" value="ai">
+      <label for="ws2">Artificial Intelligence</label><br>
+
+      <input type="radio" id="ws3" name="workshops" value="uiux">
+      <label for="ws3">UI/UX Design</label><br><br>
+
+      <label for="idproof">Upload Student / ID Proof :</label><br>
+      <input type="file" id="idproof" name="id-Proof" accept=".pdf,image/png,image/jpeg" required><br><br>
+
+      <label for="notes">Special Requirements:</label><br>
+      <textarea id="notes" name="notes" rows="4" cols="40" placeholder="Special Requirements:"></textarea>
+    </fieldset><br>
+
+    <input type="checkbox" id="terms" name="terms" required>
+    <label for="terms">I agree to the event rules and conditions.</label><br><br>
+
+    <button type="submit">Submit Registration</button>
+    <button type="reset">Reset Form</button>
+  </form>
+
+</body>
+</html>
