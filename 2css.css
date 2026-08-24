@@ -1,0 +1,21 @@
+body {
+	margin: 10;
+	padding: 20px;
+	background-color: white;
+	color: 5px solid black;
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	color: blue;
+	font-size: 32px;
+}
+
+
+.button:hover {
+	background-color: #15803d;
+}
+
+.clear {
+	clear: both;
+}
