@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 1. Mobile First: Stack items vertically */
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .box {
+      background: lightblue;
+      padding: 20px;
+    }
+
+    /* 2. Desktop: Make them sit side-by-side on screens wider than 600px */
+    @media (min-width: 600px) {
+      .row {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="row">
+    <div class="box">Menu</div>
+    <div class="box">Main Content</div>
+    <div class="box">Sidebar</div>
+  </div>
+
+</body>
+</html>

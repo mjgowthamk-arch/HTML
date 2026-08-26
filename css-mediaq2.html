@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 10;
+      padding: 10;
+    }
+
+    body {
+      font-family: sans-serif;
+      padding: 10px;
+    }
+
+    /* 1. Name each child element */
+    .header  { grid-area: header; background: purple; color: white; padding: 20px; text-align: center; }
+    .menu    { grid-area: menu; background: #33b5e5; color: white; padding: 15px; }
+    .content { grid-area: main; background: #f1f1f1; padding: 15px; }
+    .facts   { grid-area: facts; background: beige; border: 1px solid #0099cc; padding: 15px; }
+    .footer  { grid-area: footer; background: #0099cc; color: white; padding: 15px; text-align: center; }
+
+    /* 2. Mobile Layout (Default: 1 single column stacked) */
+    .grid-container {
+      display: grid;
+      gap: 10px;
+      grid-template-areas:
+        "header"
+        "menu"
+        "main"
+        "facts"
+        "footer";
+    }
+
+    /* 3. Tablet Layout (600px and up): Menu + Main side by side */
+    @media (min-width: 600px) {
+      .grid-container {
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas:
+          "header header"
+          "menu   main"
+          "facts  facts"
+          "footer footer";
+      }
+    }
+
+    /* 4. Desktop Layout (768px and up): Menu + Main + Facts all in 1 row */
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+          "header header header"
+          "menu   main   facts"
+          "footer footer footer";
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="header"><h1>Chania</h1></div>
+
+    <div class="menu">
+      <ul>
+        <li >The Flight</li>
+        <li>The City</li>
+        <li>The Island</li>
+        <li>The Food</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>The City</h2>
+      <p>Chania is the capital of the Chania region on the island of Crete.</p>
+    </div>
+
+    <div class="facts">
+      <h3>Facts:</h3>
+      <p>Chania is a city on Crete island.</p>
+    </div>
+
+    <div class="footer">
+      <p>Footer Section</p>
+    </div>
+  </div>
+
+</body>
+</html>
