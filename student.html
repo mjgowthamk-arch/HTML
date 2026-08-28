@@ -2,10 +2,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/form.png">
+    
     <title>Student Registration Form</title>
+    <style>
+
+        body {
+            background-color:lightblue;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-style: bold;
+            font-size: large;
+            padding: 10px;         
+        }
+        
+    </style>
 </head>
 <body>
-    
-    
+    <h2>Fill Students details below:</h2>
+    <form action="">
+        <fieldset>
+
+            <legend>Personal Details</legend>
+            
+            <label for="name">Enter student name:</label>
+            <input type="text" id="name" name="stname">
+            <br><br>
+
+            <label for="class">Enter student class:</label>
+            <input type="number" id="class" name="stclass">
+            <br><br>
+
+            <label for="dob">Enter Date of Birth:</label>
+            <input type="date" id="name" name="stname">
+
+            <p>Gender :</p>
+
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label><br>
+
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+            <br><br>
+
+            <label for="group">Blood Group:</label>
+            <input type="text" id="group" name="group">
+            <br><br>
+
+            <label for="num1">Primary mobile number:</label>
+            <input type="tel" id="num1" name="primary_phone"> 
+            <br><br>
+            
+            <label for="num2">Emergency mobile number:</label><br>
+            <input type="tel" id="num2" name="emergency_phone"> 
+            <br><br>
+            
+            <label for="gmail">Enter your email id:</label><br>
+            <input type="email" id="gmail" name="email"> 
+            <br><br>
+
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Marathon Event Details:</legend>
+
+            <p>Select your participation :</p>
+
+            <input type="radio" name="km" id="5km">
+            <label for="5km">5 Km</label><br>
+
+            <input type="radio" name="km" id="10km">
+            <label for="10km">10 Km</label><br>
+
+            <input type="radio" name="km" id="21km">
+            <label for="21km">21 Km</label><br><br>
+
+            <input type="submit" value="submit">
+            <button type="reset">Reset button</button>
+        </fieldset>
+        
+    </form>
+
 </body>
 </html>
