@@ -1,71 +1,124 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/form.png">
     <title>Job Application form</title>
 </head>
 <style>
+         body {
+            background: linear-gradient(lightgray 0%, white 50%, lightgray 100%);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: large;
+            padding: 10px;         
+        }
+
+        .txt {
+            font-size: 15px;
+            font-weight: lighter;
+            color: gray;
+            margin-left: 8px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 200px 200px 1fr;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
 
 </style>
 <body>
     <h2>Fill the Form below :</h2>
-    <form action="">
-        <fieldset>
+    <form action="" method="post" enctype="multipart/form-data">
+        <fieldset><br>
             <legend>Personal info</legend>
 
-            <label for="name">Enter your name:</label>
-            <input type="text" name="fullname" id="name">
-            <br><br>
+            <div class="row">
+                <label for="name">Enter your name:</label>
+                <input type="text" name="fullname" id="name" maxlength="20" placeholder="e.g.John" autocomplete="name" required>
+                <span class="txt">(Max 20 Characters Allowed)</span>
+            </div>
 
-            <label for="email">Enter your email:</label>
-            <input type="email" name="mail" id="email">
-            <br><br>
+            <div class="row">
+                <label for="email">Enter your email:</label>
+                <input type="email" name="mail" id="email" placeholder="e.g. name@example.com" autocomplete="email" required>
+                <br><br>
+            </div>
 
-            <label for="phone">Enter your phone number:</label>
-            <input type="number" name="phone" id="phone">
-            <br><br>
+            <div class="row">
+                <label for="phone">Enter your phone number:</label>
+                <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" maxlength="10" placeholder="e.g. 9123456780" title="Please enter a valid 10-digit phone number" autocomplete="tel" required>
+                <span class="txt">(10 Digits Allowed)</span>
+            </div>
+            
+            <div class="row">
+                <label for="address">Enter your Address:</label>
+                <textarea id="address" name="address" rows="5" placeholder="Enter your complete address..." autocomplete="street-address" required></textarea>
+                <br><br>
+            </div>
 
-            <label for="location">Enter your location:</label>
-            <input type="text" name="location" id="location" placeholder="city">
-            <br><br>
-
-            <label for="linkedin">Linked in url:</label>
-            <input type="url" name="link" id="link">
-            <br><br>
-
-        </fieldset><br>
-
-        <fieldset>
-
-            <legend>Experince</legend>
-
-            <label for="exp">Total years of Experiance:</label>
-            <input type="number" name="exp" id="exp">
-            <br><br>
-
-            <label for="title">Previous Job titles:</label>
-            <input type="text" name="title" id="title">
-            <br><br>
+            <div class="row">
+                <label for="link">Linked in:</label>
+                <input type="url" name="link" id="link" placeholder="https://linkedin.com/in/username" pattern="https?://.*" title="Please enter a valid URL starting with http:// or https://" autocomplete="url">
+                <br><br>
+            </div>   
 
         </fieldset><br>
 
-        <fieldset>
+        <fieldset><br>
+
+            <legend>Qualifications</legend>
+
+            <input type="checkbox" id="highschool" name="qualification" value="High School(10th)">
+            <label for="highschool">High School (10th)</label><br>
+
+            <input type="checkbox" id="higherschool" name="qualification" value="Higher School(12th)">
+            <label for="higherschool">Higher School (12th)</label><br>
+
+            <input type="checkbox" id="graduation" name="qualification" value="Graduation(Bachelors)">
+            <label for="graduation">Graduation (Bachelors)</label><br>
+
+            <input type="checkbox" id="postgraduation" name="qualification" value="Post Graduation(Masters)">
+            <label for="postgraduation">Post Graduation (Masters)</label><br>
+
+            <input type="checkbox" id="phd" name="qualification" value="PhD">
+            <label for="phd">PhD</label>
+            <br><br>
+
+            <div class="row">
+                 <label for="title">Previous Job titles:</label>
+                 <input type="text" name="title" id="title" maxlength="100" placeholder="e.g. Frontend Developer">
+            </div>      
+
+            <div class="row">
+                <label for="exp">Total years of Experiance:</label>
+                <input type="number" name="exp" id="exp" min="0" max="50" step="0.5" placeholder="e.g. 2">
+                <br><br>
+            </div>
+
+        </fieldset><br>
+
+        <fieldset><br>
             <legend>Documents</legend>
 
-            <label for="resume">Attach your resume:</label>
-            <br><br>
-            <input type="file" name="resume" id="resume">
-            <br><br>
+            <div class="row">
+                 <label for="resume">Attach your resume:</label>
+                 <input type="file" name="resume" id="resume" accept=".pdf,application/pdf" required>
+                 <span class="txt">(ONLY PDF Allowed)</span>
+            </div>   
 
-            <label for="id">Attach your Id proof:</label>
-            <br><br>
-            <input type="file" name="idproof" id="id">
-            <br><br>
-
+            <div class="row">
+                <label for="id">Attach your Id proof:</label>
+                <input type="file" name="idproof" id="id" accept=".pdf,application/pdf" required>
+                <span class="txt">(ONLY PDF Allowed)</span>
+            </div>
 
         </fieldset><br>
-    
 
+        <input type="submit" value="Submit">
 
     </form>
     

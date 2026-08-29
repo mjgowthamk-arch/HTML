@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,79 +9,181 @@
     <style>
 
         body {
-            background-color:lightblue;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-style: bold;
+            background: linear-gradient(lightblue 0%, white 50%, lightblue 100%);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-size: large;
             padding: 10px;         
         }
+
+        .txt {
+            font-size: 15px;
+            font-weight: lighter;
+            color: gray;
+            margin-left: 8px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 200px 200px 1fr;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
         
     </style>
 </head>
+
 <body>
     <h2>Fill Students details below:</h2>
-    <form action="">
+    <form action="" method="post">
         <fieldset>
 
             <legend>Personal Details</legend>
-            
-            <label for="name">Enter student name:</label>
-            <input type="text" id="name" name="stname">
-            <br><br>
 
-            <label for="class">Enter student class:</label>
-            <input type="number" id="class" name="stclass">
-            <br><br>
+            <div class="row">
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname" maxlength="20" placeholder="e.g. Dylan" autocomplete="given-name" autocapitalize="words" spellcheck="false" pattern="[a-zA-Z\s]+" title="Only letters and spaces allowed" required>
+                <span class="txt">(Max 20 Characters Allowed)</span>
+            </div>
 
-            <label for="dob">Enter Date of Birth:</label>
-            <input type="date" id="name" name="stname">
+            <div class="row">
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname" maxlength="20" placeholder="e.g. Joy" autocomplete="family-name" autocapitalize="words" spellcheck="false" pattern="[a-zA-Z\s]+" title="Only letters and spaces allowed" required>
+                <span class="txt">(Max 20 Characters Allowed)</span>
+            </div>
+
+            <div class="row">
+                <label for="gmail">Enter your email id:</label>
+                <input type="email" id="gmail" name="email" placeholder="e.g. student@example.com" autocomplete="email" spellcheck="false" required> 
+            </div>
+
+            <div class="row">
+                <label for="num1">Primary mobile number:</label>
+                <input type="tel" id="num1" name="primary_phone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" maxlength="10" inputmode="numeric" autocomplete="tel" title="Must be exactly 10 digits" required> 
+                <span class="txt">(10 Digits Allowed)</span>
+            </div>
 
             <p>Gender :</p>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
 
-            <input type="radio" id="male" name="gender">
-            <label for="male">Male</label><br>
-
-            <input type="radio" id="female" name="gender">
+            <input type="radio" id="female" name="gender" value="Female">
             <label for="female">Female</label>
             <br><br>
 
-            <label for="group">Blood Group:</label>
-            <input type="text" id="group" name="group">
-            <br><br>
+            <div class="row">
+                <label for="group">Blood Group:</label>
+                <input type="text" id="group" name="group" placeholder="e.g. O+" pattern="(A|B|AB|O|a|b|ab|o)[+-]" maxlength="3" autocapitalize="characters" spellcheck="false" title="e.g. A+, B+, O-, AB+" required>
+                <span class="txt">(e.g. A+, B+, O-, AB+)</span>
+            </div>
 
-            <label for="num1">Primary mobile number:</label>
-            <input type="tel" id="num1" name="primary_phone"> 
-            <br><br>
-            
-            <label for="num2">Emergency mobile number:</label><br>
-            <input type="tel" id="num2" name="emergency_phone"> 
-            <br><br>
-            
-            <label for="gmail">Enter your email id:</label><br>
-            <input type="email" id="gmail" name="email"> 
-            <br><br>
+            <div class="row">
+                <label for="dob">Enter Date of Birth:</label>
+                <input type="date" id="dob" name="dob" autocomplete="bday" required>
+            </div>
+
+            <div class="row">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="5" maxlength="250" placeholder="Enter your full street address..." autocomplete="street-address" required></textarea>
+            </div>
+
+            <div class="row">
+                <label for="city">City:</label>
+                <input type="text" name="city" id="city" maxlength="20" placeholder="e.g. Coimbatore" autocomplete="address-level2" autocapitalize="words" spellcheck="false" pattern="[a-zA-Z\s]+" title="Only letters allowed" required>
+                <span class="txt">(Max 20 Characters Allowed)</span>
+            </div>
+
+            <div class="row">
+                <label for="pin">Pin Code:</label>
+                <input type="text" name="pin" id="pin" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" placeholder="e.g. 637303" autocomplete="postal-code" title="Must be exactly 6 digits" required>
+                <span class="txt">(Max 6 Numbers Allowed)</span>
+            </div>
+
+            <div class="row">
+                <label for="state">State:</label>
+                <input type="text" name="state" id="state" maxlength="20" placeholder="e.g. Tamil Nadu" autocomplete="address-level1" autocapitalize="words" spellcheck="false" pattern="[a-zA-Z\s]+" title="Only letters allowed" required>
+                <span class="txt">(Max 20 Characters Allowed)</span>
+            </div>
+
+            <div class="row">
+                <label for="country">Country:</label>
+                <input type="text" name="country" id="country" value="India" maxlength="20" autocomplete="country-name" autocapitalize="words" spellcheck="false" required>
+            </div>
 
         </fieldset>
         <br>
+
         <fieldset>
-            <legend>Marathon Event Details:</legend>
+            <legend>Academic & Other Details</legend>
 
-            <p>Select your participation :</p>
+            <p>Hobbies :</p>
+            <input type="checkbox" id="playing" name="hobbies" value="Playing">
+            <label for="playing">Playing</label><br>
 
-            <input type="radio" name="km" id="5km">
-            <label for="5km">5 Km</label><br>
+            <input type="checkbox" id="drawing" name="hobbies" value="Drawing">
+            <label for="drawing">Drawing</label><br>
 
-            <input type="radio" name="km" id="10km">
-            <label for="10km">10 Km</label><br>
+            <input type="checkbox" id="singing" name="hobbies" value="Singing">
+            <label for="singing">Singing</label><br>
 
-            <input type="radio" name="km" id="21km">
-            <label for="21km">21 Km</label><br><br>
+            <input type="checkbox" id="dancing" name="hobbies" value="Dancing">
+            <label for="dancing">Dancing</label><br>
 
-            <input type="submit" value="submit">
-            <button type="reset">Reset button</button>
-        </fieldset>
+            <div>
+                <input type="checkbox" id="hobbyOther" name="hobbies" value="Others">
+                <label for="hobbyOther">Others</label>
+                <input type="text" name="otherHobby" placeholder="e.g., Watching Movies" maxlength="50" autocomplete="off" autocapitalize="sentences" style="padding: 4px; font-size: 14px; margin-left: 5px;">
+            </div>
+            <br>
         
-    </form>
+            <p>Qualification :</p>
+            <input type="checkbox" id="highschool" name="qualification" value="High School(10th)">
+            <label for="highschool">High School (10th)</label><br>
 
+            <input type="checkbox" id="higherschool" name="qualification" value="Higher School(12th)">
+            <label for="higherschool">Higher School (12th)</label><br>
+
+            <input type="checkbox" id="graduation" name="qualification" value="Graduation(Bachelors)">
+            <label for="graduation">Graduation (Bachelors)</label><br>
+
+            <input type="checkbox" id="postgraduation" name="qualification" value="Post Graduation(Masters)">
+            <label for="postgraduation">Post Graduation (Masters)</label><br>
+
+            <input type="checkbox" id="phd" name="qualification" value="PhD">
+            <label for="phd">PhD</label>
+            <br><br>
+
+            <p>Courses Applied For :</p>
+            <input type="radio" id="bca" name="course" value="BCA" required>
+            <label for="bca">BCA (Bachelor of Computer Applications)</label><br>
+
+            <input type="radio" id="bcom" name="course" value="B.Com">
+            <label for="bcom">B.Com (Bachelor of Commerce)</label><br>
+
+            <input type="radio" id="bsc" name="course" value="B.Sc">
+            <label for="bsc">B.Sc (Bachelor of Science)</label><br>
+
+            <input type="radio" id="ba" name="course" value="BA">
+            <label for="ba">BA (Bachelor of Arts)</label><br>
+
+            <input type="radio" id="mca" name="course" value="MCA">
+            <label for="mca">MCA (Master of Computer Applications)</label><br>
+
+            <input type="radio" id="mcom" name="course" value="M.Com">
+            <label for="mcom">M.Com (Master of Commerce)</label><br>
+
+            <input type="radio" id="msc" name="course" value="M.Sc">
+            <label for="msc">M.Sc (Master of Science)</label><br>
+
+            <input type="radio" id="ma" name="course" value="MA">
+            <label for="ma">MA (Master of Arts)</label>
+            <br><br>
+
+            <input type="submit" value="Submit">
+            <button type="reset">Reset</button>
+
+        </fieldset>
+    </form>
 </body>
 </html>
