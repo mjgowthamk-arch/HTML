@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table2</title>
+</head>
+<style>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: green;
+    }
+
+   
+    .container {
+        background-color: lightblue;
+        width: fit-content;         /* Automatically wraps the table width */
+        max-width: 95%;             /* Prevents overflowing small screens */
+        margin: 0 auto;             /* Centers container on the page */
+        padding: 20px;
+    }
+
+    .table {
+        border: 2px solid black;
+        border-spacing: 2px;
+        margin: 0 auto;            /* Centers table inside container */
+    }
+
+    .table td {
+        border: 2px solid black;
+        padding: 8px 12px;
+        text-align: center;
+        white-space: nowrap;      
+    }
+</style>
+<body>
+    <h1>College Time Table</h1>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td></td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+
+            </tr>
+
+            <tr>
+                <td>Monday</td>
+                <td>...</td>
+                <td>SUB 1</td>
+                <td>SUB 2</td>
+                <td>SUB 3</td>
+                <td rowspan="6">L<br>U<br>N<br>C<br>H</td>
+                <td>SUB 4</td>
+                <td>SUB 5</td>
+                <td>Counsiling class</td>
+
+            </tr>
+
+                <tr>
+                <td>Tuesday</td>
+                <td>SUB 1</td>
+                <td>SUB 2</td>
+                <td>SUB 3</td>
+                <td>...</td>
+                <td>SUB 4</td>
+                <td>SUB 5</td>
+                <td>Library</td>
+                
+            </tr>
+
+                <tr>
+                <td>Wednesday</td>
+                <td>SUB 1</td>
+                <td>SUB 2</td>
+                <td>SWA</td>
+                <td>...</td>
+                <td colspan="3">Lab</td>
+             
+
+            </tr>
+
+                <tr>
+                <td>Thursday</td>
+                <td>SUB 1</td>
+                <td>SUB 2</td>
+                <td>SUB 3</td>
+                <td>...</td>
+                <td>SUB 4</td>
+                <td>SUB 5</td>
+                <td>Library</td>
+             
+
+            </tr>
+
+                <tr>
+                <td>Friday</td>
+                <td>SUB 1</td>
+                <td>SUB 2</td>
+                <td>SUB 3</td>
+                <td>...</td>
+                <td>SUB 4</td>
+                <td>SUB 5</td>
+                <td>Library</td>
+             
+
+            </tr>
+
+                <tr>
+                <td>Saturday</td>
+                <td>SUB 1</td>
+                <td colspan="3">SEMINAR</td>
+                <td>SUB 4</td>
+                <td>SUB 5</td>
+                <td>Library</td>
+                        
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>
