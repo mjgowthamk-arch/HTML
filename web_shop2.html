@@ -4,7 +4,178 @@
         <meta charset="UTF-8">
         <title>Online Shopping site in India</title>
         <link rel="icon" href="/images/shop.png" type="image/png">
-    </head>
+
+        <style>
+
+            body {
+                font-family:Arial, Helvetica, sans-serif;
+                background-color: aliceblue;
+                color: black;
+                margin: 0 auto;
+                padding: 5px;
+                
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 20px;   
+            }                 
+
+            /* 2. Make Header & Footer Span Across All Columns */
+            header, footer {
+                grid-column: 1 / -1;           /* Spans from column line 1 to the end */
+            }
+
+            /* 3. Hide the <hr> elements so they don't break the grid */
+            hr {
+                display: none;
+            }
+
+            header {
+                background: black;
+                color: white;
+                padding: 25px;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+            header h1 {
+                margin: 0;
+                font-size: 35px;
+            }
+
+            header h2 {
+                margin: 6px 0 0 0;
+                font-size: 30px;
+                font-weight: 400;
+                color: gold;
+            }
+
+            /* 5. Product Cards (Each takes 1 Grid Cell) */
+            article {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                border: 1px solid gainsboro;
+                display: flex;                 /* Flexbox inside each card keeps button aligned */
+                flex-direction: column;
+                justify-content: space-between;
+                box-shadow: 0 2px 5px lightgray;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            article:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 6px 14px gray;
+            }
+
+            figure {
+                margin: 0 0 10px 0;
+                text-align: center;
+                background-color: whitesmoke;
+                border-radius: 6px;
+                padding: 12px;
+            }
+
+            figure img {
+                max-width: 100%;
+                height: 160px;               
+                object-fit: contain;
+            }
+
+            figcaption {
+                font-size: 13px;
+                color: dimgray;
+                margin-top: 6px;
+            }
+
+            h3 {
+                font-size: 20px;
+                color: teal;
+                margin: 10px 0;
+            }
+
+            article p {
+                font-size: 15px;
+                color: darkslategray;
+                margin: 4px 0;
+            }
+
+            del {
+                color: dimgray;
+                margin-right: 6px;
+            }
+
+            ins {
+                color: firebrick;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            button {
+                width: 150px;
+                background-color: gold;
+                border: 1px solid goldenrod;
+                color: black;
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 600;
+                border-radius: 15px;
+                cursor: pointer;
+                margin-top: 12px;
+            }
+
+            button:hover {
+                background-color: goldenrod;
+            }
+
+            footer {
+                background-color: black;
+                color: gainsboro;
+                padding: 24px;
+                border-radius: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                gap: 16px;
+                margin-top: 20px;
+            }
+
+            footer h2 {
+                color: white;
+                font-size: 16px;
+                border-bottom: 2px solid gold;
+                padding-bottom: 4px;
+                display: inline-block;
+            }
+
+            footer ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            footer li {
+                margin-bottom: 6px;
+            }
+
+            footer a {
+                color: silver;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+            footer a:hover {
+                color: gold;
+                text-decoration: underline;
+            }
+
+            address {
+                font-style: normal;
+                font-size: 12px;
+                font-style: italic;
+            }
+        </style>
+        </head>
 <body>
     
 <header>
@@ -13,98 +184,73 @@
 </header>
 
 <article>
-
     <figure>
         <img src="/images/laptop.png" alt="laptop img" width="300">
         <figcaption>Samsung Galaxy Book4 — thin and light laptop</figcaption>
     </figure>
-
     <h3>Samsung Galaxy Book 4</h3>
     <p>Samsung Galaxy Book4 Metal Intel Core i7 13th Gen — 16 GB / 512 GB SSD / Windows 11 Home.</p>
     <p>Price: <del>&#8377;40,000</del> <ins>&#8377;30,999</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 <article>
-
     <figure>
         <img src="/images/phone.png" alt="phone img" width="300">
         <figcaption>Vivo Y400 Pro 5G</figcaption>
     </figure>
-
     <h3>Vivo Y400 Pro 5G</h3>
     <p>128 GB, 8 GB RAM.</p>
     <p>Price: <del>&#8377;25,000</del> <ins>&#8377;19,999</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 <article>
-    
     <figure>
         <img src="/images/earbuds.png" alt="earbuds img" width="200">
         <figcaption>BoAt Earbuds, black</figcaption>
     </figure>
-    
     <h3>BoAt Earbuds</h3>
     <p>boAt Airdopes 131 Elite ANC, (~32dB) ANC, 60H Battery, Stream Ad Free Music via App Bluetooth Headset (Active White, True Wireless)</p>
     <p>Price: <del>&#8377;6,990</del> <ins>&#8377;1,499</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 <article>
-
     <figure>
         <img src="/images/watch.png" alt="Smart watch img" width="150">
         <figcaption>Smart Watch</figcaption>
     </figure>
-
     <h3>GOBOULT Dire Smart Watch</h3>
     <p>GOBOULT Dire 1.38'' 2.5D HD Display, 500Nits Brightness, 250+ Watch Faces Smartwatch (Silver Strap, Free Size).</p>
     <p>Price: <del>&#8377;4,999</del> <ins>&#8377;1,699</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 <article>
-
     <figure>
         <img src="/images/headphones.png" alt="Head Phones img" width="200">
         <figcaption>Noise Airwave Max 6 Bluetooth Headphones</figcaption>
     </figure>
-
     <h3>Noise Airwave Max 6 Wireless Bluetooth Headphones</h3>
     <p>Noise Airwave Max 6 Wireless Bluetooth Headphones (2026 Launch), Hi-Res LDAC Audio, Adaptive ANC 45dB, 120H Battery, Low Latency 80ms, Deep Bass, Over-Ear Noise Cancelling Headphones (Forest Green)</p>
     <p>Price: <del>&#8377;4,999</del> <ins>&#8377;1,699</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 <article>
-
     <figure>
         <img src="/images/mouse.png" alt="Mouse img" width="200">
         <figcaption>Wired Ambidextrous Optical Gaming Mouse</figcaption>
     </figure>
-
     <h3>Wired Ambidextrous Optical Gaming Mouse</h3>
     <p>Arctic Fox Breathing Lights and DPI Upto 3600 Wired Ambidextrous Optical Gaming Mouse (USB 3.0, Blue, Black)</p>
     <p>Price: <del>&#8377;599</del> <ins>&#8377;252</ins></p>
-
     <button type="button">Add to Cart</button>
-
 </article>
 <hr>
 
 <footer>
-
     <div>
         <h2>About:</h2>
         <ul>
@@ -131,7 +277,6 @@
              <p>Contact us at <a href="mailto:support@example.com">support@example.com</a></p>
         </address>
     </div>
-
 </footer>
 
 </body>

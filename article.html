@@ -2,8 +2,141 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="/images/article.png" type="image/png">
         <title>Article</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.5;
+                color: darkslategray;
+                background-color: aliceblue;
+                max-width: 860px;
+                margin: 0 auto;
+                padding: 30px 20px;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 2px solid lightgray;
+            }
+
+            header h1 {
+                color: midnightblue;
+                font-size: 32px;
+                margin-bottom: 8px;
+            }
+
+            header p {
+                color: slategray;
+                font-size: 15px;
+            }
+
+            article {
+                background-color: white;
+                padding: 24px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                border: 1px solid lightgray;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            }
+
+            article h1, article h2 {
+                color: steelblue;
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            article h3 {
+                color: darkblue;
+                font-size: 17px;
+                display: inline;
+            }
+
+            p {
+                color: dimgray;
+                margin-bottom: 10px;
+            }
+
+            ul, ol {
+                padding-left: 20px;
+            }
+
+            li {
+                margin-top: 14px;
+                margin-bottom: 4px;
+            }
+
+            table {
+                width: 100%; 
+                border-collapse: collapse;
+                margin-top: 15px;
+                font-size: 15px;
+            }
+
+            th, td {
+                padding: 12px 14px;
+                text-align: left;
+                border-bottom: 1px solid gainsboro;
+            }
+
+            th {
+                background-color: darkblue;
+                color: white;
+                font-weight: 600;
+            }
+
+            tr:nth-child(even) {
+                background-color: whitesmoke;
+            }
+
+            tr:hover {
+                background-color: lightgray;
+            }
+
+            article img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 auto;
+                border-radius: 8px;
+            }
+
+            footer {
+                text-align: center;
+                padding: 20px;
+                color: slategray;
+            }
+
+            footer button {
+                background-color: skyblue;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 14px;
+                cursor: pointer;
+                transition: background-color 0.2s ease, transform 0.2s ease;
+            }
+
+            footer button:hover {
+                background-color: steelblue;
+                transform: translateY(-1px);
+            }
+
+            footer button a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 14px;
+            }
+        </style>
     </head>
 
 <body>
@@ -39,14 +172,11 @@
 
             <li><h3>The Hadal Zone (6,000+ m):</h3></li>
             <p>Deep, narrow ocean trenches such as the Mariana Trench.</p>
-
         </ul>
     </article>
 
     <article>
-
         <h2>Key Survival Adaptations</h2>
-
         <ol>
             <li><h3>Bioluminescence:</h3></li>
             <p>Producing cold chemical light to lure prey, signal mates, or blind predators.</p>
@@ -59,72 +189,49 @@
 
             <li><h3>Slow Metabolism:</h3></li>
             <p>Conserving energy to survive weeks or months between meals.</p>
-
         </ol>
-        
     </article>
 
     <article>
-
         <h2>Exploration Milestones</h2>
-
-        <table width="800">
+        <table>
             <tr>
                 <th>Year</th>
                 <th>Expedition/Event</th>
                 <th>Significance</th>
             </tr>
-
             <tr>
-
                 <td>1960</td>
                 <td>Trieste Bathyscaphe Dive</td>
                 <td>First human descent to the bottom of Challenger Deep</td>
-
             </tr>
-
             <tr>
-
                 <td>1977</td>
                 <td>Hydrothermal Vent Discovery</td>
                 <td>Proved life can thrive without sunlight using chemosynthesis</td>
-                
             </tr>
-
             <tr>
-
                 <td>2012</td>
                 <td>Deepsea Challenger</td>
                 <td>Solo DiveFirst solo submersible descent to the Mariana Trench</td>
-                
             </tr>
-
             <tr>
-
                 <td>Present</td>
                 <td>Autonomous Robotic Gliders</td>
                 <td>Continuous mapping of extreme trenches and ocean basins</td>
-                
             </tr>
-
-
         </table>
-
     </article>
 
     <article>
-
         <br>
         <img src="/images/diver.png" alt="pic" width="300">
         <br>
-
     </article>
 
     <article>
-
         <h2>Why the Deep Matters</h2>
         <p>Deep-sea ecosystems are crucial climate regulators that trap massive amounts of carbon. Their unique micro-organisms also produce novel chemical compounds that researchers are actively studying for next-generation antibiotics and cancer treatments.</p>
-
     </article>
 
     <footer>

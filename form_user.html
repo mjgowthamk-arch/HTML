@@ -4,6 +4,135 @@
     <meta charset="UTF-8">
     <title>Details form</title>
     <link rel="icon" href="/images/form.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:Arial, Helvetica, sans-serif;
+            background-color: aliceblue;
+            color: darkslategray;
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+        }
+
+        header h1 {
+            font-size: 26px;
+            color: midnightblue;
+        }
+
+        form {
+            background-color: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid gainsboro;
+            box-shadow: 0 4px 10px lightgray;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 500;
+            color: dimgray;
+        }
+
+        p {
+            font-size: 15px;
+            font-weight: 600;
+            color: midnightblue;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 5px;
+            border: 1px solid silver;
+            border-radius: 6px;
+            font-size: 15px;
+            color: darkslategray;
+            background-color: whitesmoke;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: royalblue;
+            background-color: white;
+            box-shadow: 0 0 0 3px lightskyblue;
+        }
+
+        input[type="file"] {
+            margin-top: 6px;
+            font-size: 14px;
+            color: slategray;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            cursor: pointer;
+            margin-right: 6px;
+            margin-top: 6px;
+            accent-color: royalblue;
+        }
+
+        a {
+            color: royalblue;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: mediumblue;
+        }
+
+        input[type="submit"] {
+            background-color: royalblue;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: mediumblue;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            text-align: center;
+            max-width: 600px;
+            margin: 25px auto 0 auto;
+            color: slategray;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,20 +156,20 @@
     <label for="gender1">Male</label> 
     <br>
 
-    <input type="radio" id="gender2" name="gender" value="Female">
+    <input type="radio" id="gender2" name="gender" value="Female"> 
     <label for="gender2">Female</label> 
     <br>
 
-    <input type="radio" id="gender3" name="gender" value="Others">
+    <input type="radio" id="gender3" name="gender" value="Others"> 
     <label for="gender3">Others</label>
     <br><br>
 
     <label for="name1">Father name:</label><br>
-    <input type="text" id="name1" name="father_name">
+    <input type="text" id="name1" name="father_name"> 
     <br><br>
 
     <label for="name2">Mother name:</label><br>
-    <input type="text" id="name2" name="mother_name">
+    <input type="text" id="name2" name="mother_name"> 
     <br><br>
 
     <label for="nation">Nationality:</label><br>
@@ -48,15 +177,15 @@
     <br><br>
 
     <label for="dob">Date of birth:</label><br>
-    <input type="date" id="dob" name="dob">
+    <input type="date" id="dob" name="dob"> 
     <br><br>
     
     <label for="age">Age:</label><br>
-    <input type="number" id="age" name="age">
+    <input type="number" id="age" name="age"> 
     <br><br>
 
     <label for="group">Enter your blood group:</label><br>
-    <input type="text" id="group" name="blood_group">
+    <input type="text" id="group" name="blood_group"> 
     <br><br>
 
     <label for="num1">Primary mobile number:</label><br>
@@ -79,39 +208,39 @@
     <input type="text" id="pin" name="pincode" inputmode="numeric" pattern="[0-9]{6}"><br><br>
 
     <label for="acc">Bank account number:</label><br>
-    <input type="text" id="acc" name="account_number" inputmode="numeric">
+    <input type="text" id="acc" name="account_number" inputmode="numeric"> 
     <br><br>
 
     <p>Select your preferred domain:</p>
 
-    <input type="checkbox" id="front" name="domain" value="Frontend">
-    <label for="front">Frontend</label>
+    <input type="checkbox" id="front" name="domain" value="Frontend"> 
+    <label for="front">Frontend</label> 
     <br>
 
-    <input type="checkbox" id="back" name="domain" value="Backend">
-    <label for="back">Backend</label>
+    <input type="checkbox" id="back" name="domain" value="Backend"> 
+    <label for="back">Backend</label> 
     <br>
    
-    <input type="checkbox" id="fullstack" name="domain" value="Full stack">
-    <label for="fullstack">Full stack</label>
+    <input type="checkbox" id="fullstack" name="domain" value="Full stack"> 
+    <label for="fullstack">Full stack</label> 
     <br><br> 
 
     <label for="resume1">Attach your resume:</label><br>
-    <input type="file" id="resume1" name="resume">
+    <input type="file" id="resume1" name="resume"> 
     <br><br>
 
     <label for="idproof">Attach your Aadhaar copy:</label><br>
-    <input type="file" id="idproof" name="aadhar_copy">
+    <input type="file" id="idproof" name="aadhar_copy"> 
     <br><br>
 
     <label for="photo1">Attach your photo copy:</label><br>
-    <input type="file" id="photo1" name="photo">
+    <input type="file" id="photo1" name="photo"> 
     <br><br>
 
-    <a href="#" target="_blank">Terms and conditions</a>
+    <a href="#" target="_blank">Terms and conditions</a> 
     <br>
     <input type="checkbox" id="terms" name="terms" required> 
-    <label for="terms">I agree with the terms and conditions</label>
+    <label for="terms">I agree with the terms and conditions</label> 
     <br><br>
     
     <input type="submit" value="Submit"> 

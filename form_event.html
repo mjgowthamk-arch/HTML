@@ -2,8 +2,149 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration Form</title>
     <link rel="icon" href="/images/form.png" type="image/png">
+    <style>
+      /* 1. Global Reset & Body */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:Arial, Helvetica, sans-serif;
+        background-color: aliceblue;
+        color: darkslategray;
+        line-height: 1.5;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      form {
+        background-color: white;
+        max-width: 600px;
+        width: 100%;
+        padding: 32px;
+        border-radius: 12px;
+        border: 1px solid lightgray;
+        box-shadow: 0 4px 12px lightgray;
+      }
+
+      fieldset {
+        border: 1px solid silver;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 24px;
+        background-color: white;
+      }
+
+      legend {
+        font-weight: 600;
+        font-size: 18px;
+        color: darkblue;
+        padding: 0 8px;
+      }
+
+      label {
+        font-size: 15px;
+        font-weight: 500;
+        color: dimgray;
+      }
+
+      p {
+        font-weight: 600;
+        color: dimgray;
+        margin: 12px 0 6px 0;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="number"],
+      input[type="date"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 14px;
+        margin-top: 6px;
+        border: 1px solid silver;
+        border-radius: 6px;
+        font-size: 15px;
+        font-family: inherit;
+        color: darkslategray;
+        background-color: whitesmoke;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="tel"]:focus,
+      input[type="number"]:focus,
+      input[type="date"]:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: black;
+        background-color: white;
+        box-shadow: 0 0 0 3px lightskyblue;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      input[type="file"] {
+        margin-top: 6px;
+        font-size: 14px;
+        color: slategray;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        cursor: pointer;
+        margin-right: 6px;
+        accent-color: darkblue;
+      }
+
+      /* 8. Buttons */
+      input[type="submit"] {
+        background-color: royalblue;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 22px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: mediumblue;
+        transform: translateY(-1px);
+      }
+
+      button[type="reset"] {
+        background-color: whitesmoke;
+        color: dimgray;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 18px;
+        border: 1px solid silver;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease,transform 0.1s ease;
+      }
+
+      button[type="reset"]:hover {
+        background-color: gainsboro;
+        transform: translateY(-1px);
+      }
+    </style>
   </head>
 <body>
 

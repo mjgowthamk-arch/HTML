@@ -785,5 +785,233 @@ img {
 }
 
 
+/*/////////////////////////////////////////////////////////////////////*/
+
+
+
+/* ==========================================================================
+   BEGINNER CSS ESSENTIALS CHEAT SHEET
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL RESET (Put at top of every CSS file)
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box; /* Makes padding & border stay inside the width */
+  margin: 0;              /* Removes default browser gaps */
+  padding: 0;             /* Removes default inner spacing */
+}
+
+body {
+  font-family: Arial, sans-serif; /* Clean, standard font fallback */
+  line-height: 1.5;               /* Comfortable reading spacing */
+  background-color: aliceblue;    /* Page background */
+  color: darkslategray;          /* Default text color */
+}
+
+
+/* --------------------------------------------------------------------------
+   2. COLORS & BACKGROUNDS
+   -------------------------------------------------------------------------- */
+.color-basics {
+  color: midnightblue;             /* Text color */
+  background-color: white;         /* Solid card background */
+  
+  /* Background image basics */
+  background-image: url("/images/photo.png");
+  background-repeat: no-repeat;    /* Stops image from repeating/tiling */
+  background-size: cover;          /* Stretches image to cover full container */
+  background-position: center;     /* Centers the image */
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TEXT & TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1 {
+  font-size: 32px;                 /* Heading size */
+  font-weight: bold;               /* bold | normal */
+  text-align: center;              /* left | center | right */
+  margin-bottom: 10px;             /* Space below heading */
+}
+
+p {
+  font-size: 16px;                 /* Standard body text size */
+  text-align: left;
+  letter-spacing: 1px;             /* Space between letters */
+  line-height: 24px;               /* Height of each text line */
+}
+
+/* Text links */
+a {
+  color: royalblue;
+  text-decoration: none;           /* Removes default underline */
+}
+
+a:hover {
+  text-decoration: underline;      /* Shows underline only when mouse hovers */
+  color: mediumblue;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. BOX MODEL (Padding, Margin, Width, Height)
+   -------------------------------------------------------------------------- */
+.card-box {
+  width: 100%;                     /* Takes full container width */
+  max-width: 600px;                /* Won't stretch wider than 600px */
+  height: auto;                    /* Automatically adjusts height to content */
+  
+  /* Internal spacing (inside the box) */
+  padding: 20px;                   /* 20px on all 4 sides */
+  padding: 10px 20px;              /* 10px top/bottom, 20px left/right */
+  
+  /* External spacing (outside the box) */
+  margin: 20px auto;               /* Centers the box horizontally with 20px top/bottom */
+  margin-bottom: 15px;             /* Space only at the bottom */
+}
+
+
+/* --------------------------------------------------------------------------
+   5. BORDERS & SHADOWS
+   -------------------------------------------------------------------------- */
+.box-style {
+  border: 1px solid gainsboro;     /* [width] [style] [color] */
+  border-radius: 8px;              /* Rounds the corners */
+  
+  /* Drop shadow: [x-offset] [y-offset] [blur] [color] */
+  box-shadow: 0 4px 8px lightgray;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. DISPLAY MODES (How elements sit on page)
+   -------------------------------------------------------------------------- */
+.hide-element   { display: none; }          /* Completely hides element */
+.inline-element { display: inline; }        /* Stays on same line (e.g., <span>, <b>) */
+.block-element  { display: block; }         /* Takes whole row, starts on new line (<div>, <p>) */
+
+/* inline-block: Sits on same line BUT accepts width, height, padding, & margin */
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: royalblue;
+  color: white;
+  border-radius: 6px;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. FLEXBOX (Simplest way to align items side-by-side)
+   -------------------------------------------------------------------------- */
+.flex-parent {
+  display: flex;                   /* Turns children into side-by-side items */
+  
+  /* Horizontal alignment */
+  justify-content: center;        /* Centers items horizontally */
+  justify-content: space-between; /* Pushes items to far left & right */
+  
+  /* Vertical alignment */
+  align-items: center;            /* Centers items vertically */
+  
+  /* Spacing between items */
+  gap: 15px;                      /* Clean spacing without needing margins */
+  
+  /* Direction */
+  flex-direction: row;            /* Default: Left to right */
+  flex-direction: column;         /* Stacks items vertically like a list */
+  
+  /* Wrapping */
+  flex-wrap: wrap;                /* Moves items to next line on small screens */
+}
+
+
+/* --------------------------------------------------------------------------
+   8. BASIC POSITIONING
+   -------------------------------------------------------------------------- */
+/* Parent container for absolute items */
+.parent-container {
+  position: relative;              /* Anchor point for child elements */
+}
+
+/* Child pinned inside parent */
+.badge {
+  position: absolute;
+  top: 10px;                       /* 10px from parent top */
+  right: 10px;                     /* 10px from parent right */
+  background-color: crimson;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Sticky top header (stays visible when scrolling) */
+header.sticky-nav {
+  position: sticky;
+  top: 0;                          /* Sticks to top of screen */
+  background-color: white;
+  z-index: 100;                    /* Keeps header on top of other content */
+}
+
+
+/* --------------------------------------------------------------------------
+   9. BUTTONS, HOVER & SMOOTH TRANSITIONS
+   -------------------------------------------------------------------------- */
+button {
+  background-color: royalblue;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;                 /* Changes mouse to a clicking hand */
+  
+  /* Smooth animation when hover starts or ends */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: mediumblue;    /* Darkens button on mouse hover */
+  transform: translateY(-2px);     /* Lifts button up by 2px */
+}
+
+button:active {
+  transform: translateY(0);        /* Pushes button back down on click */
+}
+
+
+/* --------------------------------------------------------------------------
+   10. BASIC FORM INPUTS & IMAGES
+   -------------------------------------------------------------------------- */
+/* Full-width responsive inputs */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid silver;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Highlight border when typing */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: royalblue;
+}
+
+/* Responsive images (never overflow container) */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
 
 
