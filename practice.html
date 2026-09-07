@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <style>
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: lightsalmon;
+            background-image: url('/images/2.png');
+            padding: 20px;
+        }
+
+        h1 {
+            word-spacing: 3px;
+            letter-spacing: 3px;
+        }
+
+        p {
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 3px solid black;
+            width: 500px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        ol {
+            text-decoration: underline dotted;
+        }
+
+        a {
+            text-decoration: underline double;
+        }
+        
+        #grid {
+            background-color: antiquewhite;
+            display: grid;
+            /* 2 columns (left sidebar + right content) */
+            grid-template-columns: 200px 1fr;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        /* span - header and footer stretch across both columns */
+        #grid header, #grid footer {
+            grid-column: span 2;
+        }
+
+        #grid header {
+            background-color: #666;
+            color: white;
+            padding: 10px;
+        }
+
+        #grid section {
+            background-color: #ccc;
+            padding: 10px;
+        }
+
+        #grid article {
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        #grid footer {
+            background-color: #777;
+            color: white;
+            padding: 10px;
+        }
+
+        #grid h1 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        #grid h2 {
+            font-size: 1rem;
+            margin: 0;
+        }
+            
+    </style>
+</head>
+<body>
+    <h1>Heading</h1>
+    <p>Paragraph</p>
+
+    <div class="ol">
+        <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ol>
+    </div>
+
+    <div class="table">
+        <table>
+            <tr>
+                <th>s.no</th>
+                <th>Language</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>JavaScript</td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="form">
+        <label for="uid">User Id:</label>
+        <input type="text" name="id" id="uid"><br><br>
+
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass"><br><br>
+    </div>
+
+    <div id="grid">
+        <header>
+            <h1>This is Header.</h1>
+        </header>
+
+        <section>
+            <nav>
+                <a href="tags.html">HTML tags</a>
+            </nav>
+        </section>
+
+        <article>
+            <h2>This is an article</h2>
+        </article>
+
+        <footer>
+            &copy; footer
+        </footer>
+    </div>
+    
+</body>
+</html>

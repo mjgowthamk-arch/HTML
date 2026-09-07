@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS</title>
+    <title>JavaScript Fundamentals</title>
 </head>
 <body>
     <script>
@@ -372,6 +372,38 @@
             }
         }
 
+        let row=5;
+        for (let i=1;i<=row;i++){            // star
+            let str="";
+            for (let j=1;j<=i;j++){
+                str+='*';
+            }
+            console.log(str);
+        }
+
+
+        let row2=5;
+        for (let i2=row2;i2>=1;i2--){
+            str2='';
+            for (let j2=1;j2<=i;j2++){
+                str2+='*';
+
+            }
+            console.log(str2);
+        }
+
+
+
+        let row3=5;
+        let i3=1;
+        let str3='';
+        while (i3<=row3){
+            str3+='*';
+            console.log(str3);
+            i3++;
+        }
+  
+
 
         // switch statement
         
@@ -465,11 +497,11 @@
 
         // functions
 
-        function greet(name) {
+        function greett(name) {
             console.log(`Hello! ${name}`)
         }
 
-        greet('john')
+        greett('john')
 
         
         
@@ -483,8 +515,8 @@
 
 
 
-        console.log(typeof a)                    // Hoisting
-        console.log(typeof b)
+        console.log(typeof funa)                    // Hoisting
+        console.log(typeof funb)
         
         var funb = function(){
             console.log("b executed");
@@ -498,7 +530,7 @@
         }
 
 
-        
+        window.name='sam';
         let user4={                              // this Context
             name:"Alex",
 
@@ -551,12 +583,12 @@
 
 
 
-        function sum(a){                          // Currying
+        function sum2(a){                                                                   // Currying
             return function(b){
                 return a+b;
             };
         }
-        console.log(sum(2)(3));
+        console.log(sum2(2)(3));
 
 
 
@@ -592,95 +624,227 @@
         // function expression
 
 
-        let sayHi = function() {
-            alert( "Hello" );
+        let say = function() {
+            console.log( "Hello" );
         };
 
 
-        function sayHi() {  
-            alert( "Hello" );
+        function say2() {  
+            console.log( "Hello" );
         }
-        
-        let func = sayHi; 
-        func();     
-        sayHi();  
+     
+        let say3 = say2; 
+        say2();     
+        say3();  
 
 
         // arrow funcntions
 
-        let sayHi = () => alert("Hello!");
-        sayHi();
+        let say4 = () => console.log("start!");
+        say4();
 
 
-        let sum = (a, b) => a + b;
-        alert( sum(1, 2) ); // 3
-
-
-
+        let sum3 = (a, b) => a + b;
+        console.log( sum3(1, 2) ); 
 
 
 
 
-
-
-        
-
-
-
-
-
-
-
-
-
+        function sum(a){
+            let count=0;
+            let str=String(a);
+            for(let i=0;i<str.length;i++){
+                    count+=Number(str[i]);     
+            }
+            return count; 
+        }
+        console.log(sum(12345));
 
         
-
-      
         
-
         
+        function countvowels(a){
+            let count=0;
+            for(let i=0;i<a.length;i++){
+                if (a[i]== 'a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u'){
+                    count+=1;     
+                }
+            }
+            return count; 
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
+        }
+        console.log(countvowels('aeiou'));
 
 
 
 
+        function reverse(a){
+            let str='';
+            let b = a.toString();
+            for(let i=0;i<b.length;i++){
+
+                str=b[i] + str; 
+            }
+            return str; 
+        }
+        console.log(reverse(12345));
+
+
+
+
+        function findmax(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        console.log(findmax([2,75,10,55,31,23,35]));
+
+
+
+
+
+        function count(a) {
+            let c = 0;
+            let b = a.toString();
+            for (let i = 0; i < b.length; i++) {
+                if (b[i] == '7') {
+                    c += 1;
+                }
+            }
+
+            return c;
+        }
+        console.log(count(12332333878)); 
 
 
 
 
 
 
+        function count(a){
+            let c=0;
+            let b=a.toString();
+            for (let i=0;i<(b).length;i++){
+                if (b[i]=='t' && b[i+1]=='i' && b[i+2]=='m'){
+                    c+=1;
+                }
+            }
+            return c;
+        }
+        console.log(count('12332stimdaas3xc33tim 878'));
+
+
+
+        function palindrome(a){
+            
+            let b=String(a);
+
+            let st=0;
+            let end=b.length-1;
+            
+            while(st<end){
+                if (b[st]!==b[end]){
+                    return false;
+                }
+                st++;
+                end--;
+            }
+            return true;
+        }
+        console.log(palindrome('moom'));
+
+
+
+        function palindrome(a){
+
+            let str=''
+            for (let i=0; i<a.length;i++){
+                str=a[i]+str;
+            }
+            console.log(str);
+            return (str == a) ? true : false;
+        }
+        console.log(palindrome('maadam'));
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+        function removevowels(a){
+            let str=''
+            for (let i=0;i<a.length;i++){
+                if (a[i]!=='a' && a[i]!=='e' && a[i]!=='i' && a[i]!=='o' && a[i]!=='u'){
+                    str+=a[i];
+                }
     
+            }
+            return str;
+        }
+        console.log(removevowels('gowtham'));
+        
+        
+        
+        
+        function concount(a){
+            let b=String(a);
+            str=''
+            for (let i=0;i<b.length;i++){
+                if (a[i]=='a'|| a[i]=='e'|| a[i]=='i'|| a[i]=='o'|| a[i]=='u'){
+                    continue;
+                }
+                else if (a[i]==' ' || a[i]==":" || a[i]==","){
+                    continue;
+                }
+                else if (a[i]==Number(a[i])){
+                    continue;
+                }
+                else{
+                    str+=a[i]
+                }
+            }
+            return str;
+        }
+        console.log(concount('vowels are: aeiou , numbers are :12323'));
+        
+        
+        
+        
+        function uptolow(a){
+            let b=String(a);
+            str=''
+            for (let i=0;i<b.length;i++){
+                if (a[i]==a[i].toUpperCase()){
+                    str+=a[i].toLowerCase();
+                }
+                
+                else if (a[i]==a[i].toLowerCase()){
+                    str+=a[i].toUpperCase();
+                }
+      
+                else{
+                    str+=a[i]
+                }
+            }
+            return str;
+        }
+        console.log(uptolow('HELLO how are u'));
+        
+        
+        
+        function unique(a){
+            let str='';
+            for (let i=0;i<a.length;i++){
+                if(!str.includes(a[i])) {
+                    str += a[i];
+                }
+            }
+            return str;
+        }
+        console.log(unique('aabccddeeg'));
+                                               
     </script>
     
 </body>

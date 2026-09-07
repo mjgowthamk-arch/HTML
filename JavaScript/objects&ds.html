@@ -1,0 +1,511 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects & Data Structures</title>
+</head>
+<body>
+    <script>
+        
+        // objects 
+
+        let hii=new Object();
+
+
+
+
+        const userr = { name: "Alice", age: 25 };
+        alert(JSON.stringify(userr));
+
+
+        const text = '{"name":"Alice","age":25}';
+        const objj = JSON.parse(text);
+        
+        console.log(objj);
+        
+        
+        
+        let userrr = {
+            name: "John",
+            age: 30,
+            isAdmin: true
+        };
+        
+        for (let key in user) {
+            alert(key);  
+            alert(user[key]);
+        }
+        
+        
+        
+        
+        let codes = {
+            "+49": "Germany",
+            "+41": "Switzerland",             // using number will result in shorted o/p
+            "+44": "Great Britain",
+            "+1": "USA"
+        };
+        
+        for (let code in codes) {
+            alert( +code ); 
+            }
+
+
+            // Object references and copying
+
+
+            let users = { name: 'John' };
+            let admin = users;
+            
+            admin.name = 'Pete'; // changed by the "admin" reference
+            alert(users.name);
+
+
+
+
+            const uuser = {                   // (cannot delete a variable declared with const, let, or var)
+                name: "John"
+            };
+            
+            uuser.age = 21;
+            
+            delete uuser.age;
+            delete uuser.name;
+            alert(uuser); 
+
+
+
+
+            let obbj={name:'a',age:21};
+            let clone={};
+            
+            for (let key in obj){
+                clone[key]=obj[key];
+            }
+
+            obj.name='b';
+            
+            console.log(obj);
+            console.log(clone);
+
+
+
+
+            let useer = { name: "John" };
+            alert(useer); 
+            
+            let permissions1 = { canView: true };
+            let permissions2 = { canEdit: true };
+            
+            Object.assign(useer, permissions1, permissions2);    // Object Key Must Be Unique
+            Object.assign(useer, { name: "Pete" });              // if the copied property name already exists,it gets overwritten
+            
+            let clonne = Object.assign({}, useer);               // simple clone // Object.assign(target, source);
+            alert(useer);  
+            alert(clonne);     
+            
+            
+
+
+            let usser = {
+                name: "John",
+                sizes: {
+                    height: 130,
+                    width: 50
+                }
+            };
+
+            let cllone = Object.assign({}, usser);    // shallow copy 
+            let cloone = structuredClone(usser);       // deep copy
+
+
+            alert( usser.sizes === cllone.sizes );
+            alert( usser.sizes === cloone.sizes );
+
+
+            usser.sizes.height = 60;
+
+            
+            alert(cllone.sizes.height); // 60 (affected,shares sizes)
+            alert(cloone.sizes.height); // 130 (unaffected, isolated)
+
+
+
+            let mb={a:1,b:2};
+            mb.c=mb;
+            
+            let cl=structuredClone(mb);
+
+            console.log(cl.c==cl);
+            console.log(mb);
+
+
+            // Object methods, "this"
+
+            let usser = {
+                name: "John",
+                age: 30
+            };
+            
+            usser.sayHi = function() {             //  we could use a pre-declared function as a method :
+                alert("Hello!");                  //  user.sayHi = sayHi;
+            };
+            
+            usser.sayHi(); // Hello!
+
+
+
+
+            let userz = {
+                name: "John",
+                age: 30,
+                
+                sayHi() {
+                    
+                    alert(this.name);               // this => current object - userz
+                }
+            };
+            
+            userz.sayHi(); // John
+
+
+
+            let userzz = {
+                name: "John",
+                age: 30,
+                
+                sayHi() {
+                    alert( this.name );  // 'userzz' instead of 'this' will cause error
+                    }                    //  A function that belongs to an object is called method
+                };
+                
+                let admin = userzz;
+                userzz = null;
+                admin.sayHi();
+
+
+
+
+                function introduce() {
+                    console.log("My name is " + this.name);    // It can be used in function
+                }
+                
+                let user11 = { name: "John" };
+                let user22 = { name: "Sarah" };
+
+                // Give both objects a link to that same function
+
+                user11.greet = introduce;
+                user22.greet = introduce;
+
+                user11.greet();
+                user22.greet(); 
+
+                // arrow() uses this from the outer user.sayHi() method:
+
+                let usera = {
+                    firstName: "Ilya",
+                    sayHi() {
+                        let arrow = () => alert(this.firstName);
+                        arrow();
+                    }
+                };
+                usera.sayHi(); // Ilya
+
+
+                // Constructor, operator "new"
+
+                // Manual creation vs. new User()
+
+                function createUser(name, age) { 
+
+                    let person = {};     // 1. You explicitly make an object
+                    person.name = name;  // 2. You attach properties
+                    person.age = age;
+  
+                    return person;       // 3. You explicitly return it
+                }
+                let john = createUser("John", 25);
+
+                console.log(john);       
+                console.log(john.name);  
+                console.log(john.age);
+
+
+
+                                
+               // The constructor way (with new):
+               
+               function User(name, age) {
+
+                // [Hidden step by 'new']: // this = {};  (implicitly)
+
+                this.name = name; // Adds 'name' into {}
+                this.age = age;   // Adds 'age' into {}
+
+                // [Hidden step by 'new']: // return this;  (implicitly)
+            }
+
+            let johnn = new User("John", 25); // Stores the returned {} in johnn
+
+            console.log(johnn);      // User { name: 'John', age: 25 }
+            console.log(johnn.name); 
+            console.log(johnn.age);  
+
+
+
+
+            function User(name, age) {
+
+                this.name = name;
+                this.age = age;
+
+               // If return is called with an object, then the object is returned instead of this.
+                return { custom: "I hijacked the constructor!" };
+               // this only gets overridden if you return an object
+            }
+
+            let jonn = new User("John", 25);
+
+            console.log(jonn); // { custom: "I hijacked the constructor!" }
+            console.log(jonn.name); // undefined 
+
+
+
+
+            function User(name) {
+  
+                this.name = name;
+                this.sayHi = function() {
+
+                    return "My name is: " + this.name;
+                };
+            }
+
+            let johhn = new User("John");
+        
+            console.log(johhn.sayHi());   //  console.log(new User("John").sayHi());
+
+
+
+            // Optional chaining '?.'
+
+            // The optional chaining ?. is not an operator, but a special syntax construct
+            // It also works with functions and square brackets
+
+
+            let user10 = {
+                address: {
+
+                      street: "Hi"
+                }
+            };
+
+            let user20 = {}; 
+
+            // 1. If 'address' exists, read 'street' (otherwise undefined, no crash)
+
+            alert(user10.address?.street); // "Hi"
+            alert(user20.address?.street); // undefined
+
+
+
+
+            let userAdmin = {
+
+                admin() {
+                    alert("I am admin");
+                }
+            };
+
+            let userGuest = {};
+
+            userAdmin.admin?.(); // I am admin
+            userGuest.admin?.(); // nothing happens (no such method)
+
+
+
+            let key = "firstName";
+            let user100 = {
+
+                firstName: "John"
+            };
+
+            let user200 = null;
+
+            alert( user100?.[key] ); // John
+            alert( user200?.[key] ); // undefined
+
+            
+            
+            let keys = "Name";
+            let user101 = {
+
+              Name: "John",
+              age: 21
+            };
+
+            let user201 = null;
+            
+            alert(user101?.[keys]); // John
+            alert(user201?.[keys]); // undefined
+
+            alert(Object.keys(user101));   // [ 'Name', 'age' ]     // will cause error if its used on null
+            alert(Object.values(user101)); // [ 'John', 21 ]        
+
+
+
+            // delete user.name if user exists
+            delete user?.name; 
+
+
+            // symbols
+
+            // A Symbol is a unique, hidden ID created by JavaScript.
+            // It stops different parts of code from accidentally overwriting each other's keys.
+
+            let id = Symbol();
+            
+            // id1 is a symbol with the description "id"
+
+            let id1 = Symbol("id");
+
+            // Symbols are guaranteed to be unique. 
+            // Even if we create many symbols with exactly the same description, they are different values.
+
+
+            let id3 = Symbol("id");
+            let id4 = Symbol("id");
+            alert(id3 == id4); // false
+
+
+            /*
+            let id = Symbol("id");
+            alert(id); // TypeError: Cannot convert a Symbol value to a string
+            */
+            
+            let id5 = Symbol("id");
+            alert(id5.toString()); // Symbol(id), now it works
+
+
+            let id6 = Symbol("id");
+            alert(id6.description); // id // to access description
+
+
+
+
+            let user7 = { 
+ 
+                name: "John"
+            };
+
+            let id7 = Symbol("id");
+
+            user7[id7] = 1;
+        
+            alert(user7);
+            alert(user7[id7]); // we can access the data using the symbol as the key
+
+
+
+
+           let user8 = { name: "John" };
+            
+            // Our script uses "id" property
+            user8.id = "Our id value";
+
+            // Overwritten by another script
+            user8.id = "Their id value";
+
+            
+            let id8 = Symbol("id");
+            user8[id8] = "Their id value";  // [Symbol(id)]: "Their id value"
+
+
+
+
+            let id9 = Symbol("id");
+            let user9 = {
+                name: "John",
+                [id9]: 123        // must use [] for symbols , avoid "id": 123  
+            };
+
+
+
+            // Symbol.for(...) does not store the symbol inside your let variable. 
+            // It stores the symbol inside JS built-in hidden global registry table.
+            // Variable is just a pointer holding whatever Symbol.for() hands back.
+
+            // read from the global registry to get the same symbol
+
+            let id10 = Symbol.for("id");      // if the symbol did not exist, it is created
+            let idAgain = Symbol.for("id");
+
+            alert( id10 === idAgain ); // true
+
+
+
+
+            // get symbol by name
+
+            let sym = Symbol.for("name");
+            let sym2 = Symbol.for("id");
+
+            // get name by symbol
+
+            alert( Symbol.keyFor(sym) ); // name
+            alert( Symbol.keyFor(sym2) ); // id
+
+
+            // Object to primitive conversion 
+
+            // JavaScript automatically turning an object {} into a single basic value 
+            // (like a number or a string) when it needs to do math or show text.
+
+
+            // There are three variants of type conversion, that happen in various situations. They’re called “hints”
+
+
+            // 1) string
+
+            // output             
+            alert(obj);
+
+            // using object as a property key
+            anotherObj[obj] = 123;
+
+
+
+            
+            // 2) number
+
+            // explicit conversion
+
+            let num = Number(obj);
+
+            // maths (except binary plus)
+
+            let n = +obj; // unary plus
+            let delta = date1 - date2;
+
+            // less/greater comparison
+
+            let greater = user1 > user2;
+
+
+
+
+            // 3) default
+
+            // binary plus uses the "default" hint
+            let total = obj1 + obj2;
+
+
+            // obj == number uses the "default" hint
+
+            if (user == 1) {  };
+
+    </script>
+    
+</body>
+</html>
