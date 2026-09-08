@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,18 +19,26 @@
         txt = "Hello!";
         console.log(txt);
 
+        // ----------------------------------------
+
         let user = "John",
         age = 25,
         msg = "Hello";
         console.log(user);
+
+        // ----------------------------------------
 
         let user2 = "John"
           , age2 = 25
           , msg2 = "Hello";
         console.log(user2,age2,msg2);
 
+        // ----------------------------------------
+
         let user3 = "John", age3 = 25, msg3 = "Hello";
         console.log(user3,age3,msg3);
+
+        // ----------------------------------------
 
         let $, _;
 
@@ -37,58 +46,92 @@
         _="underscore";
         console.log($,_);
 
+        // ----------------------------------------
+
         const bloodgroup = "O+";
         console.log(bloodgroup);
 
+        // ----------------------------------------
+
         // Data types
 
-        let a=110.25
+        let a=110.25;
         console.log(a);
+
+        // ----------------------------------------
 
         let b=20100;
         console.log(typeof b);
 
+        // ----------------------------------------
+
         let c=BigInt(120000000000000n);
         console.log(typeof c);
 
+        // ----------------------------------------
+
         console.log(1/0);
+
+        // ----------------------------------------
 
         let str="Hello";
         console.log(str);
 
+        // ----------------------------------------
+
         let bool=true;
         console.log(bool);
+
+        // ----------------------------------------
 
         let bool2=false;
         console.log(bool2);
         
+        // ----------------------------------------
+
         let f=null;
         console.log(f);
+
+        // ----------------------------------------
 
         let e=undefined;
         console.log(e);
         
+        // ----------------------------------------
+
         let obj={
             name:"John",
             age:30
         };
         console.log(obj);
 
+        // ----------------------------------------
+
         console.log(typeof obj);
         console.log(typeof obj.name);
         console.log(typeof obj.age);
 
+        // ----------------------------------------
+
         console.log(obj.name);
         console.log(obj["name"]);
+
+        // ----------------------------------------
 
         console.log(obj.name, obj.age);
         console.log(obj["name"], obj["age"]);
 
+        // ----------------------------------------
+
         console.log(obj.name + " " + obj.age);
         console.log(obj["name"] + " " + obj["age"]);
 
+        // ----------------------------------------
+
         console.log(`${obj.name} ${obj.age}`);
         console.log(`${obj["name"]} ${obj["age"]}`);
+
+        // ----------------------------------------
 
         console.log(`${obj.name} is ${obj.age} years old`);
 
@@ -116,27 +159,41 @@
         value = String(value); // "true"
         console.log(typeof value);
 
+        // ----------------------------------------
+
         console.log( "6" / "2" ); // 3                  
-                                                                    
+                                                                                                    
         let trueValue = true;                           // Whitespaces (spaces, tabs \t, newlines \n etc.) from the start and end are removed. 
         console.log(String(trueValue)); // "true"       // If the remaining string is empty, the result is 0.  
+
+        // ----------------------------------------
 
         let epmtyValue = null;
         console.log(Boolean(epmtyValue)); // false
 
+        // ----------------------------------------
+
         let str2 = "12A";
         console.log(Number(str2)); // NaN  
+
+        // ----------------------------------------
 
         // string concatenation
 
         let s = "my" + "string";
         console.log(s);
 
+        // ----------------------------------------
+
         console.log( '1' + 2 ); // "12"
         console.log( 2 + '1' ); // "21"
 
+        // ----------------------------------------
+
         console.log(2 + 2 + '1' ); // "41" and not "221"
         console.log('1' + 2 + 2); // "122" and not "14"
+
+        // ----------------------------------------
 
         // increment and decrement
 
@@ -144,24 +201,34 @@
         let inc = ++c1;
         console.log(inc); // 2
 
+        // ----------------------------------------
+
         let c2 = 1;
         let inc2 = c2++;
         console.log(inc2); // 1
 
+        // ----------------------------------------
 
         // comparisons
 
         console.log( 2 > 1 );  // true 
 
+        // ----------------------------------------
+
         console.log('2' == 2 ); // true
         console.log('2' === 2 ); // false
         
+        // ----------------------------------------
+
         console.log( 2 != 1 ); // true
         console.log( 2 !== 1 ); // true 
 
+        // ----------------------------------------
 
         let comparison = 2 > 1;
         console.log(comparison); // true
+
+        // ----------------------------------------
 
         // conditional branching if, ?
 
@@ -172,7 +239,7 @@
             console.log("You are a minor");
         }
 
-
+        // ----------------------------------------
 
         if ([]) {
             console.log("Array is true");
@@ -181,6 +248,7 @@
             console.log("Object is true");
         }
 
+        // ----------------------------------------
 
         let val = null;
         if (val == undefined) {
@@ -191,13 +259,13 @@
             console.log("Match 2");
         }
 
-
+        // ----------------------------------------
 
         let age6 = 18;
         let message = (age6 >= 18) ? "You are an adult" : "You are a minor";
         console.log(message);
 
-
+        // ----------------------------------------
 
         if (1) {
             console.log("True");  // true
@@ -205,7 +273,7 @@
             console.log("False");
         }
 
-
+        // ----------------------------------------
 
         if (null) {
             console.log("True");
@@ -213,10 +281,9 @@
             console.log("False");  // false
         }
 
+        // ----------------------------------------
 
-        
-
-        let age7 = prompt("Enter your age:", 10);
+        let age7 = 10;
 
         if (age7 < 3) {
             console.log("Hi");
@@ -228,7 +295,7 @@
             console.log("Enter a valid age.");
         }
 
-
+        // ----------------------------------------
 
         let message2 = (age7 < 3) ? "hi" :
             (age7 < 18) ? "hello":
@@ -236,6 +303,7 @@
             "enter a valid age";
             console.log(message2);
 
+        // ----------------------------------------
 
         // logical operators
 
@@ -245,23 +313,33 @@
         console.log(x || y || z); // 1
         console.log(x && y && z); // 3
 
+        // ----------------------------------------
+
         console.log( !1 ); // false
         console.log( !0 ); // true
         console.log( !!1 ); // true
         console.log( !!0 ); // false
 
+        // ----------------------------------------
+
         console.log(!true); // false
         console.log(!false); // true
 
+        // ----------------------------------------
+
         console.log(!!null); // false
         console.log(!!undefined); // false
+
+        // ----------------------------------------
 
         // Nullish coalescing operator '??'
 
         let user1; 
 
-        user1 = null;                                              // ?? returns the first defined value.
-        console.log(user1 ?? "none"); // none                      // || returns the first truthy value.
+        user1 = null;                                                               // ?? returns the first defined value.
+        console.log(user1 ?? "none"); // none                                       // || returns the first truthy value.
+
+        // ----------------------------------------
 
         let firstName = null;
         let lastName = null;
@@ -269,6 +347,7 @@
 
         console.log(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
         
+        // ----------------------------------------
         
         let height = null;
         let width = null;
@@ -276,6 +355,7 @@
         let area = (height ?? 100) * (width ?? 50);
         console.log(area); 
 
+        // ----------------------------------------
 
         // loop - while, do while, for
 
@@ -284,13 +364,14 @@
             z++;
         }
 
-
+        // ----------------------------------------
 
         let a1 = 3;
         while (a1--) {
             console.log(a1);
         }
 
+        // ----------------------------------------
 
         do {
             console.log(y*z);            // x=1,y=2,z=3
@@ -298,16 +379,20 @@
             z++;
         } while (y<=x*10);
 
+        // ----------------------------------------
 
         for (let i=1; i<=5; i++){
             console.log(i);
         }
+
+        // ----------------------------------------
 
         for (;;) {                       // infinite loop
             console.log("Running...");
             break;
         }
 
+        // ----------------------------------------
 
         let isReady = false;
         
@@ -316,31 +401,41 @@
             isReady = true;
         }
 
+        // ----------------------------------------
+
         while (isReady) {
             console.log("Checking status...");
             isReady = false;
         }
 
+        // ----------------------------------------
+
         for (let i = 0, j = 10;  j > 7,i < 5; i++, j--) {  // j > 7 is ignored, i < 5 decides the loop termination
             console.log(i, j);
         }
 
+        // ----------------------------------------
+
         console.log("/n");
 
-        let i = 0;
-        while (i = 5) {
-            console.log(i);
-            i--;
-            if (i === 4) break;
-        }
-        console.log("After loop:", i);
+        // ----------------------------------------
 
+        let iWhile = 5;
+        while (iWhile == 5) {
+            console.log(iWhile);
+            iWhile--;
+            if (iWhile === 4) break;
+        }
+        console.log("After loop:", iWhile);
+
+        // ----------------------------------------
 
         for (let i = 0; i < 3; i++) {
             if (i === 1) continue;
             console.log("A:", i);
         }
         
+        // ----------------------------------------
         
         let j = 0;
         while (j < 3) {
@@ -352,6 +447,7 @@
             j++;
         }
         
+        // ----------------------------------------
         
         for (let i = 1; i <= 2; i++) {
             for (let j = 1; j <= 3; j++) {
@@ -362,8 +458,9 @@
             }
         }
 
+        // ----------------------------------------
 
-         for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= 2; i++) {
             for (let j = 1; j <= 3; j++) {
                 if (j === 2) {
                     continue;
@@ -371,6 +468,8 @@
                 console.log(`i=${i}, j=${j}`);
             }
         }
+
+        // ----------------------------------------
 
         let row=5;
         for (let i=1;i<=row;i++){            // star
@@ -381,18 +480,18 @@
             console.log(str);
         }
 
+        // ----------------------------------------
 
         let row2=5;
         for (let i2=row2;i2>=1;i2--){
-            str2='';
-            for (let j2=1;j2<=i;j2++){
+            let str2='';
+            for (let j2=1;j2<=i2;j2++){
                 str2+='*';
-
             }
             console.log(str2);
         }
 
-
+        // ----------------------------------------
 
         let row3=5;
         let i3=1;
@@ -402,8 +501,8 @@
             console.log(str3);
             i3++;
         }
-  
-
+ 
+        // ----------------------------------------
 
         // switch statement
         
@@ -433,7 +532,7 @@
                 console.log("Invalid day");
         }
 
-
+        // ----------------------------------------
 
         let rank = 2;
         switch (rank) {
@@ -450,6 +549,7 @@
                 console.log("Participation");
         }
 
+        // ----------------------------------------
 
         let score = 85;
         switch (true) {
@@ -463,6 +563,7 @@
                 console.log("C");
             }
 
+        // ----------------------------------------
 
         let action = "add";
         switch(action) {
@@ -477,6 +578,7 @@
                 break;
         }
 
+        // ----------------------------------------
 
         let action2 = "add";
         switch(action2) {
@@ -493,7 +595,7 @@
             }
         }
 
-
+        // ----------------------------------------
 
         // functions
 
@@ -501,22 +603,20 @@
             console.log(`Hello! ${name}`)
         }
 
-        greett('john')
+        greett('john');
 
-        
-        
-        
-        function sum(a, b) {
+        // ----------------------------------------
+
+        function sumTwo(a, b) {
             return a + b;
         }
 
-        console.log(sum(2, 3));
+        console.log(sumTwo(2, 3));
 
+        // ----------------------------------------
 
-
-
-        console.log(typeof funa)                    // Hoisting
-        console.log(typeof funb)
+        console.log(typeof funa);                    // Hoisting
+        console.log(typeof funb);
         
         var funb = function(){
             console.log("b executed");
@@ -529,9 +629,10 @@
             console.log("a executed");
         }
 
+        // ----------------------------------------
 
         window.name='sam';
-        let user4={                              // this Context
+        let user4={                               // this Context
             name:"Alex",
 
             sayhi : function() {
@@ -544,12 +645,10 @@
             }
         }
 
-
         user4.sayhi();
         user4.sayhiarrow();
 
-
-
+        // ----------------------------------------
 
         function createcounter(){                // Closures
             let count=0;
@@ -567,8 +666,7 @@
         counter1();
         counter2();
 
-
-
+        // ----------------------------------------
 
         const person={name:'sara'};               // Execution Binding (call, apply, bind)
         function intro(greeting,punct){
@@ -580,20 +678,18 @@
         const bind=intro.bind(person,'hi');
         bind('?');
 
+        // ----------------------------------------
 
-
-
-        function sum2(a){                                                                   // Currying
+        function sum2(a){                                                                                               // Currying
             return function(b){
                 return a+b;
             };
         }
         console.log(sum2(2)(3));
 
+        // ----------------------------------------
 
-
-
-        const dog = {                                                                        // object method
+        const dog = {                                                                                                        // object method
             name: "Buddy",
             bark() {
                 console.log(this.name + " says Woof!");
@@ -602,17 +698,20 @@
         
         dog.bark(); // "Buddy says Woof!"
         
+        // ----------------------------------------
         
-        function greet(name, callback) {                                                       // call back
+        function greet(name, callback) {                                                                                      // call back
            callback("Hello " + name); // calls the function you handed it
-           }
+        }
            
-           greet("Sam", (message) => console.log(message)); // "Hello Sam"
+        greet("Sam", (message) => console.log(message)); // "Hello Sam"
             
-           // A simple function that delays 1 second
+        // ----------------------------------------
+
+        // A simple function that delays 1 second
            
-           const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
-           async function run() {
+        const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
+        async function run() {
             console.log("Start");
             await waitOneSecond(); // pauses only this function for 1s
             console.log("End");
@@ -620,14 +719,15 @@
         
         run();
 
+        // ----------------------------------------
 
         // function expression
-
 
         let say = function() {
             console.log( "Hello" );
         };
 
+        // ----------------------------------------
 
         function say2() {  
             console.log( "Hello" );
@@ -637,18 +737,19 @@
         say2();     
         say3();  
 
+        // ----------------------------------------
 
         // arrow funcntions
 
         let say4 = () => console.log("start!");
         say4();
 
+        // ----------------------------------------
 
         let sum3 = (a, b) => a + b;
         console.log( sum3(1, 2) ); 
 
-
-
+        // ----------------------------------------
 
         function sum(a){
             let count=0;
@@ -660,9 +761,8 @@
         }
         console.log(sum(12345));
 
-        
-        
-        
+        // ----------------------------------------
+
         function countvowels(a){
             let count=0;
             for(let i=0;i<a.length;i++){
@@ -675,8 +775,7 @@
         }
         console.log(countvowels('aeiou'));
 
-
-
+        // ----------------------------------------
 
         function reverse(a){
             let str='';
@@ -689,8 +788,7 @@
         }
         console.log(reverse(12345));
 
-
-
+        // ----------------------------------------
 
         function findmax(arr) {
             let max = arr[0];
@@ -703,9 +801,7 @@
         }
         console.log(findmax([2,75,10,55,31,23,35]));
 
-
-
-
+        // ----------------------------------------
 
         function count(a) {
             let c = 0;
@@ -720,12 +816,9 @@
         }
         console.log(count(12332333878)); 
 
+        // ----------------------------------------
 
-
-
-
-
-        function count(a){
+        function countString(a){
             let c=0;
             let b=a.toString();
             for (let i=0;i<(b).length;i++){
@@ -735,9 +828,9 @@
             }
             return c;
         }
-        console.log(count('12332stimdaas3xc33tim 878'));
+        console.log(countString('12332stimdaas3xc33tim 878'));
 
-
+        // ----------------------------------------
 
         function palindrome(a){
             
@@ -757,40 +850,38 @@
         }
         console.log(palindrome('moom'));
 
+        // ----------------------------------------
 
+        function palindrome2(a){
 
-        function palindrome(a){
-
-            let str=''
+            // FIX 8: Added 'let' to str.
+            let str='';
             for (let i=0; i<a.length;i++){
                 str=a[i]+str;
             }
             console.log(str);
             return (str == a) ? true : false;
         }
-        console.log(palindrome('maadam'));
+        console.log(palindrome2('maadam'));
 
-
-
+        // ----------------------------------------
 
         function removevowels(a){
-            let str=''
+            let str='';
             for (let i=0;i<a.length;i++){
                 if (a[i]!=='a' && a[i]!=='e' && a[i]!=='i' && a[i]!=='o' && a[i]!=='u'){
                     str+=a[i];
                 }
-    
             }
             return str;
         }
         console.log(removevowels('gowtham'));
         
-        
-        
-        
+        // ----------------------------------------
+
         function concount(a){
             let b=String(a);
-            str=''
+            let str='';
             for (let i=0;i<b.length;i++){
                 if (a[i]=='a'|| a[i]=='e'|| a[i]=='i'|| a[i]=='o'|| a[i]=='u'){
                     continue;
@@ -802,19 +893,18 @@
                     continue;
                 }
                 else{
-                    str+=a[i]
+                    str+=a[i];
                 }
             }
             return str;
         }
         console.log(concount('vowels are: aeiou , numbers are :12323'));
         
-        
-        
-        
+        // ----------------------------------------
+
         function uptolow(a){
             let b=String(a);
-            str=''
+            let str='';
             for (let i=0;i<b.length;i++){
                 if (a[i]==a[i].toUpperCase()){
                     str+=a[i].toLowerCase();
@@ -825,15 +915,15 @@
                 }
       
                 else{
-                    str+=a[i]
+                    str+=a[i];
                 }
             }
             return str;
         }
         console.log(uptolow('HELLO how are u'));
         
-        
-        
+        // ----------------------------------------
+
         function unique(a){
             let str='';
             for (let i=0;i<a.length;i++){
@@ -844,8 +934,7 @@
             return str;
         }
         console.log(unique('aabccddeeg'));
-                                               
+                                                
     </script>
-    
 </body>
 </html>
