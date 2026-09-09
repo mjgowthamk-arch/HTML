@@ -168,7 +168,7 @@
             
             sayHi() {
                 alert( this.name );  // 'userzz' instead of 'this' will cause error
-            }                    //  A function that belongs to an object is called method
+            }                        //  A function that belongs to an object is called method
         };
         
         let admin2 = userzz;
@@ -275,7 +275,7 @@
         // Applied User3 constructor
         let johhn = new User3("John");
 
-        console.log(johhn.sayHi());   //  console.log(new User("John").sayHi());
+        console.log(johhn.sayHi());   //  console.log(new User3("John").sayHi());
 
         // ----------------------------------------
 
@@ -308,7 +308,7 @@
         let userGuest = {};
 
         userAdmin.admin?.(); // I am admin
-        userGuest.admin?.(); // nothing happens (no such method)
+        userGuest.admin?.(); // without ?. gives TypeError
 
         // ----------------------------------------
 
@@ -340,7 +340,7 @@
 
         // ----------------------------------------
 
-        // delete user.name (properties) if user exists
+        // delete name property and wont casue error if userrr = null;
         delete userrr?.name; 
 
         // ----------------------------------------
