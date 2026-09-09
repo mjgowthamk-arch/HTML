@@ -9,102 +9,100 @@
     <script>
 
         let str = "Hello";
-        alert(str.toUpperCase() ); // HELLO
+        alert(str.toUpperCase()); // HELLO
+
+        // ---------------------------------------
 
         let n = 1.23456;
-        alert(typeof n.toFixed(2) ); // string
+        alert(typeof n.toFixed(2)); // string
 
-        alert( typeof 0 );             // number
-        alert( typeof new Number(0) ); // object
+        // ----------------------------------------
+
+        alert(typeof 0); // number
+        alert(typeof new Number(0)); // object
+
+        // ----------------------------------------
 
         let zero = new Number(0);
         if (zero) { // zero is true, because it's an object
-  
-        alert( "zero is truthy!?!" );
-    }
+            alert("zero is truthy!?!");
+        }
+
+        // ----------------------------------------
 
         let num = Number("123"); // convert a string to number
 
-        // Numbers
+        // ----------------------------------------
 
         let billion = 1_000_000_000;
+        let billion1 = 1e9; // 1 billion, literally: 1 and 9 zeroes
 
-        let billion1 = 1e9;  // 1 billion, literally: 1 and 9 zeroes
-        alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
+        // ----------------------------------------
+
+        alert(7.3e9); // 7.3 billions (same as 7300000000 or 7_300_000_000)
+
+        // ----------------------------------------
 
         let mcs = 1e-6; // five zeroes to the left from 1 // 0.000001
 
-        let a = 0b11111111;  // binary form of 255
-        let b = 0o377;        // octal form of 255
-        let c = 0xff;   // hexadecimal form of 255 
-        alert( a == b && b == c && c == a); // true
+        // ----------------------------------------
 
-        // toString(base)
+        let a = 0b11111111; // binary form of 255
+        let b = 0o377;      // octal form of 255
+        let c = 0xff;       // hexadecimal form of 255 
+        alert(a == b && b == c && c == a); // true
 
-        // The base can vary from 2 to 36. By default, it’s 10.
+        // ----------------------------------------
 
         let num1 = 255;
-        alert( num1.toString() );    // 255
-        alert( num1.toString(10) );  // 255
-        alert( num1.toString(16) );  // ff
-        alert( num1.toString(2) );   // 11111111
+        alert(num1.toString());   // 255
+        alert(num1.toString(10)); // 255
+        alert(num1.toString(16)); // ff
+        alert(num1.toString(2));  // 11111111
 
-        // Rounding
-
-        /*
-        There are several built-in functions for rounding:
-
-        Math.floor
-        Rounds down: 3.1 becomes 3, and -1.1 becomes -2.
-
-        Math.ceil
-        Rounds up: 3.1 becomes 4, and -1.1 becomes -1.
-
-        Math.round
-        Rounds to the nearest integer: 3.1 becomes 3, 3.6 becomes 4. In the middle cases 3.5 rounds up to 4, and -3.5 rounds up to -3.
-
-        Math.trunc 
-        Removes anything after the decimal point without rounding: 3.1 becomes 3, -1.1 becomes -1.
-        */
+        // ----------------------------------------
 
         let num2 = 1.23456;
-        alert( Math.floor(-num2)); 
-        alert( Math.ceil(-num)); 
-        alert( Math.round(-num2)); 
-        alert( Math.trunc(-num)); 
+        alert(Math.floor(-num2)); 
+        alert(Math.ceil(-num2)); 
+        alert(Math.round(-num2)); 
+        alert(Math.trunc(-num2)); 
+
+        // ----------------------------------------
 
         let num3 = 12.34;
-        alert( num3.toFixed(1) ); // "12.3"
+        alert(num3.toFixed(1)); // "12.3"
+
+        // ----------------------------------------
 
         let num4 = 12.36;
-        alert( num4.toFixed(1) ); // "12.4"
+        alert(num4.toFixed(1)); // "12.4"
+
+        // ----------------------------------------
 
         let num5 = 12.34;
-        alert( num5.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
 
-        alert( 1e500 ); // Infinity
+        alert(num5.toFixed(5)); // "12.34000", added zeroes to make exactly 5 digits
+        alert(1e500); // Infinity
+        alert(0.1 + 0.2 == 0.3); // false
+        alert(0.1 + 0.2); // 0.30000000000000004
 
-        alert( 0.1 + 0.2 == 0.3 ); // false
-        alert( 0.1 + 0.2 ); // 0.30000000000000004
+        // ----------------------------------------
 
-        let sum = 0.1 + 0.2;
-        alert( +sum.toFixed(2) ); // 0.3
+        let sum1 = 0.1 + 0.2;
 
-        // Tests: isFinite and isNaN
+        alert(+sum1.toFixed(2)); // 0.3
+        alert(isNaN(NaN)); // true
+        alert(isNaN("str")); // true
+        alert(NaN === NaN); // false
+        alert(isFinite("15")); // true
+        alert(isFinite("str")); // false, because a special value: NaN
+        alert(isFinite(Infinity)); // false, because a special value: Infinity
+        alert(Number.isFinite(2 / 0)); // false
 
-        alert( isNaN(NaN) ); // true
-        alert( isNaN("str") ); // true
-        
-        alert( NaN === NaN ); // false
-
-        alert( isFinite("15") ); // true
-        alert( isFinite("str") ); // false, because a special value: NaN
-        alert( isFinite(Infinity) ); // false, because a special value: Infinity
-        alert( Number.isFinite(2 / 0) ); // false
-
+        // ----------------------------------------
 
         function divideNumbers(a, b) {
-
             if (Number.isNaN(a) || Number.isNaN(b)) {
                 return "Invalid: One of the inputs is NaN!";
             }
@@ -120,419 +118,706 @@
         console.log(divideNumbers(Infinity, 2));  // "Invalid: Inputs must be finite numbers!"
         console.log(divideNumbers(10, 0));        // "Invalid: Cannot divide by zero!"
 
-        // parseInt and parseFloat
+        // ----------------------------------------
 
-        alert( parseInt('100px') ); // 100
-        alert( parseFloat('12.5em') ); // 12.5
-        alert( parseInt('12.3') ); // 12, only the integer part is returned
-        alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
-        alert( parseInt('a123') ); // NaN, the first symbol stops the process
+        alert(parseInt('100px')); // 100
+        alert(parseFloat('12.5em')); // 12.5
+        alert(parseInt('12.3')); // 12, only the integer part is returned
+        alert(parseFloat('12.3.4')); // 12.3, the second point stops the reading
+        alert(parseInt('a123')); // NaN, the first symbol stops the process
 
-        // Other math functions
+        alert(Math.random()); // 0.3337473534711 (any random number 0<= result <1)
+        alert(Math.max(3, 5, -10, 0, 1)); // 5
+        alert(Math.min(1, 2)); // 1
+        alert(Math.pow(2, 10)); // 2 in power 10 = 1024
 
-        alert( Math.random() ); // 0.3337473534711 (any random number 0<= result <1)
-        alert( Math.max(3, 5, -10, 0, 1) ); // 5
-        alert( Math.min(1, 2) ); // 1
-        alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
-
-        // String
+        // ----------------------------------------
 
         let single = 'single-quoted';
         let double = "double-quoted";
+
+        // ----------------------------------------
         
         let backticks = `back
         ticks`;
 
+        // ----------------------------------------
+
         let guestList = "Guests:\n * John\n * Pete\n * Mary";
+
+        // ----------------------------------------
 
         function sum(a, b) {
             return a + b;
         }
-
         alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+
+        // ----------------------------------------
 
         let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
         let str2 = `Hello          
         World`;                    // two lines using a normal newline and backticks 
-
         alert(str1 == str2); // true
 
+        // ----------------------------------------
 
-        function sum(a, b) {
-            return a + b;
-        }
-        alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+        alert(`My\n`.length); // 3
 
-        // String length
-
-        alert( `My\n`.length ); // 3
-
-        // Accessing characters
+        // ----------------------------------------
 
         let str4 = `Hello`;
+        alert(str4[0]); // H
+        alert(str4.at(0)); // H
 
-        // the first character
-        alert( str4[0] ); // H
-        alert( str4.at(0) ); // H
+        // ----------------------------------------
 
-        // the last character
-        alert( str4[str4.length - 1] ); // o
-        alert( str4.at(-1) );
+        alert(str4[str4.length - 1]); // o
+        alert(str4.at(-1));
+
+        // ----------------------------------------
 
         let str3 = `Hello`;
+        alert(str3[-2]); // undefined
+        alert(str3.at(-2)); // l
 
-        alert( str3[-2] ); // undefined
-        alert( str3.at(-2) ); // l
+        // ----------------------------------------
 
         for (let char of "Hello") {
             alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
         }
+
+        // ----------------------------------------
             
-        alert( 'Interface'.toUpperCase() ); // INTERFACE
-        alert( 'Interface'.toLowerCase() ); // interface
+        alert('Interface'.toUpperCase()); // INTERFACE
+        alert('Interface'.toLowerCase()); // interface
 
-        let str5= 'Widget with id';
+        // ----------------------------------------
 
-        alert( str5.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-        alert( str5.indexOf('widget') ); // -1, not found, the search is case-sensitive
-        alert( str5.indexOf("id") );     // 1, "id" is found at the position 1 (..idget with id)
+        let str5 = 'Widget with id';
+        alert(str5.indexOf('Widget')); // 0, because 'Widget' is found at the beginning
+        alert(str5.indexOf('widget')); // -1, not found, the search is case-sensitive
+        alert(str5.indexOf("id"));     // 1, "id" is found at the position 1 (..idget with id)
+
+        // ----------------------------------------
 
         let str6 = 'Widget with id';
-        alert( str6.indexOf('id') )     // 1
-        alert( str6.lastIndexOf('id') ) // 12
+        alert(str6.indexOf('id'));        // 1
+        alert(str6.lastIndexOf('id'));    // 12
+        alert(str6.indexOf('id', 2));     // 12
+        alert(str6.lastIndexOf('id', 2)); // 1
 
-        alert( str6.indexOf('id', 2) )     // 12
-        alert( str6.lastIndexOf('id', 2) ) // 1
-
-        // practice
+        // ----------------------------------------
 
         let str7 = 'As sly as a fox, as strong as an ox';
-        let target='fox';
-        let cnt=0;
+        let target = 'fox';
+        let cnt = 0;
 
-        for (let i=0;i<str7.length;i++){
-            if (str7.indexOf(target,i)==i){
-                console.log(i)
-                cnt+=1;
+        for (let i = 0; i < str7.length; i++) {
+            if (str7.indexOf(target, i) == i) {
+                console.log(i);
+                cnt += 1;
             }
         }
-        console.log(cnt)
+        console.log(cnt);
 
+        // ----------------------------------------
 
-        // includes, startsWith, endsWith
+        alert("Widget with id".includes("Widget")); // true
+        alert("Hello".includes("!")); // false
 
-        alert( "Widget with id".includes("Widget") ); // true
-        alert( "Hello".includes("!") ); // false
+        alert("Widget".includes("id")); // true
+        alert("Widget".includes("id", 3)); // false, from position 3 there is no "id"
 
-        alert( "Widget".includes("id") ); // true
-        alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+        alert("Widget".startsWith("Wid")); // true, "Widget" starts with "Wid"
+        alert("Widget".endsWith("get")); // true, "Widget" ends with "get"
 
-        alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-        alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
-
-        // Getting a substring
-        // There are 3 methods in JavaScript to get a substring: substring, substr and slice.
-        /*
-        str.slice(start, end)	    from start to end (not including end)	    allows negatives
-        str.substring(start, end)	between start and end (not including end)	negative values mean 0
-        str.substr(start, length)	from start get length characters	        allows negative start
-        */
+        // ----------------------------------------
 
         let str8 = "stringify";
-        alert( str8.slice(0, 5) ); // 'strin', the substring from 0 to 4
-        alert( str8.slice(0, 1) ); // 's'
+        alert(str8.slice(0, 5)); // 'strin', the substring from 0 to 4
+        alert(str8.slice(0, 1)); // 's'
+        alert(str8.slice(2));    // 'ringify', from the 2nd position till the end
 
-        alert( str8.slice(2) ); // 'ringify', from the 2nd position till the end
+        // ----------------------------------------
 
         let str10 = "stringify";
-        alert( str10.slice(-4, -1) ); // 'gif'
+        alert(str10.slice(-4, -1)); // 'gif'
 
-        // these are same for substring
-        alert( str10.substring(2, 6) ); // "ring"
-        alert( str10.substring(6, 2) ); // "ring"
-        // ...but not for slice:
-        alert( str10.slice(2, 6) ); // "ring" (the same)
-        alert( str10.slice(6, 2) ); // "" (an empty string)
+        // ----------------------------------------
 
-        alert( str10.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
-        alert( str10.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+        alert(str10.substring(2, 6)); // "ring"
+        alert(str10.substring(6, 2)); // "ring"
 
-        // Comparing strings
+        // ----------------------------------------
 
-        alert( 'a' > 'Z' ); // true
-        alert( 'Österreich' > 'Zealand' ); // true
+        alert(str10.slice(2, 6)); // "ring" (the same)
+        alert(str10.slice(6, 2)); // "" (an empty string)
 
-        // different case letters have different codes
-        alert( "Z".codePointAt(0) ); // 90
-        alert( "z".codePointAt(0) ); // 122
+        // ----------------------------------------
 
-        alert( String.fromCodePoint(90) );   // Z
-        alert( String.fromCodePoint(0x5a) ); // Z (can use hex value as an argument)
+        alert(str10.substr(2, 4));  // 'ring', from the 2nd position get 4 characters
+        alert(str10.substr(-4, 2)); // 'gi', from the 4th position get 2 characters
 
-        alert( String.fromCodePoint(128526) ); // 😎
-        alert( "😎".codePointAt(0) ); // 128526
+        // ----------------------------------------
 
-        // uppercase first letter in string
+        alert('a' > 'Z'); // true
+
+        // ----------------------------------------
+
+        alert('Österreich' > 'Zealand'); // true
+
+        // ----------------------------------------
+
+        alert("Z".codePointAt(0)); // 90
+        alert("z".codePointAt(0)); // 122
+
+        // ----------------------------------------
+
+        alert(String.fromCodePoint(90));   // Z
+        alert(String.fromCodePoint(0x5a)); // Z (can use hex value as an argument)
+
+        // ----------------------------------------
+
+        alert(String.fromCodePoint(128526)); // 😎
+        alert("😎".codePointAt(0));          // 128526
+
+        // ----------------------------------------
 
         let newStr = str[0].toUpperCase() + str.slice(1); 
+
+        // ----------------------------------------
 
         function ucFirst(str) {
             if (!str) return str;
             return str[0].toUpperCase() + str.slice(1);
         }
-        alert( ucFirst("john") ); // John
+        alert(ucFirst("john")); // John
 
-        // Arrays
+        // ----------------------------------------
 
         let arr1 = new Array();
         let arr2 = [];
 
-        let fruits = ["Apple", "Orange", "Plum"];
-
-        alert( fruits[0] ); // Apple
-        alert( fruits[1] ); // Orange
-        alert( fruits[2] ); // Plum
-
-        fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
+        // ----------------------------------------
 
         let fruits1 = ["Apple", "Orange", "Plum"];
-        alert( fruits1.length ); // 3
+        alert(fruits1[0]); // Apple
+        alert(fruits1[1]); // Orange
+        alert(fruits1[2]); // Plum
+        fruits1[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
 
-        let arr = ["Apple", "Orange"];
+        // ----------------------------------------
 
-        // Add a normal property like any object: typeof array is object
-        arr.category = "Fruit";
-        arr["color"] = "Yellow";
+        let fruits2 = ["Apple", "Orange", "Plum"];
+        alert(fruits2.length); // 3
 
-        console.log(arr.length);   // 2 (length only counts numeric indices!)
-        console.log(arr.category); // "Fruit"
-        console.log(arr);          // ["Apple", "Orange", category: "Fruit", color: "Yellow"]
+        // ----------------------------------------
 
-        // mix of values
-        let arr3 = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+        let arrBase = ["Apple", "Orange"];
+        arrBase.category = "Fruit";
+        arrBase["color"] = "Yellow";
+        console.log(arrBase.length);   // 2 (length only counts numeric indices!)
+        console.log(arrBase.category); // "Fruit"
+        console.log(arrBase);          // ["Apple", "Orange", category: "Fruit", color: "Yellow"]
 
-        // get the object at index 1 and then show its name
-        alert( arr3[1].name ); // John
+        // ----------------------------------------
 
-        // get the function at index 3 and run it
-        arr3[3](); // hello
+        let arr3 = ['Apple', { name: 'John' }, true, function() { alert('hello'); }];
+        alert(arr3[1].name); // John
+        arr3[3]();           // hello
 
-        alert( fruits1[fruits1.length-1] ); // pear
+        // ----------------------------------------
 
-        // same as fruits[fruits.length-1]
-        alert( fruits1.at(-1) ); // pear
+        alert(fruits2[fruits2.length - 1]); // Plum
+        alert(fruits2.at(-1));              // Plum
 
-        // Methods pop/push, shift/unshift
+        // ----------------------------------------
 
-        let fruits2 = ["Apple", "Orange", "Pear"];
-        alert( fruits2.pop() ); // remove "Pear" and alert it
-        alert( fruits2 ); // Apple, Orange
-        fruits2.push("Pear");
-        alert( fruits2 ); // Apple, Orange, Pear
-
-        
         let fruits3 = ["Apple", "Orange", "Pear"];
-        alert( fruits3.shift() ); // remove Apple and alert it
-        alert( fruits3 ); // Orange, Pear
+        alert(fruits3.pop()); // remove "Pear" and alert it
+        alert(fruits3);       // Apple, Orange
+        fruits3.push("Pear");
+        alert(fruits3);       // Apple, Orange, Pear
 
-        fruits3.unshift('Apple');
-        alert( fruits3 ); // Apple, Orange, Pear
+        // ----------------------------------------
+        
+        let fruits4 = ["Apple", "Orange", "Pear"];
+        alert(fruits4.shift()); // remove Apple and alert it
+        alert(fruits4);         // Orange, Pear
+        fruits4.unshift('Apple');
+        alert(fruits4);         // Apple, Orange, Pear
 
+        // ----------------------------------------
 
-        let fruits4 = ["Apple"];
-        fruits4.push("Orange", "Peach");
-        fruits4.unshift("Pineapple", "Lemon");
+        let fruits5 = ["Apple"];
+        fruits5.push("Orange", "Peach");
+        fruits5.unshift("Pineapple", "Lemon");
+        alert(fruits5); // ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
 
-        // ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
-        alert( fruits4 );
+        // ----------------------------------------
 
-        let fruits5 = ["Banana"]
-        let arr4 = fruits; // copy by reference (two variables reference the same array)
+        let fruits6 = ["Banana"];
+        let arr4 = fruits6; // copy by reference (two variables reference the same array)
+        alert(arr4 === fruits6); // true
+        arr4.push("Pear");       // modify the array by reference
+        alert(fruits6);          // Banana, Pear - 2 items now
 
-        alert( arr4 === fruits ); // true
-        arr4.push("Pear"); // modify the array by reference
-        alert( fruits5 ); // Banana, Pear - 2 items now
+        // ----------------------------------------
 
-        let fruits6 = []; // make an array
-        fruits6[99999] = 5; // assign a property with the index far greater than its length
+        let fruits7 = [];
+        fruits7[99999] = 5; // assign a property with the index far greater than its length
+        fruits7.age = 25;   // create a property with an arbitrary name
+        alert(fruits7);
 
-        fruits6.age = 25; // create a property with an arbitrary name
-        alert(fruits6)
-
-        // loops
+        // ----------------------------------------
 
         let arr7 = ["Apple", "Orange", "Pear"];
         for (let i = 0; i < arr7.length; i++) {
-            alert( arr7[i] );
+            alert(arr7[i]);
         }
 
-        let fruits6 = ["Apple", "Orange", "Plum"];
-        // iterates over array elements
-        for (let fruit of fruits6) {
-            alert( fruit );
+        // ----------------------------------------
+
+        let fruits8 = ["Apple", "Orange", "Plum"];
+        for (let fruit of fruits8) {
+            alert(fruit);
         }
+
+        // ----------------------------------------
 
         let arr8 = ["Apple", "Orange", "Pear"];
         for (let key in arr8) {
-            alert( arr8[key] ); // Apple, Orange, Pear
+            alert(arr8[key]); // Apple, Orange, Pear
         }
 
-        // length
+        // ----------------------------------------
 
-        let fruits = [];
-        fruits[123] = "Apple";
-        alert( fruits.length ); // 124 // not count of values in the array
+        let fruits9 = [];
+        fruits9[123] = "Apple";
+        alert(fruits9.length); // 124 // not count of values in the array
 
-        // New array
+        // ----------------------------------------
 
-        let arr = new Array(2); // it creates an array without items, but with the given length.
-        alert( arr[0] );        // undefined
-        alert( arr.length );    // length 2
+        let arrEmpty = new Array(2); // it creates an array without items, but with the given length.
+        alert(arrEmpty[0]);          // undefined
+        alert(arrEmpty.length);      // length 2
 
-        // Multidimensional arrays
+        // ----------------------------------------
 
         let matrix = [
-        [1, 2, 3],
-        [4, 5, 6], 
-        [7, 8, 9]
-    ];
-    alert( matrix[0][1] ); // 2, the second value of the first inner array
+            [1, 2, 3],
+            [4, 5, 6], 
+            [7, 8, 9]
+        ];
+        alert(matrix[0][1]); // 2, the second value of the first inner array
 
-    // toString
+        // ----------------------------------------
 
-    let arr9 = [1, 2, 3];
+        let arr9 = [1, 2, 3];
+        alert(arr9); // 1,2,3
+        alert(String(arr9) === '1,2,3'); // true
 
-    alert( arr ); // 1,2,3
+        // ----------------------------------------
 
-    alert( String(arr) === '1,2,3' ); // true
+        alert([] + 1);    // "1"
+        alert([1] + 1);   // "11"
+        alert([1, 2] + 1); // "1,21"
 
-    alert( [] + 1 ); // "1"
-    alert( [1] + 1 ); // "11"
-    alert( [1,2] + 1 ); // "1,21"
+        // ----------------------------------------
 
-    alert( "" + 1 ); // "1"
-    alert( "1" + 1 ); // "11"
-    alert( "1,2" + 1 ); // "1,21"
+        alert("" + 1);    // "1"
+        alert("1" + 1);   // "11"
+        alert("1,2" + 1); // "1,21"
 
-    // compare
+        // ----------------------------------------
 
-    alert( [] == [] ); // false
-    alert( [0] == [0] ); // false
+        alert([] == []);   // false
+        alert([0] == [0]); // false
 
-    alert( 0 == [] ); // true
-    alert('0' == [] ); // false
-    // after [] was converted to ''
-    alert( 0 == '' ); // true, as '' becomes converted to number 0
-    alert('0' == '' ); // false, no type conversion, different strings
+        // ----------------------------------------
 
-    // Array methods
-     
-    let arr5 = ["A", "B", "C", "D"];
-    let result = arr5.slice(1, 3);
-    console.log(result); // ["B", "C"]
-    console.log(arr);    // ["A", "B", "C", "D"] (unchanged)
+        alert(0 == []);    // true
+        alert('0' == []);  // false
+        alert(0 == '');    // true, as '' becomes converted to number 0
+        alert('0' == '');  // false, no type conversion, different strings
 
-    let arr6 = ["A", "B", "C", "D"];
-    // At index 1, remove 2 elements, insert "X"
-    let removed = arr6.splice(1, 2, "X");
-    console.log(removed); // ["B", "C"] (what was taken out)
-    console.log(arr);     // ["A", "X", "D"] (modified!)
+        // ----------------------------------------
+         
+        let arr5 = ["A", "B", "C", "D"];
+        let result = arr5.slice(1, 3);
+        console.log(result); // ["B", "C"]
+        console.log(arr5);   // ["A", "B", "C", "D"] (unchanged)
 
-    let arr10 = ["I", "study", "JavaScript", "right", "now"];
-    // remove 3 first elements and replace them with another
-    arr.splice(0, 3, "Let's", "relax");
-    alert( arr ) // ["Let's", "relax", "right", "now"]
+        // ----------------------------------------
 
-    let arr11 = [1, 2, 5];
-    // from index -1                // -1 will insert before the last element. // use postive index or push() to add at end.
-    // delete 0 elements,
-    // then insert 3 and 4
-    arr11.splice(-1, 0, 3, 4);      // set deleteCount to 0 to insert the elements without any removals.
-    alert( arr11 ); // 1,2,3,4,5
-    
-    /* 
-    let arr = [1, 2, 5];
-    arr.push(3, 4);
-    alert( arr ); // 1, 2, 5, 3, 4
-    */
+        let arr6 = ["A", "B", "C", "D"];
+        let removed = arr6.splice(1, 2, "X");
+        console.log(removed); // ["B", "C"] (what was taken out)
+        console.log(arr6);    // ["A", "X", "D"] (modified!)
 
-    // concat
+        // ----------------------------------------
 
-    let arr12 = [1, 2];
-    // create an array from: arr and [3,4]
-    alert( arr12.concat([3, 4]) ); // 1,2,3,4
-    // create an array from: arr and [3,4] and [5,6]
-    alert( arr12.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
-    // create an array from: arr and [3,4], then add values 5 and 6
-    alert( arr12.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
+        let arr10 = ["I", "study", "JavaScript", "right", "now"];
+        arr10.splice(0, 3, "Let's", "relax");
+        alert(arr10); // ["Let's", "relax", "right", "now"]
 
-    // indexOf/lastIndexOf and includes
+        // ----------------------------------------
 
-    let arr13 = [1, 0, false];
+        let arr11 = [1, 2, 5];
+        arr11.splice(-1, 0, 3, 4); // from index -1, delete 0 elements, insert 3 and 4
+        alert(arr11); // 1,2,3,4,5
 
-    alert( arr13.indexOf(0) ); // 1
-    alert( arr13.indexOf(false) ); // 2
-    alert( arr13.indexOf(null) ); // -1  // indexOf returns -1 whenever an element is not found.
-    
-    alert( arr13.includes(1) ); // true
+        // ----------------------------------------
 
+        let arr12 = [1, 2];
+        alert(arr12.concat([3, 4]));         // 1,2,3,4
+        alert(arr12.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
+        alert(arr12.concat([3, 4], 5, 6));   // 1,2,3,4,5,6
 
-    let fruits6 = ['Apple', 'Orange', 'Apple']
+        // ----------------------------------------
 
-    alert( fruits6.indexOf('Apple') ); // 0 (first Apple)
-    alert( fruits6.lastIndexOf('Apple') ); // 2 (last Apple)
+        let arr13 = [1, 0, false];
+        alert(arr13.indexOf(0));     // 1
+        alert(arr13.indexOf(false)); // 2
+        alert(arr13.indexOf(null));  // -1
+        alert(arr13.includes(1));    // true
 
-    
+        // ----------------------------------------
 
+        let fruits10 = ['Apple', 'Orange', 'Apple'];
+        alert(fruits10.indexOf('Apple'));     // 0 (first Apple)
+        alert(fruits10.lastIndexOf('Apple')); // 2 (last Apple)
 
-
-
-
-
-
-
-
-
-
+        // ----------------------------------------
         
+        let users = [
+            {id: 1, name: "John"},
+            {id: 2, name: "Pete"},
+            {id: 3, name: "Mary"}
+        ];
+        let user = users.find(item => item.id == 1);
+        alert(user);      // { id: 1, name: 'John' }
+        alert(user.name); // John
 
+        // ----------------------------------------
 
+        let users1 = [
+            {id: 1, name: "John"},
+            {id: 2, name: "Pete"},
+            {id: 3, name: "Mary"},
+            {id: 4, name: "John"}
+        ];
+        alert(users1.findIndex(user => user.name == 'John'));     // 0
+        alert(users1.findLastIndex(user => user.name == 'John')); // 3
 
+        // ----------------------------------------
 
+        let users2 = [
+            {id: 1, name: "John"},
+            {id: 2, name: "Pete"},
+            {id: 3, name: "Mary"}
+        ];
+        let someUsers = users2.filter(item => item.id < 3);
+        alert(someUsers.length); // 2
+        alert(someUsers);        // [ { id: 1, name: 'John' }, { id: 2, name: 'Pete' } ]
 
+        // ----------------------------------------
 
+        let arry = ["Bilbo", "Gandalf", "Nazgul"];
+        let lengths = arry.map(item => item.length);
+        alert(lengths); // [ 5,7,6 ]
 
+        // ----------------------------------------
 
+        const numbers = [1, 2, 3, 4, 5];
+        const doubled = numbers.map(num => num * 2);
+        const powered = numbers.map(num => num ** 2);
+        console.log(doubled); // [2, 4, 6, 8, 10]
+        console.log(powered); // [ 1, 4, 9, 16, 25 ]
+        console.log(numbers); // [1, 2, 3, 4, 5] (original stays unchanged)
 
-
-
-
-
-
-
-
+        // ----------------------------------------
         
+        const users3 = [
+            { id: 1, name: "Alice", role: "Developer" },
+            { id: 2, name: "Bob", role: "Designer" },
+            { id: 3, name: "Charlie", role: "Manager" }
+        ];
+        const userNames = users3.map(user => user.name);
+        console.log(userNames); // ["Alice", "Bob", "Charlie"]
 
-
-
-
-
-
+        // ----------------------------------------
         
-    
+        const fruits11 = ["Apple", "Banana", "Cherry"];
+        const rankedFruits = fruits11.map((fruit, index) => `${index + 1}. ${fruit}`);
+        console.log(rankedFruits); // ["1. Apple", "2. Banana", "3. Cherry"]
 
+        // ----------------------------------------
 
+        let arr14 = [1, 2, 15];
+        arr14.sort();
+        alert(arr14); // 1, 15, 2
 
+        // ----------------------------------------
 
+        let arr15 = [1, 2, 15, 12, 32, 42];
+        arr15.sort((a, b) => a - b);
+        console.log(arr15); // [ 1, 2, 12, 15, 32, 42 ]
 
+        // ----------------------------------------
 
+        arr15.sort(function(a, b) {
+            return a - b;
+        });
 
+        // ----------------------------------------
 
+        function compareNumbers(a, b) {
+            return a - b;
+        }
+        arr15.sort(compareNumbers);
 
+        // ----------------------------------------
 
+        let arr16 = [1, 2, 3, 4, 5];
+        arr16.reverse();
+        alert(arr16); // 5,4,3,2,1
 
+        // ----------------------------------------
+
+        let string = "test";
+        alert(string.split('')); // t,e,s,t
+
+        // ----------------------------------------
+
+        let names = 'Bilbo, Gandalf, Nazgul';
+        let arr17 = names.split(', ');
+        for (let name of arr17) {
+            alert(`A message to ${name}.`); // A message to Bilbo (and other names)
+        }
+
+        // ----------------------------------------
+
+        let arr18 = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+        alert(arr18); // Bilbo, Gandalf
+        
+        // ----------------------------------------
+
+        let arr19 = [1, 2, 3, 4, 5];
+        let result1 = arr19.reduce((sum, current) => sum + current, 0);
+        alert(result1); // 15
+        
+        // ----------------------------------------
+
+        alert(typeof {}); // object
+        alert(typeof []); // object
+        
+        alert(Array.isArray({})); // false
+        alert(Array.isArray([])); // true
+
+        // ----------------------------------------
+
+        let words = {
+            first: "Hello",
+            second: "World",
+            *[Symbol.iterator]() {
+                yield this.first;
+                yield this.second;
+            }
+        };
+        for (let word of words) {
+            console.log(word);
+        }
+
+        // ----------------------------------------
+
+        let arrayLike = {
+            0: "Hello",
+            1: "World",
+            length: 2
+        };
+        let arr20 = Array.from(arrayLike);
+        alert(arr20);
+        for (let item of arr20) {
+            console.log(item);
+        }
+            
+        // ----------------------------------------
+
+        const userRoles = new Map();
+        userRoles.set("alice", "Admin");
+        userRoles.set("bob", "Editor");
+
+        console.log(userRoles.get("alice"));   // "Admin"
+        console.log(userRoles.get("charlie")); // undefined
+
+        console.log(userRoles.has("bob"));     // true
+        console.log(userRoles.has("charlie")); // false
+
+        console.log(userRoles.size);           // 2
+
+        userRoles.delete("bob");
+        console.log(userRoles.has("bob"));     // false
+        console.log(userRoles.size);           // 1
+
+        userRoles.clear();
+        console.log(userRoles.size);           // 0
+        console.log(userRoles.get("alice"));   // undefined
+
+        // ----------------------------------------
+
+        const initialObject = { name: "Alice", age: 25 };
+        const map = new Map(Object.entries(initialObject));
+        const obj = Object.fromEntries(map);
+
+        // ----------------------------------------
+
+        let map1 = new Map();
+
+        // ----------------------------------------
+
+        const map2 = new Map([
+            ['name', 'Alice'],
+            ['age', 25],  
+            [true, 'boolean-key']
+        ]);
+        console.log(map2.get('name')); // "Alice"
+
+        // ----------------------------------------
+
+        const map3 = new Map()
+            .set('a', 1)
+            .set('b', 2)
+            .set('c', 3);
+        console.log(map3.size); // 3
+
+        // ----------------------------------------
+
+        const userObj = { name: 'Bob', score: 98 };
+        const map4 = new Map(Object.entries(userObj));
+        console.log(map4.get('name')); // "Bob"
+
+        // ----------------------------------------
+
+        let map11 = new Map();
+        map11.set('1', 'str1');
+        map11.set(1, 'num1');
+        map11.set(true, 'bool1');
+
+        alert(map11.get(1));   // 'num1'
+        alert(map11.get('1')); // 'str1'
+        alert(map11.size);     // 3
+
+        // ----------------------------------------
+
+        let john = { name: "John" };
+        let ben = { name: "Ben" };
+        let visitsCountObj = {};
+        visitsCountObj[ben] = 234;
+        visitsCountObj[john] = 123;
+        alert(visitsCountObj[ben]);              // 123
+        alert(visitsCountObj["[object Object]"]); // 123
+
+        // ----------------------------------------
+
+        let visitsCountMap = new Map();
+        visitsCountMap.set(ben, 234);
+        visitsCountMap.set(john, 123);
+        alert(visitsCountMap.get(ben));  // 234
+        alert(visitsCountMap.get(john)); // 123
+        alert(visitsCountMap.size);      // 2
+        
+        // ----------------------------------------
+        
+        function bulkAdd(targetMap, pairs) {
+            for (const [key, value] of pairs) {
+                targetMap.set(key, value);
+            }
+            return targetMap;
+        }
+
+        const map5 = new Map();
+        const newItems = [
+            ['x', 10],
+            ['y', 20],
+            ['z', 30]
+        ];
+        bulkAdd(map5, newItems);
+        console.log(map5.size);     // 3
+        console.log(map5.get('x')); // 10
+
+        // ----------------------------------------
+        
+        const map6 = new Map();
+        const entries = [
+            ['user1', 'Alice'],
+            ['user2', 'Bob'],
+            ['user3', 'Charlie']
+        ];
+        for (const [key, value] of entries) {
+            map6.set(key, value);
+        }
+        console.log(map6.size); // 3
+
+        // ----------------------------------------
+
+        const map7 = new Map();
+        for (let i = 1; i <= 100; i++) {
+            map7.set(`user_${i}`, { id: i, active: true });
+        }
+        console.log(map7.size); // 100
+
+        // ----------------------------------------
+
+        const config = { theme: 'dark', lang: 'en', auth: true };
+        const map8 = new Map();
+        for (const key in config) {
+            map8.set(key, config[key]);
+        }
+        console.log(map8.get('theme')); // "dark"
+
+        // ----------------------------------------
+
+        const fruitsSet1 = new Set(["apple", "banana", "orange"]);
+        fruitsSet1.add("mango");
+        fruitsSet1.add("apple"); // Ignored because "apple" is already in the set
+
+        console.log(fruitsSet1.has("banana"));   // true
+        console.log(fruitsSet1.has("grapes"));   // false
+        console.log(fruitsSet1.size);             // 4
+
+        console.log(fruitsSet1.delete("banana")); // true
+        console.log(fruitsSet1.delete("banana")); // false (already deleted)
+        console.log(fruitsSet1.size);             // 3
+
+        fruitsSet1.clear();
+        console.log(fruitsSet1.size);             // 0
+        console.log(fruitsSet1.has("apple"));    // false
+
+        // ----------------------------------------
+
+        let set1 = new Set(["oranges", "apples", "bananas"]);
+        for (let value of set1) alert(value);
+
+        // ----------------------------------------
+
+        set1.forEach((value, valueAgain, setRef) => {
+            alert(value);
+        });
+
+        // ----------------------------------------
+
+        function checkSetSize(value, valueAgain, setRef) {
+            if (setRef.size > 5) {
+                console.log("This is a big set!");
+            }
+        }
+        let smallSet = new Set([1, 2]);
+        let bigSet = new Set([1, 2, 3, 4, 5, 6]);
+
+        smallSet.forEach(checkSetSize); 
+        bigSet.forEach(checkSetSize);
 
     </script>
-    
 </body>
 </html>
