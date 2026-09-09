@@ -335,8 +335,11 @@
         alert(user101?.[keys]); // John
         alert(user201?.[keys]); // undefined
 
-        alert(Object.keys(user101));   // [ 'Name', 'age' ]     // will cause error if its used on null
-        alert(Object.values(user101)); // [ 'John', 21 ]        
+        alert(Object.keys(user101));   // [ 'Name', 'age' ]     // causes error if used on null
+        alert(Object.values(user101)); // [ 'John', 21 ]      
+        
+        alert(Object.keys(user101).length);   // 2
+        alert(Object.values(user101).length); // 2              // causes error if used on null
 
         // ----------------------------------------
 

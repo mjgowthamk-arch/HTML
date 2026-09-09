@@ -32,7 +32,7 @@
 
         let num = Number("123"); // convert a string to number
 
-        // ----------------------------------------
+        // Numbers
 
         let billion = 1_000_000_000;
         let billion1 = 1e9; // 1 billion, literally: 1 and 9 zeroes
@@ -52,7 +52,9 @@
         let c = 0xff;       // hexadecimal form of 255 
         alert(a == b && b == c && c == a); // true
 
-        // ----------------------------------------
+        // toString(base)
+
+        // The base can vary from 2 to 36. By default, it’s 10.
 
         let num1 = 255;
         alert(num1.toString());   // 255
@@ -60,7 +62,22 @@
         alert(num1.toString(16)); // ff
         alert(num1.toString(2));  // 11111111
 
-        // ----------------------------------------
+        // Rounding
+        /*
+        There are several built-in functions for rounding:
+
+        Math.floor
+        Rounds down: 3.1 becomes 3, and -1.1 becomes -2.
+
+        Math.ceil
+        Rounds up: 3.1 becomes 4, and -1.1 becomes -1.
+
+        Math.round
+        Rounds to the nearest integer: 3.1 becomes 3, 3.6 becomes 4. In the middle cases 3.5 rounds up to 4, and -3.5 rounds up to -3.
+
+        Math.trunc 
+        Removes anything after the decimal point without rounding: 3.1 becomes 3, -1.1 becomes -1.
+        */
 
         let num2 = 1.23456;
         alert(Math.floor(-num2)); 
@@ -90,6 +107,9 @@
         // ----------------------------------------
 
         let sum1 = 0.1 + 0.2;
+        alert( +sum1.toFixed(2) ); // 0.3
+
+        // Tests: isFinite and isNaN
 
         alert(+sum1.toFixed(2)); // 0.3
         alert(isNaN(NaN)); // true
@@ -118,7 +138,7 @@
         console.log(divideNumbers(Infinity, 2));  // "Invalid: Inputs must be finite numbers!"
         console.log(divideNumbers(10, 0));        // "Invalid: Cannot divide by zero!"
 
-        // ----------------------------------------
+        // parseInt and parseFloat
 
         alert(parseInt('100px')); // 100
         alert(parseFloat('12.5em')); // 12.5
@@ -126,12 +146,14 @@
         alert(parseFloat('12.3.4')); // 12.3, the second point stops the reading
         alert(parseInt('a123')); // NaN, the first symbol stops the process
 
+        // Other math functions
+
         alert(Math.random()); // 0.3337473534711 (any random number 0<= result <1)
         alert(Math.max(3, 5, -10, 0, 1)); // 5
         alert(Math.min(1, 2)); // 1
         alert(Math.pow(2, 10)); // 2 in power 10 = 1024
 
-        // ----------------------------------------
+        // String
 
         let single = 'single-quoted';
         let double = "double-quoted";
@@ -159,18 +181,21 @@
         World`;                    // two lines using a normal newline and backticks 
         alert(str1 == str2); // true
 
-        // ----------------------------------------
+        // String length
 
         alert(`My\n`.length); // 3
 
-        // ----------------------------------------
+        // Accessing characters
 
         let str4 = `Hello`;
+
+        // the first character
         alert(str4[0]); // H
         alert(str4.at(0)); // H
 
         // ----------------------------------------
 
+        // the last character
         alert(str4[str4.length - 1]); // o
         alert(str4.at(-1));
 
@@ -206,7 +231,7 @@
         alert(str6.indexOf('id', 2));     // 12
         alert(str6.lastIndexOf('id', 2)); // 1
 
-        // ----------------------------------------
+        // practice
 
         let str7 = 'As sly as a fox, as strong as an ox';
         let target = 'fox';
@@ -220,7 +245,7 @@
         }
         console.log(cnt);
 
-        // ----------------------------------------
+        // includes, startsWith, endsWith
 
         alert("Widget with id".includes("Widget")); // true
         alert("Hello".includes("!")); // false
@@ -231,7 +256,14 @@
         alert("Widget".startsWith("Wid")); // true, "Widget" starts with "Wid"
         alert("Widget".endsWith("get")); // true, "Widget" ends with "get"
 
-        // ----------------------------------------
+        // Getting a substring
+
+        // There are 3 methods in JavaScript to get a substring: substring, substr and slice.
+        /*
+        str.slice(start, end)       from start to end (not including end)       allows negatives
+        str.substring(start, end)   between start and end (not including end)   negative values mean 0
+        str.substr(start, length)   from start get length characters            allows negative start
+        */
 
         let str8 = "stringify";
         alert(str8.slice(0, 5)); // 'strin', the substring from 0 to 4
@@ -245,11 +277,13 @@
 
         // ----------------------------------------
 
+        // these are same for substring
         alert(str10.substring(2, 6)); // "ring"
         alert(str10.substring(6, 2)); // "ring"
 
         // ----------------------------------------
 
+        // ...but not for slice:
         alert(str10.slice(2, 6)); // "ring" (the same)
         alert(str10.slice(6, 2)); // "" (an empty string)
 
@@ -258,7 +292,7 @@
         alert(str10.substr(2, 4));  // 'ring', from the 2nd position get 4 characters
         alert(str10.substr(-4, 2)); // 'gi', from the 4th position get 2 characters
 
-        // ----------------------------------------
+        // Comparing strings
 
         alert('a' > 'Z'); // true
 
@@ -268,6 +302,7 @@
 
         // ----------------------------------------
 
+        // different case letters have different codes
         alert("Z".codePointAt(0)); // 90
         alert("z".codePointAt(0)); // 122
 
@@ -281,7 +316,7 @@
         alert(String.fromCodePoint(128526)); // 😎
         alert("😎".codePointAt(0));          // 128526
 
-        // ----------------------------------------
+        // uppercase first letter in string
 
         let newStr = str[0].toUpperCase() + str.slice(1); 
 
@@ -293,7 +328,7 @@
         }
         alert(ucFirst("john")); // John
 
-        // ----------------------------------------
+        // Arrays
 
         let arr1 = new Array();
         let arr2 = [];
@@ -314,6 +349,8 @@
         // ----------------------------------------
 
         let arrBase = ["Apple", "Orange"];
+
+        // Add a normal property like any object: typeof array is object
         arrBase.category = "Fruit";
         arrBase["color"] = "Yellow";
         console.log(arrBase.length);   // 2 (length only counts numeric indices!)
@@ -322,16 +359,24 @@
 
         // ----------------------------------------
 
+        // mix of values
         let arr3 = ['Apple', { name: 'John' }, true, function() { alert('hello'); }];
+        // get the object at index 1 and then show its name
         alert(arr3[1].name); // John
+        // get the function at index 3 and run it
         arr3[3]();           // hello
 
         // ----------------------------------------
 
         alert(fruits2[fruits2.length - 1]); // Plum
+        // same as fruits[fruits.length-1]
         alert(fruits2.at(-1));              // Plum
 
-        // ----------------------------------------
+        // Methods pop/push, shift/unshift
+
+        let array = [1, 2, 5];
+        array.push(3, 4);
+        alert( array ); // 1, 2, 5, 3, 4
 
         let fruits3 = ["Apple", "Orange", "Pear"];
         alert(fruits3.pop()); // remove "Pear" and alert it
@@ -352,6 +397,7 @@
         let fruits5 = ["Apple"];
         fruits5.push("Orange", "Peach");
         fruits5.unshift("Pineapple", "Lemon");
+        // ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
         alert(fruits5); // ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
 
         // ----------------------------------------
@@ -364,12 +410,12 @@
 
         // ----------------------------------------
 
-        let fruits7 = [];
+        let fruits7 = []; // make an array
         fruits7[99999] = 5; // assign a property with the index far greater than its length
         fruits7.age = 25;   // create a property with an arbitrary name
         alert(fruits7);
 
-        // ----------------------------------------
+        // loops
 
         let arr7 = ["Apple", "Orange", "Pear"];
         for (let i = 0; i < arr7.length; i++) {
@@ -379,6 +425,7 @@
         // ----------------------------------------
 
         let fruits8 = ["Apple", "Orange", "Plum"];
+        // iterates over array elements
         for (let fruit of fruits8) {
             alert(fruit);
         }
@@ -390,19 +437,19 @@
             alert(arr8[key]); // Apple, Orange, Pear
         }
 
-        // ----------------------------------------
+        // length
 
         let fruits9 = [];
         fruits9[123] = "Apple";
         alert(fruits9.length); // 124 // not count of values in the array
 
-        // ----------------------------------------
+        // New array
 
         let arrEmpty = new Array(2); // it creates an array without items, but with the given length.
         alert(arrEmpty[0]);          // undefined
         alert(arrEmpty.length);      // length 2
 
-        // ----------------------------------------
+        // Multidimensional arrays
 
         let matrix = [
             [1, 2, 3],
@@ -411,7 +458,7 @@
         ];
         alert(matrix[0][1]); // 2, the second value of the first inner array
 
-        // ----------------------------------------
+        // toString
 
         let arr9 = [1, 2, 3];
         alert(arr9); // 1,2,3
@@ -429,7 +476,7 @@
         alert("1" + 1);   // "11"
         alert("1,2" + 1); // "1,21"
 
-        // ----------------------------------------
+        // compare
 
         alert([] == []);   // false
         alert([0] == [0]); // false
@@ -438,10 +485,11 @@
 
         alert(0 == []);    // true
         alert('0' == []);  // false
+        // after [] was converted to ''
         alert(0 == '');    // true, as '' becomes converted to number 0
         alert('0' == '');  // false, no type conversion, different strings
 
-        // ----------------------------------------
+        // Array methods
          
         let arr5 = ["A", "B", "C", "D"];
         let result = arr5.slice(1, 3);
@@ -451,6 +499,7 @@
         // ----------------------------------------
 
         let arr6 = ["A", "B", "C", "D"];
+        // At index 1, remove 2 elements, insert "X"
         let removed = arr6.splice(1, 2, "X");
         console.log(removed); // ["B", "C"] (what was taken out)
         console.log(arr6);    // ["A", "X", "D"] (modified!)
@@ -458,28 +507,35 @@
         // ----------------------------------------
 
         let arr10 = ["I", "study", "JavaScript", "right", "now"];
+        // remove 3 first elements and replace them with another
         arr10.splice(0, 3, "Let's", "relax");
         alert(arr10); // ["Let's", "relax", "right", "now"]
 
         // ----------------------------------------
 
         let arr11 = [1, 2, 5];
-        arr11.splice(-1, 0, 3, 4); // from index -1, delete 0 elements, insert 3 and 4
+        // from index -1                // -1 will insert before the last element. // use postive index or push() to add at end.
+        // delete 0 elements,
+        // then insert 3 and 4
+        arr11.splice(-1, 0, 3, 4); // set deleteCount to 0 to insert the elements without any removals.
         alert(arr11); // 1,2,3,4,5
 
-        // ----------------------------------------
+        // concat
 
         let arr12 = [1, 2];
+        // create an array from: arr and [3,4]
         alert(arr12.concat([3, 4]));         // 1,2,3,4
+        // create an array from: arr and [3,4] and [5,6]
         alert(arr12.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
+        // create an array from: arr and [3,4], then add values 5 and 6
         alert(arr12.concat([3, 4], 5, 6));   // 1,2,3,4,5,6
 
-        // ----------------------------------------
+        // indexOf/lastIndexOf and includes
 
         let arr13 = [1, 0, false];
         alert(arr13.indexOf(0));     // 1
         alert(arr13.indexOf(false)); // 2
-        alert(arr13.indexOf(null));  // -1
+        alert(arr13.indexOf(null));  // -1 // indexOf returns -1 whenever an element is not found.
         alert(arr13.includes(1));    // true
 
         // ----------------------------------------
@@ -488,14 +544,14 @@
         alert(fruits10.indexOf('Apple'));     // 0 (first Apple)
         alert(fruits10.lastIndexOf('Apple')); // 2 (last Apple)
 
-        // ----------------------------------------
+        // find and findIndex/findLastIndex
         
         let users = [
             {id: 1, name: "John"},
             {id: 2, name: "Pete"},
             {id: 3, name: "Mary"}
         ];
-        let user = users.find(item => item.id == 1);
+        let user = users.find(item => item.id == 1); // item = {id: 1, name: "John"} and tests item.id == 1.
         alert(user);      // { id: 1, name: 'John' }
         alert(user.name); // John
 
@@ -507,21 +563,26 @@
             {id: 3, name: "Mary"},
             {id: 4, name: "John"}
         ];
+        // Find the index of the first John
         alert(users1.findIndex(user => user.name == 'John'));     // 0
+        // Find the index of the last John
         alert(users1.findLastIndex(user => user.name == 'John')); // 3
 
-        // ----------------------------------------
-
+        // filter
         let users2 = [
             {id: 1, name: "John"},
             {id: 2, name: "Pete"},
             {id: 3, name: "Mary"}
         ];
+        // returns array of the first two users
         let someUsers = users2.filter(item => item.id < 3);
         alert(someUsers.length); // 2
         alert(someUsers);        // [ { id: 1, name: 'John' }, { id: 2, name: 'Pete' } ]
 
-        // ----------------------------------------
+        // Transform an array
+
+        // map
+        // When we need to iterate and return the data for each element – we can use map.
 
         let arry = ["Bilbo", "Gandalf", "Nazgul"];
         let lengths = arry.map(item => item.length);
@@ -530,6 +591,7 @@
         // ----------------------------------------
 
         const numbers = [1, 2, 3, 4, 5];
+        // Multiply each number by 2
         const doubled = numbers.map(num => num * 2);
         const powered = numbers.map(num => num ** 2);
         console.log(doubled); // [2, 4, 6, 8, 10]
@@ -543,47 +605,54 @@
             { id: 2, name: "Bob", role: "Designer" },
             { id: 3, name: "Charlie", role: "Manager" }
         ];
+        // Extract just the user names
         const userNames = users3.map(user => user.name);
         console.log(userNames); // ["Alice", "Bob", "Charlie"]
 
         // ----------------------------------------
         
         const fruits11 = ["Apple", "Banana", "Cherry"];
-        const rankedFruits = fruits11.map((fruit, index) => `${index + 1}. ${fruit}`);
+        const rankedFruits = fruits11.map((fruit, index) => `${index + 1}. ${fruit}`); // index
         console.log(rankedFruits); // ["1. Apple", "2. Banana", "3. Cherry"]
 
-        // ----------------------------------------
+        // sort method
 
         let arr14 = [1, 2, 15];
+        // the method reorders the content of arr
         arr14.sort();
-        alert(arr14); // 1, 15, 2
+        alert(arr14); // 1, 15, 2 // first num in 15
 
         // ----------------------------------------
 
         let arr15 = [1, 2, 15, 12, 32, 42];
-        arr15.sort((a, b) => a - b);
+        arr15.sort((a, b) => a - b); // b - a for deccending
         console.log(arr15); // [ 1, 2, 12, 15, 32, 42 ]
 
         // ----------------------------------------
 
+        // 1. Arrow function shorthand
+        arr15.sort((a, b) => a - b);
+
+        // 2. Regular function declaration
         arr15.sort(function(a, b) {
             return a - b;
-        });
+        }); // All 3 behaves same because sort() only inspects what the function returns.
 
         // ----------------------------------------
 
-        function compareNumbers(a, b) {
-            return a - b;
+        // 3. Separate named function // -1 : place 'a' before 'b'
+        function compareNumbers(a, b) { //  1 : place 'b' before 'a'
+            return a - b; //  0 : order doesn't matter
         }
         arr15.sort(compareNumbers);
 
-        // ----------------------------------------
+        // reverse
 
         let arr16 = [1, 2, 3, 4, 5];
         arr16.reverse();
         alert(arr16); // 5,4,3,2,1
 
-        // ----------------------------------------
+        // split and join
 
         let string = "test";
         alert(string.split('')); // t,e,s,t
@@ -592,89 +661,124 @@
 
         let names = 'Bilbo, Gandalf, Nazgul';
         let arr17 = names.split(', ');
+
         for (let name of arr17) {
             alert(`A message to ${name}.`); // A message to Bilbo (and other names)
         }
 
         // ----------------------------------------
 
-        let arr18 = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+        let arr18 = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2); // first 2 elements only
         alert(arr18); // Bilbo, Gandalf
         
-        // ----------------------------------------
+        // reduce/reduceRight
 
-        let arr19 = [1, 2, 3, 4, 5];
-        let result1 = arr19.reduce((sum, current) => sum + current, 0);
-        alert(result1); // 15
+        let arr19 = [1, 2, 3, 4, 5]; // [1, 2, '3', 4, 5] => 3345
+        let result1 = arr19.reduce((sum, current) => sum + current, 0); // 0 is intial value of sum 
+        alert(result1); // 15 // [] will case error without 0
         
-        // ----------------------------------------
+        // The method arr.reduceRight does the same but goes from right to left.
+
+        // Array.isArray
 
         alert(typeof {}); // object
-        alert(typeof []); // object
+        alert(typeof []); // object (same)
         
         alert(Array.isArray({})); // false
         alert(Array.isArray([])); // true
 
         // ----------------------------------------
 
+        // Symbol.iterator (only for object)
+        // Symbol.iterator is a built-in method you define on an object to enable for...of iteration over its values.
+
+        // A simple object with 2 words
+
         let words = {
             first: "Hello",
             second: "World",
+            // Give the object an iterator
+            // The * marks this as a generator function:
             *[Symbol.iterator]() {
-                yield this.first;
+                yield this.first; // yield key word that Pauses the function in place and can resume it
                 yield this.second;
             }
         };
+        // Now for...of works on this object!
         for (let word of words) {
             console.log(word);
         }
+        // Output:
+        // Hello
+        // World
 
-        // ----------------------------------------
+        // array like objects and array.from () method
 
         let arrayLike = {
             0: "Hello",
             1: "World",
             length: 2
         };
+        
+        // Convert to a real array: as long as the keys are indexed numbers (or strings of numbers) starting from 0.
         let arr20 = Array.from(arrayLike);
         alert(arr20);
         for (let item of arr20) {
-            console.log(item);
+            console.log(item); // "Hello", then "World"
         }
             
-        // ----------------------------------------
+        // Map 
 
+        // Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type.
+        // Unlike object it is Directly iterable
+        // Size tracking ----- Instant: map.size
+        // Insertion order (first in, first out)
+
+        // Map methods :
+
+        // 1. new Map() – creates the map
         const userRoles = new Map();
+
+        // 2. map.set(key, value) – stores the value by the key
         userRoles.set("alice", "Admin");
         userRoles.set("bob", "Editor");
 
+        // 3. map.get(key) – returns the value by the key, undefined if not found
         console.log(userRoles.get("alice"));   // "Admin"
         console.log(userRoles.get("charlie")); // undefined
 
+        // 4. map.has(key) – returns true if the key exists, false otherwise
         console.log(userRoles.has("bob"));     // true
         console.log(userRoles.has("charlie")); // false
 
+        // 5. map.size – returns the current element count
         console.log(userRoles.size);           // 2
 
+        // 6. map.delete(key) – removes the element by the key
         userRoles.delete("bob");
         console.log(userRoles.has("bob"));     // false
         console.log(userRoles.size);           // 1
 
+        // 7. map.clear() – removes everything from the map
         userRoles.clear();
         console.log(userRoles.size);           // 0
         console.log(userRoles.get("alice"));   // undefined
 
         // ----------------------------------------
 
+        // Object -> Map
         const initialObject = { name: "Alice", age: 25 };
-        const map = new Map(Object.entries(initialObject));
-        const obj = Object.fromEntries(map);
+        const map = new Map(Object.entries(initialObject)); // Object.entries : Object -> nested Array of pairs
+        // Map -> Object
+        const obj = Object.fromEntries(map);      // Object.fromEntries : nested Array of pairs -> Object
 
         // ----------------------------------------
 
         let map1 = new Map();
 
         // ----------------------------------------
+
+        // 1. Passing an Array of [key, value] pairs (Most Common)
 
         const map2 = new Map([
             ['name', 'Alice'],
@@ -685,24 +789,29 @@
 
         // ----------------------------------------
 
+        // 2. Empty Map + Chained .set() Calls
+
         const map3 = new Map()
             .set('a', 1)
-            .set('b', 2)
+            .set('b', 2) // map3.set('d',4).set('e',5)....// Chaining
             .set('c', 3);
         console.log(map3.size); // 3
 
         // ----------------------------------------
 
+        // 3. From an Existing Plain Object (Object.entries)
+
         const userObj = { name: 'Bob', score: 98 };
-        const map4 = new Map(Object.entries(userObj));
+        const map4 = new Map(Object.entries(userObj)); // Object.entries() takes an object and returns an array of its own [key, value] pairs
         console.log(map4.get('name')); // "Bob"
 
         // ----------------------------------------
 
+        // Map preserves key data types
         let map11 = new Map();
-        map11.set('1', 'str1');
-        map11.set(1, 'num1');
-        map11.set(true, 'bool1');
+        map11.set('1', 'str1');   // string key
+        map11.set(1, 'num1');     // numeric key (not converted to string!)
+        map11.set(true, 'bool1'); // boolean key
 
         alert(map11.get(1));   // 'num1'
         alert(map11.get('1')); // 'str1'
@@ -710,20 +819,27 @@
 
         // ----------------------------------------
 
+        // Plain Object fails with Object keys
         let john = { name: "John" };
         let ben = { name: "Ben" };
         let visitsCountObj = {};
-        visitsCountObj[ben] = 234;
-        visitsCountObj[john] = 123;
+        // When used as keys, both objects are stringified to "[object Object]"
+        visitsCountObj[ben] = 234;  // visitsCountObj["[object Object]"] = 234
+        visitsCountObj[john] = 123; // Overwrites the previous value!
+        // Both access the same key:
         alert(visitsCountObj[ben]);              // 123
         alert(visitsCountObj["[object Object]"]); // 123
 
         // ----------------------------------------
 
+        // The Fix using Map (Keeps Objects Distinct)
         let visitsCountMap = new Map();
+
+        // Map stores objects by reference, NOT as strings
         visitsCountMap.set(ben, 234);
         visitsCountMap.set(john, 123);
-        alert(visitsCountMap.get(ben));  // 234
+
+        alert(visitsCountMap.get(ben));  // 234 (Kept intact!)
         alert(visitsCountMap.get(john)); // 123
         alert(visitsCountMap.size);      // 2
         
@@ -733,9 +849,10 @@
             for (const [key, value] of pairs) {
                 targetMap.set(key, value);
             }
-            return targetMap;
+            return targetMap; // allows method chaining if needed
         }
 
+        // Usage:
         const map5 = new Map();
         const newItems = [
             ['x', 10],
@@ -762,6 +879,7 @@
         // ----------------------------------------
 
         const map7 = new Map();
+        // Add 100 items dynamically:
         for (let i = 1; i <= 100; i++) {
             map7.set(`user_${i}`, { id: i, active: true });
         }
@@ -776,31 +894,45 @@
         }
         console.log(map8.get('theme')); // "dark"
 
-        // ----------------------------------------
+        // Set
 
+        // A Set is a special type collection – “set of values” (without keys), where each value may occur only once.
+
+        // Set methods :
+
+        // 1. new Set([iterable]) – creates the set and initializes it with values
         const fruitsSet1 = new Set(["apple", "banana", "orange"]);
+
+        // 2. set.add(value) – adds a value, returns the set itself (ignores duplicates!)
         fruitsSet1.add("mango");
         fruitsSet1.add("apple"); // Ignored because "apple" is already in the set
 
+        // 3. set.has(value) – returns true if the value exists, false otherwise
         console.log(fruitsSet1.has("banana"));   // true
         console.log(fruitsSet1.has("grapes"));   // false
-        console.log(fruitsSet1.size);             // 4
 
+        // 4. set.size – returns the current element count
+        console.log(fruitsSet1.size);             // 4 (apple, banana, orange, mango)
+
+        // 5. set.delete(value) – removes the value, returns true if found, false otherwise
         console.log(fruitsSet1.delete("banana")); // true
         console.log(fruitsSet1.delete("banana")); // false (already deleted)
         console.log(fruitsSet1.size);             // 3
 
+        // 6. set.clear() – removes everything from the set
         fruitsSet1.clear();
         console.log(fruitsSet1.size);             // 0
         console.log(fruitsSet1.has("apple"));    // false
 
-        // ----------------------------------------
+        // Iteration in Set
 
         let set1 = new Set(["oranges", "apples", "bananas"]);
+
         for (let value of set1) alert(value);
 
         // ----------------------------------------
 
+        // the same with forEach:
         set1.forEach((value, valueAgain, setRef) => {
             alert(value);
         });
@@ -817,6 +949,41 @@
 
         smallSet.forEach(checkSetSize); 
         bigSet.forEach(checkSetSize);
+
+        // WeakMap and WeakSet
+
+        // Allows only objects
+        // Wont support clear, size, keys, values…
+        // Auto-deleted with the original obj ref by garbage collector.
+        // They have weak reference to objects, so they can easily be removed by garbage collector.
+
+        let objt = { name: "John" };
+        let wmap = new WeakMap();
+
+        wmap.set(objt, "...");                       // allows only objt, str causes error
+        objt = null; // overwrite the reference
+        // objt is removed from memory
+
+        alert(wmap.get(objt)); // undefined 
+
+        // WeakSet
+
+        let visitedSet = new WeakSet();
+        let johnn = { name: "John" };
+        let pete = { name: "Pete" };
+        let mary = { name: "Mary" };
+
+        visitedSet.add(johnn); // add John 
+        visitedSet.add(pete); // add Pete
+        visitedSet.add(johnn); // no effect 
+
+        alert(visitedSet.has(johnn)); // true
+        johnn = null;
+        alert(visitedSet.has(johnn)); // false
+        // visitedSet will be cleaned automatically
+
+
+
 
     </script>
 </body>
