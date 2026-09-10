@@ -347,7 +347,7 @@
 
         console.log(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
         
-        // ----------------------------------------
+        // ---------------------------------------- 
         
         let height = null;
         let width = null;
@@ -704,7 +704,7 @@
            callback("Hello " + name); // calls the function you handed it
         }
            
-        greet("Sam", (message) => console.log(message)); // "Hello Sam"
+        greet("Sam", message => console.log(message)); // "Hello Sam"
             
         // ----------------------------------------
 
@@ -720,6 +720,15 @@
         run();
 
         // ----------------------------------------
+
+        const wos = ()=>new Promise(res => setTimeout(res, 1000));     
+        async function run (){
+            for (let i=1;;++i){
+                console.log(i);
+                await wos();
+            }
+          }
+        run();
 
         // function expression
 
@@ -811,7 +820,6 @@
                     c += 1;
                 }
             }
-
             return c;
         }
         console.log(count(12332333878)); 
@@ -839,7 +847,7 @@
             let st=0;
             let end=b.length-1;
             
-            while(st<end){
+            while(st<=end){
                 if (b[st]!==b[end]){
                     return false;
                 }
@@ -854,7 +862,6 @@
 
         function palindrome2(a){
 
-            // FIX 8: Added 'let' to str.
             let str='';
             for (let i=0; i<a.length;i++){
                 str=a[i]+str;
@@ -906,16 +913,12 @@
             let b=String(a);
             let str='';
             for (let i=0;i<b.length;i++){
-                if (a[i]==a[i].toUpperCase()){
-                    str+=a[i].toLowerCase();
+                if (b[i]==b[i].toUpperCase()){
+                    str+=b[i].toLowerCase();
                 }
                 
-                else if (a[i]==a[i].toLowerCase()){
-                    str+=a[i].toUpperCase();
-                }
-      
-                else{
-                    str+=a[i];
+                else {
+                    str+=b[i].toUpperCase();
                 }
             }
             return str;
@@ -934,6 +937,26 @@
             return str;
         }
         console.log(unique('aabccddeeg'));
+
+        // ----------------------------------------
+
+        function rrepeat(a){
+            let str=String(a);
+            let rstr='';
+            let ustr='';
+            for (let i=0;i<str.length;i++){
+                if (str.indexOf(str[i])==(str.lastIndexOf(str[i]))){
+                    ustr+=str[i];
+                }
+                else {
+                    if (!rstr.includes(str[i])){
+                        rstr+=str[i]+'\n';
+                    }
+                }
+            }
+            return `unique:\n${ustr}\nrepeated:\n${rstr}`;
+        }
+        console.log(rrepeat(12233));
                                                 
     </script>
 </body>

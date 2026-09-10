@@ -14,11 +14,12 @@
         // ---------------------------------------
 
         let n = 1.23456;
-        alert(typeof n.toFixed(2)); // string
+        alert(typeof n.toFixed(2)); // string // 1.23
 
         // ----------------------------------------
 
         alert(typeof 0); // number
+        alert(typeof Number(0)); // number
         alert(typeof new Number(0)); // object
 
         // ----------------------------------------
@@ -107,18 +108,21 @@
         // ----------------------------------------
 
         let sum1 = 0.1 + 0.2;
-        alert( +sum1.toFixed(2) ); // 0.3
+        alert( sum1.toFixed(2) ); // '0.30'
+        alert(+sum1.toFixed(2)); // 0.3
+
 
         // Tests: isFinite and isNaN
 
-        alert(+sum1.toFixed(2)); // 0.3
         alert(isNaN(NaN)); // true
         alert(isNaN("str")); // true
         alert(NaN === NaN); // false
+
         alert(isFinite("15")); // true
-        alert(isFinite("str")); // false, because a special value: NaN
-        alert(isFinite(Infinity)); // false, because a special value: Infinity
-        alert(Number.isFinite(2 / 0)); // false
+        alert(isFinite("str")); // false, special value: NaN
+        alert(isFinite(Infinity)); // false, special value: Infinity
+
+        alert(Number.isFinite(2 / 0)); // false (must strictly be a number)
 
         // ----------------------------------------
 
@@ -155,24 +159,33 @@
 
         // String
 
-        let single = 'single-quoted';
-        let double = "double-quoted";
+       alert("hello world".replace("world", "everyone"));
+
+        alert("hello".includes("ell")); // true
+
+        alert("hello".indexOf("ell")); // 1
+
+        alert("hello".search(/ell/)); // 1
+
+        alert("my\n".length); // 3
+
+        alert('Interface'.toUpperCase()); // INTERFACE
+        
+        alert('Interface'.toLowerCase()); // interface
+
 
         // ----------------------------------------
         
-        let backticks = `back
-        ticks`;
-
-        // ----------------------------------------
-
-        let guestList = "Guests:\n * John\n * Pete\n * Mary";
+        let name='john';
+        alert(`back ${name}
+        ticks`);
 
         // ----------------------------------------
 
         function sum(a, b) {
             return a + b;
         }
-        alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+        alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.  // function call 
 
         // ----------------------------------------
 
@@ -181,40 +194,27 @@
         World`;                    // two lines using a normal newline and backticks 
         alert(str1 == str2); // true
 
-        // String length
-
-        alert(`My\n`.length); // 3
-
         // Accessing characters
 
         let str4 = `Hello`;
 
-        // the first character
         alert(str4[0]); // H
         alert(str4.at(0)); // H
 
-        // ----------------------------------------
-
-        // the last character
         alert(str4[str4.length - 1]); // o
-        alert(str4.at(-1));
+        alert(str4.at(-1));  // o
 
         // ----------------------------------------
 
         let str3 = `Hello`;
-        alert(str3[-2]); // undefined
+        alert(str3[-2]); // undefined // [-index] wont work 
         alert(str3.at(-2)); // l
 
         // ----------------------------------------
 
         for (let char of "Hello") {
-            alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
-        }
-
-        // ----------------------------------------
-            
-        alert('Interface'.toUpperCase()); // INTERFACE
-        alert('Interface'.toLowerCase()); // interface
+            alert(char); // H
+        }                // e...llo        
 
         // ----------------------------------------
 
@@ -548,7 +548,7 @@
         
         let users = [
             {id: 1, name: "John"},
-            {id: 2, name: "Pete"},
+            {id: 2, name: "Pete"},    // array
             {id: 3, name: "Mary"}
         ];
         let user = users.find(item => item.id == 1); // item = {id: 1, name: "John"} and tests item.id == 1.
@@ -581,7 +581,7 @@
 
         // Transform an array
 
-        // map
+        // map method for array
         // When we need to iterate and return the data for each element – we can use map.
 
         let arry = ["Bilbo", "Gandalf", "Nazgul"];
@@ -648,6 +648,18 @@
 
         // reverse
 
+        const strd = "hello";
+        const reversedd = strd.split("").reverse().join("");
+        console.log(reversedd); // "olleh"
+
+        // ----------------------------------------
+
+        const strx = "hello 😊";
+        const reversedx = [...strx].reverse().join("");
+        console.log(reversed); // "😊 olleh"
+
+        // ----------------------------------------
+
         let arr16 = [1, 2, 3, 4, 5];
         arr16.reverse();
         alert(arr16); // 5,4,3,2,1
@@ -661,6 +673,7 @@
 
         let names = 'Bilbo, Gandalf, Nazgul';
         let arr17 = names.split(', ');
+        alert(arr17); // [ 'Bilbo', 'Gandalf', 'Nazgul' ]
 
         for (let name of arr17) {
             alert(`A message to ${name}.`); // A message to Bilbo (and other names)
@@ -670,6 +683,13 @@
 
         let arr18 = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2); // first 2 elements only
         alert(arr18); // Bilbo, Gandalf
+
+        // Join
+
+        let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+        let strr = arr.join(';'); // Join the array elements into a string using ;
+
+        alert( strr ); // Bilbo;Gandalf;Nazgul
         
         // reduce/reduceRight
 

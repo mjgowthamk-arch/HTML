@@ -132,8 +132,6 @@
         console.log(cl.c==cl);
         console.log(mb);
 
-        // ----------------------------------------
-
         // Object methods, "this"
 
         let usser2 = {
@@ -275,8 +273,8 @@
         // Applied User3 constructor
         let johhn = new User3("John");
 
-        console.log(johhn.sayHi());   //  console.log(new User3("John").sayHi());
-
+        console.log(johhn.sayHi()); // My name is: John // console.log(new User3("John").sayHi());
+        
         // ----------------------------------------
 
         // Optional chaining '?.'
@@ -437,57 +435,58 @@
         alert( Symbol.keyFor(sym) ); // name
         alert( Symbol.keyFor(sym2) ); // id
 
-        // ----------------------------------------
-
         // Object to primitive conversion 
 
-        // JavaScript automatically turning an object {} into a single basic value 
-        // (like a number or a string) when it needs to do math or show text.
+        // 1. The [object Object] Trap (Accidental String Math)
+        let cartTotal = 50;
+        let item = { price: 20 };
 
-        // There are three variants of type conversion, that happen in various situations. They’re called “hints”
-
-        // 1) string
-
-        alert(obbj);
-
-        let anotherObj = {};
-        anotherObj[obbj] = 123;
+        // BUG: JS coerces `item` to a string, causing concatenation
+        console.log(cartTotal + item); // "50[object Object]"
         
-        // ----------------------------------------
+
+        // FIX: Always access the numeric property explicitly
+        console.log(cartTotal + item.price); // 70
         
-        // 2) number
 
-        // explicit conversion
+        // 2. Objects as Keys Overwrite Each Other
 
-        let num = Number(obbj);
+        let cache = {};
+        let userA = { id: 1 };
+        let userB = { id: 2 };
 
-        // maths (except binary plus)
-        let n = +obbj; // unary plus
+        cache[userA] = "Data for User A";
+        cache[userB] = "Data for User B"; // Overwrites userA!
+
+        console.log(cache); // { "[object Object]": "Data for User B" }
         
-        let date1 = new Date();
-        let date2 = new Date();
-        let delta = date1 - date2;
+        // FIX: Use an ES6 Map if you need objects as keys
+        let map = new Map();
+        map.set(userA, "Data for User A");
+        map.set(userB, "Data for User B");
+        console.log(map.get(userA)); // "Data for User A"
 
-        // less/greater comparison
+        // 3. Date Math is the One Built-In Exception You Use Daily
 
-        let user1 = 10;
-        let user2 = 5;
-        let greater = user1 > user2;
+        let start = new Date("2026-09-01");
+        let end = new Date("2026-09-10");
 
-        // ----------------------------------------
+        // Subtraction triggers "number" hint -> returns ms
+        console.log((end - start)/(1000 * 60 * 60 * 24)); 
+  
+        // Binary plus triggers "default" hint (Date chooses string!)
+        console.log(start + end); // "Tue Sep 01 2026...Thu Sep 10 2026..."
+ 
+        // 4. The Strict Equality (===) Rule
 
-        // 3) default
-
-        let obj1 = {a: 1};
-        let obj2 = {b: 2};
-        // binary plus uses the "default" hint
-        let total = obj1 + obj2;
-
-        // ----------------------------------------
-
-        // obj == number uses the "default" hint
-
-        if (userrr == 1) {  };
+        let empty = [];
+        // Loose equality converts [] to "" then to 0
+        console.log(empty == 0);   // true (confusing)
+        console.log(empty == false); // true (confusing)
+  
+        // Strict equality checks reference and type directly
+        console.log(empty === 0);  // false
+        
 
     </script>
 </body>
