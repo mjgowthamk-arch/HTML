@@ -319,3 +319,35 @@ function maxRepChr(a){
 }
 console.log(maxRepChr('ssssccccccccccccwissss'))
 
+// ----------------------------------------
+
+function firstcapital(a){
+  let s=a.split(' ')
+  let st=[]
+  for (let i of s){
+    let cap=i[0].toUpperCase()+i.slice(1).toLowerCase();
+    st.push(cap)
+  }
+return st;  
+}
+console.log(firstcapital('the quick Brown Fox'))
+
+// ----------------------------------------
+
+function secondLargeNum(a){
+  let max1=a[0]
+  let max2=0
+  for (let i of a){
+    if (i>max1){
+      max2=max1;
+      max1=i;
+    }
+      
+    else if (i<max1 && i>max2){
+        max2=i;
+      }
+    }
+
+return max2;  
+}
+console.log(secondLargeNum([100, 5, 20, 20, 8]))
