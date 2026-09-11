@@ -34,7 +34,7 @@ console.log(groupNumbers([1,2,3,4,5,6,7,8,9,10]));
 function charCount(str){
     let op={};
     for (let i of str){
-        if (op[i]==undefined){
+        if (op[i]===undefined){
             op[i]=1;
         }
 
@@ -77,6 +77,20 @@ const books = [
 ];
 
 console.log(fliterandmap(books));
+
+// ----------------------------------------
+
+function map(a){
+  return a.map(i=> ({...i,waranty:'yes'}));
+}
+
+const cart2 = [
+  { name: "Keyboard", price: 1000, quantity: 2, inStock: true },
+  { name: "Mouse", price: 500, quantity: 1, inStock: false },
+  { name: "Monitor", price: 8000, quantity: 1, inStock: true }
+];
+
+console.log(map(cart2));
 
 // ----------------------------------------
 
@@ -143,7 +157,7 @@ console.log(sumofeven([1,2,3,4,5,6,7,8]));
 function countLetters(str){
   let obj={};
   for (let i of str){
-    if (!(i in obj)){    // if (!obj[i])
+    if (obj[i]==undefined){    // if (!obj[i]) 
       obj[i]=1;
     }
     else {
@@ -191,7 +205,7 @@ function getFirstNonRepeating(str){
       obj[i]=1;
     }
   }
-  for (let i of str){
+  for (let i in obj){
     if(obj[i]==1){
       return i;
     }
@@ -206,11 +220,11 @@ function flatten(arr){
   let sarr=[];
   for (let i of arr){
     if (Array.isArray(i)) {
-    for (let j of i){
-      sarr.push(j);
+      for (let j of i){
+        sarr.push(j);
+      }
     }
-    }
-     else{
+    else{
       sarr.push(i);
     }
   }
@@ -280,3 +294,28 @@ function palindrome(a) {
 }
 
 console.log(palindrome('racecar')); // true
+
+// ----------------------------------------
+
+function maxRepChr(a){
+  let obj={};
+  for (let i of a){
+    if(!obj[i]){
+      obj[i]=1
+    }
+    else {
+      obj[i]+=1
+    }
+  }
+    let maxchr=''
+    let maxc=0
+    for (let j in obj){
+      if (obj[j]>maxc){
+        maxc=obj[j]
+        maxchr=j
+      }
+    }
+    return maxchr
+}
+console.log(maxRepChr('ssssccccccccccccwissss'))
+
