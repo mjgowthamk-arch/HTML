@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Fundamentals</title>
-</head>
-<body>
-    <script>
-
         "use strict";
 
         // alert("Hello");
@@ -958,6 +948,4 @@
         }
         console.log(rrepeat(12233));
                                                 
-    </script>
-</body>
-</html>
+    

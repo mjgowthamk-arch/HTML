@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Types</title>
-</head>
-<body>
-    <script>
 
         let str = "Hello";
         alert(str.toUpperCase()); // HELLO
@@ -1060,7 +1051,3 @@
         let user1 = JSON.parse(userData);
         alert( user1.friends[1] ); // 1
 
-    </script>
-    
-</body>
-</html>

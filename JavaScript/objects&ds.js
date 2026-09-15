@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Objects & Data Structures</title>
-</head>
-<body>
-    <script>
-        
         // objects 
 
         let hii=new Object();
@@ -486,8 +476,3 @@
   
         // Strict equality checks reference and type directly
         console.log(empty === 0);  // false
-        
-
-    </script>
-</body>
-</html>
