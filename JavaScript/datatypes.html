@@ -1002,9 +1002,65 @@
         alert(visitedSet.has(johnn)); // false
         // visitedSet will be cleaned automatically
 
+        // Object.keys, values, entries
+        /*
+        Object.keys(obj) – returns an array of keys.
+        Object.values(obj) – returns an array of values.
+        Object.entries(obj) – returns an array of [key, value] pairs.
+        Object.fromEntries(array) - resulting array to turn it back into an object.
+        */
+       
+       let user2 = {
+        name: "John",
+        age: 30
+        };
+    
+        // loop over values
+        for (let value of Object.values(user)) {
+            alert(value); // John, then 30
+        }
+
+        // Date and time
+
+        let now = new Date();
+        alert( now ); // shows current date/time
+
+        // current date
+        let date = new Date();
+    
+        // the hour in your current time zone
+        alert( date.getHours() );
+
+        let date1 = new Date();
+        alert(+date1); // the number of milliseconds, same as date.getTime()
+
+        // JSON.stringify
+
+        let student = {
+            name: 'John',
+            age: 30,
+            isAdmin: false,
+            courses: ['html', 'css', 'js'],
+            spouse: null
+        };
+        let json = JSON.stringify(student);
+        alert(typeof json); // we've got a string!
+        alert(json);
+
+        // JSON.parse
+
+        // stringified array
+
+        let number = "[0, 1, 2, 3]";
+        numbers = JSON.parse(number);
+        alert( numbers[1] ); // 1
 
 
+        let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+        let user1 = JSON.parse(userData);
+        alert( user1.friends[1] ); // 1
 
     </script>
+    
 </body>
 </html>

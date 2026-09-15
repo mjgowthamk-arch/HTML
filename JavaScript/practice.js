@@ -216,6 +216,22 @@ console.log(getFirstNonRepeating('swiss'))
 
 // ----------------------------------------
 
+function getFirstNonRepeating(str){
+  let obj={};
+  for (let i of str){
+    if (obj[i]){
+      obj[i]+=1;
+    }
+    else{
+      obj[i]=1;
+    }
+  }
+  return Object.keys(obj).find(u => obj[u] == 1);
+}
+console.log(getFirstNonRepeating('swiss'))
+
+// ----------------------------------------
+
 function flatten(arr){
   let sarr=[];
   for (let i of arr){
@@ -351,3 +367,20 @@ function secondLargeNum(a){
 return max2;  
 }
 console.log(secondLargeNum([100, 5, 20, 20, 8]))
+
+// ----------------------------------------
+
+function cleanAndFind(roster, target) {
+  return Object.values(roster).flat(Infinity).map(a=>a.trim('')).includes(target); // .filter(t=>t.includes(target));
+  
+}
+
+const roster1 = {
+  engineering: ["  Alice ", "Bob"],
+  design: [["  Charlie ", "  David"]], 
+  marketing: ["Eve  "]
+};
+
+console.log(cleanAndFind(roster, "Charlie")); // true
+console.log(cleanAndFind(roster, "Zack"));    // false
+
