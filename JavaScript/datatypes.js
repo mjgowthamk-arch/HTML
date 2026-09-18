@@ -7,6 +7,9 @@
         let n = 1.23456;
         alert(typeof n.toFixed(2)); // string // 1.23
 
+        let n1 = 1.23456;
+        alert(typeof +n1.toFixed(2)); // number // 1.23
+
         // ----------------------------------------
 
         alert(typeof 0); // number
@@ -72,10 +75,10 @@
         */
 
         let num2 = 1.23456;
-        alert(Math.floor(-num2)); 
-        alert(Math.ceil(-num2)); 
-        alert(Math.round(-num2)); 
-        alert(Math.trunc(-num2)); 
+        alert(Math.floor(num2)); 
+        alert(Math.ceil(num2)); 
+        alert(Math.round(num2)); 
+        alert(Math.trunc(num2)); 
 
         // ----------------------------------------
 
@@ -107,6 +110,8 @@
 
         alert(isNaN(NaN)); // true
         alert(isNaN("str")); // true
+        alert(isNaN("123")); // False
+        alert(isNaN(123)); // False
         alert(NaN === NaN); // false
 
         alert(isFinite("15")); // true
@@ -1050,4 +1055,3 @@
         let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
         let user1 = JSON.parse(userData);
         alert( user1.friends[1] ); // 1
-

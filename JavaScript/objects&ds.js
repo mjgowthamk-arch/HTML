@@ -31,7 +31,7 @@
         
         let codes = {
             "+49": "Germany",
-            "+41": "Switzerland",            // using number will result in shorted o/p
+            "+41": "Switzerland",           
             "+44": "Great Britain",
             "+1": "USA"
         };
@@ -41,7 +41,6 @@
         }
 
         // ----------------------------------------
-
         // Object references and copying
 
         let users = { name: 'John' };

@@ -103,11 +103,6 @@
 
         // ----------------------------------------
 
-        console.log(obj.name);
-        console.log(obj["name"]);
-
-        // ----------------------------------------
-
         console.log(obj.name, obj.age);
         console.log(obj["name"], obj["age"]);
 
@@ -450,17 +445,6 @@
 
         // ----------------------------------------
 
-        for (let i = 1; i <= 2; i++) {
-            for (let j = 1; j <= 3; j++) {
-                if (j === 2) {
-                    continue;
-                }
-                console.log(`i=${i}, j=${j}`);
-            }
-        }
-
-        // ----------------------------------------
-
         let row=5;
         for (let i=1;i<=row;i++){            // star
             let str="";
@@ -473,9 +457,9 @@
         // ----------------------------------------
 
         let row2=5;
-        for (let i2=row2;i2>=1;i2--){
+        for (let i2=1;i2<=row2;i2++){
             let str2='';
-            for (let j2=1;j2<=i2;j2++){
+            for (let j2=row2;j2>=i2;j2--){
                 str2+='*';
             }
             console.log(str2);
@@ -670,7 +654,7 @@
 
         // ----------------------------------------
 
-        function sum2(a){                                                                                               // Currying
+        function sum2(a){                          // Currying
             return function(b){
                 return a+b;
             };
@@ -679,7 +663,7 @@
 
         // ----------------------------------------
 
-        const dog = {                                                                                                        // object method
+        const dog = {                               // object method
             name: "Buddy",
             bark() {
                 console.log(this.name + " says Woof!");
@@ -690,36 +674,13 @@
         
         // ----------------------------------------
         
-        function greet(name, callback) {                                                                                      // call back
+        function greet(name, callback) {                                                     // call back
            callback("Hello " + name); // calls the function you handed it
         }
            
         greet("Sam", message => console.log(message)); // "Hello Sam"
             
         // ----------------------------------------
-
-        // A simple function that delays 1 second
-           
-        const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
-        async function run() {
-            console.log("Start");
-            await waitOneSecond(); // pauses only this function for 1s
-            console.log("End");
-        }
-        
-        run();
-
-        // ----------------------------------------
-
-        const wos = ()=>new Promise(res => setTimeout(res, 1000));     
-        async function run (){
-            for (let i=1;;++i){
-                console.log(i);
-                await wos();
-            }
-          }
-        run();
-
         // function expression
 
         let say = function() {
@@ -749,203 +710,29 @@
         console.log( sum3(1, 2) ); 
 
         // ----------------------------------------
-
-        function sum(a){
-            let count=0;
-            let str=String(a);
-            for(let i=0;i<str.length;i++){
-                    count+=Number(str[i]);     
-            }
-            return count; 
-        }
-        console.log(sum(12345));
-
         // ----------------------------------------
-
-        function countvowels(a){
-            let count=0;
-            for(let i=0;i<a.length;i++){
-                if (a[i]== 'a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u'){
-                    count+=1;     
-                }
-            }
-            return count; 
-
-        }
-        console.log(countvowels('aeiou'));
-
-        // ----------------------------------------
-
-        function reverse(a){
-            let str='';
-            let b = a.toString();
-            for(let i=0;i<b.length;i++){
-
-                str=b[i] + str; 
-            }
-            return str; 
-        }
-        console.log(reverse(12345));
-
-        // ----------------------------------------
-
-        function findmax(arr) {
-            let max = arr[0];
-            for (let i = 1; i < arr.length; i++) {
-                if (arr[i] > max) {
-                    max = arr[i];
-                }
-            }
-            return max;
-        }
-        console.log(findmax([2,75,10,55,31,23,35]));
-
-        // ----------------------------------------
-
-        function count(a) {
-            let c = 0;
-            let b = a.toString();
-            for (let i = 0; i < b.length; i++) {
-                if (b[i] == '7') {
-                    c += 1;
-                }
-            }
-            return c;
-        }
-        console.log(count(12332333878)); 
-
-        // ----------------------------------------
-
-        function countString(a){
-            let c=0;
-            let b=a.toString();
-            for (let i=0;i<(b).length;i++){
-                if (b[i]=='t' && b[i+1]=='i' && b[i+2]=='m'){
-                    c+=1;
-                }
-            }
-            return c;
-        }
-        console.log(countString('12332stimdaas3xc33tim 878'));
-
-        // ----------------------------------------
-
-        function palindrome(a){
-            
-            let b=String(a);
-
-            let st=0;
-            let end=b.length-1;
-            
-            while(st<=end){
-                if (b[st]!==b[end]){
-                    return false;
-                }
-                st++;
-                end--;
-            }
-            return true;
-        }
-        console.log(palindrome('moom'));
-
-        // ----------------------------------------
-
-        function palindrome2(a){
-
-            let str='';
-            for (let i=0; i<a.length;i++){
-                str=a[i]+str;
-            }
-            console.log(str);
-            return (str == a) ? true : false;
-        }
-        console.log(palindrome2('maadam'));
-
-        // ----------------------------------------
-
-        function removevowels(a){
-            let str='';
-            for (let i=0;i<a.length;i++){
-                if (a[i]!=='a' && a[i]!=='e' && a[i]!=='i' && a[i]!=='o' && a[i]!=='u'){
-                    str+=a[i];
-                }
-            }
-            return str;
-        }
-        console.log(removevowels('gowtham'));
         
-        // ----------------------------------------
-
-        function concount(a){
-            let b=String(a);
-            let str='';
-            for (let i=0;i<b.length;i++){
-                if (a[i]=='a'|| a[i]=='e'|| a[i]=='i'|| a[i]=='o'|| a[i]=='u'){
-                    continue;
-                }
-                else if (a[i]==' ' || a[i]==":" || a[i]==","){
-                    continue;
-                }
-                else if (a[i]==Number(a[i])){
-                    continue;
-                }
-                else{
-                    str+=a[i];
-                }
-            }
-            return str;
+        // A simple function that delays 1 second
+           
+        const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
+        async function run() {
+            console.log("Start");
+            await waitOneSecond(); // pauses only this function for 1s
+            console.log("End");
         }
-        console.log(concount('vowels are: aeiou , numbers are :12323'));
         
-        // ----------------------------------------
-
-        function uptolow(a){
-            let b=String(a);
-            let str='';
-            for (let i=0;i<b.length;i++){
-                if (b[i]==b[i].toUpperCase()){
-                    str+=b[i].toLowerCase();
-                }
-                
-                else {
-                    str+=b[i].toUpperCase();
-                }
-            }
-            return str;
-        }
-        console.log(uptolow('HELLO how are u'));
-        
-        // ----------------------------------------
-
-        function unique(a){
-            let str='';
-            for (let i=0;i<a.length;i++){
-                if(!str.includes(a[i])) {
-                    str += a[i];
-                }
-            }
-            return str;
-        }
-        console.log(unique('aabccddeeg'));
+        run();
 
         // ----------------------------------------
 
-        function rrepeat(a){
-            let str=String(a);
-            let rstr='';
-            let ustr='';
-            for (let i=0;i<str.length;i++){
-                if (str.indexOf(str[i])==(str.lastIndexOf(str[i]))){
-                    ustr+=str[i];
-                }
-                else {
-                    if (!rstr.includes(str[i])){
-                        rstr+=str[i]+'\n';
-                    }
-                }
+        const wos = ()=>new Promise(res => setTimeout(res, 1000));     
+        async function run (){
+            for (let i=1;;++i){
+                console.log(i);
+                await wos();
             }
-            return `unique:\n${ustr}\nrepeated:\n${rstr}`;
-        }
-        console.log(rrepeat(12233));
+          }
+        run();
+
                                                 
     
