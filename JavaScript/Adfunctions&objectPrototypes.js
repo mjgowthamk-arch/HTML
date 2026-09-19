@@ -110,12 +110,12 @@ alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 let arr3 = [3, 5, 1];
 let arr4 = [8, 9, 15];
 let merged = [0, ...arr3, 2, ...arr4];
-alert(merged); // 0,3,5,1,2,8,9,15 
+alert(merged); // [ 0,3,5,1,2,8,9,15 ]
 
 // ----------------------------------------
 
 let str = "Hello";
-alert( [...str] ); // H,e,l,l,o
+alert( [...str] ); // [ 'H', 'e', 'l', 'l', 'o' ]
 
 // ----------------------------------------
 
@@ -155,6 +155,15 @@ alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 
 // ----------------------------------------
 
+let runners = ["Alice", "Bob", "Charlie", "Dave"];
+
+let [firstPlace, secondPlace, ...participation] = runners;
+
+console.log(firstPlace); // "Alice"
+console.log(secondPlace); // Bob
+console.log(participation); // [ 'Charlie', 'Dave' ]
+
+// ----------------------------------------
 // Nested functions
 
 function sayHiBye(firstName, lastName) {

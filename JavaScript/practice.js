@@ -1,7 +1,7 @@
 function sum(a){
             let count=0;
             let str=String(a);
-            for(let i=0;i<str.length;i++){
+            for(let i=0;i<str.length;i++){   // for (let i of a.toString())
                     count+=Number(str[i]);     
             }
             return count; 
@@ -12,8 +12,8 @@ function sum(a){
 
         function countvowels(a){
             let count=0;
-            for(let i=0;i<a.length;i++){
-                if (a[i]== 'a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u'){
+            for(let i=0;i<a.length;i++){    // for of 
+                if (a[i]== 'a' || a[i]=='e' || a[i]=='i' || a[i]=='o' || a[i]=='u'){     // v.includes(i)
                     count+=1;     
                 }
             }
@@ -27,9 +27,9 @@ function sum(a){
         function reverse(a){
             let str='';
             let b = a.toString();
-            for(let i=0;i<b.length;i++){
+            for(let i=0;i<b.length;i++){ // let i of a.toString()
 
-                str=b[i] + str; 
+                str=b[i] + str;          // str= i + str; 
             }
             return str; 
         }
@@ -39,9 +39,9 @@ function sum(a){
 
         function findmax(arr) {
             let max = arr[0];
-            for (let i = 1; i < arr.length; i++) {
-                if (arr[i] > max) {
-                    max = arr[i];
+            for (let i = 1; i < arr.length; i++) {    //  for (let i of arr)
+                if (arr[i] > max) {                   // (i > max)
+                    max = arr[i];                     // max = i
                 }
             }
             return max;
@@ -53,14 +53,14 @@ function sum(a){
         function count(a) {
             let c = 0;
             let b = a.toString();
-            for (let i = 0; i < b.length; i++) {
-                if (b[i] == '7') {
+            for (let i = 0; i < b.length; i++) {   // let i of a.toString()
+                if (b[i] == '7') {                 // i=='7'
                     c += 1;
                 }
             }
             return c;
         }
-        console.log(count(12332333878)); 
+        console.log(count(1778)); 
 
         // ----------------------------------------
 
@@ -72,6 +72,23 @@ function sum(a){
                     c+=1;
                 }
             }
+            return c;
+        }
+        console.log(countString('12332stimdaas3xc33tim 878'));
+
+
+        // or 
+
+          function countString(a){
+            let c=0;
+            let t='tim'
+            for (let i in a){        // for in gives index in string
+              let ind=Number(i)
+              let ch = a.substring(ind,ind+t.length)
+                if (ch==t)
+                    c+=1;
+                }
+            
             return c;
         }
         console.log(countString('12332stimdaas3xc33tim 878'));
@@ -120,8 +137,22 @@ function sum(a){
             }
             return str;
         }
-        console.log(removevowels('gowtham'));
+        console.log(removevowels('gowtham'));           
         
+        // or
+
+         function removevowels(a){
+            let str='';
+            let v='aeiou'
+            for (let i of a){
+                if (!v.includes(i)){
+                    str+=i;
+                }
+            }
+            return str;
+        }
+        console.log(removevowels('gowtham')); 
+
         // ----------------------------------------
 
         function concount(a){
@@ -140,6 +171,20 @@ function sum(a){
                 else{
                     str+=a[i];
                 }
+            }
+            return str;
+        }
+        console.log(concount('vowels are: aeiou , numbers are :12323'));
+
+        // or
+
+        function concount(a){
+            let str='';
+            let v='aeiou :,1234567890'
+            for (let i of a){
+              if (!v.includes(i)){
+                str+=i
+              }
             }
             return str;
         }
@@ -196,6 +241,31 @@ function sum(a){
         }
         console.log(rrepeat(12233));
 
+        // or
+
+          function rrepeat(a){
+          let rstr='';
+          let ustr='';
+          for (let i of a.toString()){
+            if (!ustr.includes(i)){
+              ustr+=i;
+            }
+            else {
+              if (!rstr.includes(i)){
+              rstr+=i+'\n';
+              }
+            }
+          }
+          let unique='';
+          for (let i of ustr){
+            if (!rstr.includes(i)){
+              unique+=i+'\n';
+            }
+          }
+          return `unique:\n${unique}\nrepeated:\n${rstr}`;
+        }
+        console.log(rrepeat(1223334));
+
 // ----------------------------------------
 
 function countVowels(str){
@@ -249,19 +319,31 @@ console.log(charCount('https://www.programiz.com/javascript/online-compiler/'))
 // ----------------------------------------
 
 function findUnique(arr){
-  let unq=[];
-  let rep=[];
+  let unq = [];
+  let rep = [];
+  
   for (let i of arr){
     if (!unq.includes(i)){
       unq.push(i);
     }
     else {
-      rep.push(i);
+      if (!rep.includes(i)){
+        rep.push(i);
+      }
     }
   }
-  return `Unique: ${unq}\nRepeat: ${rep}`;
+  
+  let un = [];
+  for (let i of unq){
+    if (!rep.includes(i)){
+      un.push(i);
+    }
+  }
+  
+  return `Unique: ${un}\nRepeat: ${rep}`;
 }
-console.log(findUnique([1,2,2,3,4,4,5,6,6,7,8]))
+
+console.log(findUnique([1,2,2,2,3,4,4,5,6,6,7,8]));
 
 // ----------------------------------------
 
@@ -341,19 +423,6 @@ console.log(sumofeven([1,2,3,4,5,6,7,8]));
 
 // ----------------------------------------
 
-function sumofeven(arr){
-  let sum=0;
-  for (let i of arr){
-    if(i%2==0){
-      sum+=i;
-    }
-  }
-  return sum;
-}
-console.log(sumofeven([1,2,3,4,5,6,7,8]));
-
-// ----------------------------------------
-
 function countLetters(str){
   let obj={};
   for (let i of str){
@@ -412,7 +481,7 @@ function getFirstNonRepeating(str){
   }
   return null;
 }
-console.log(getFirstNonRepeating('swiss'))
+console.log(getFirstNonRepeating('swiss'));
 
 // ----------------------------------------
 
@@ -428,7 +497,7 @@ function getFirstNonRepeating(str){
   }
   return Object.keys(obj).find(u => obj[u] == 1);
 }
-console.log(getFirstNonRepeating('swiss'))
+console.log(getFirstNonRepeating('swiss'));
 
 // ----------------------------------------
 
@@ -517,42 +586,42 @@ function maxRepChr(a){
   let obj={};
   for (let i of a){
     if(!obj[i]){
-      obj[i]=1
+      obj[i]=1;
     }
     else {
-      obj[i]+=1
+      obj[i]+=1;
     }
   }
-    let maxchr=''
-    let maxc=0
+    let maxchr='';
+    let maxc=0;
     for (let j in obj){
       if (obj[j]>maxc){
-        maxc=obj[j]
-        maxchr=j
+        maxc=obj[j];
+        maxchr=j;
       }
     }
-    return maxchr
+    return maxchr;
 }
-console.log(maxRepChr('ssssccccccccccccwissss'))
+console.log(maxRepChr('ssssccccccccccccwissss'));
 
 // ----------------------------------------
 
 function firstcapital(a){
-  let s=a.split(' ')
-  let st=[]
+  let s=a.split(' ');
+  let st=[];
   for (let i of s){
     let cap=i[0].toUpperCase()+i.slice(1).toLowerCase();
-    st.push(cap)
+    st.push(cap);
   }
 return st;  
 }
-console.log(firstcapital('the quick Brown Fox'))
+console.log(firstcapital('the quick Brown Fox'));
 
 // ----------------------------------------
 
 function secondLargeNum(a){
-  let max1=a[0]
-  let max2=0
+  let max1=a[0];
+  let max2=0;
   for (let i of a){
     if (i>max1){
       max2=max1;
@@ -566,7 +635,7 @@ function secondLargeNum(a){
 
 return max2;  
 }
-console.log(secondLargeNum([100, 5, 20, 20, 8]))
+console.log(secondLargeNum([100, 5, 20, 20, 8]));
 
 // ----------------------------------------
 
@@ -575,7 +644,7 @@ function cleanAndFind(roster, target) {
   
 }
 
-const roster1 = {
+const roster = {
   engineering: ["  Alice ", "Bob"],
   design: [["  Charlie ", "  David"]], 
   marketing: ["Eve  "]
@@ -584,6 +653,35 @@ const roster1 = {
 console.log(cleanAndFind(roster, "Charlie")); // true
 console.log(cleanAndFind(roster, "Zack"));    // false
 
+// ----------------------------------------
+
+setTimeout(()=> {
+  console.log('hi');
+}, 3000);
+
+let c=0;
+let id=setInterval(()=>{
+  c++;
+  console.log('tick', c);
+},1000);
+
+setTimeout(()=>{
+  clearInterval(id)
+}, 5000);
+
+// ----------------------------------------
+
+let p=new Promise((resolve,reject) => {
+  let s=true;
+  if (s){
+    resolve('date downloded');
+  }
+  else{
+    reject('oops failed');
+  }
+});
+
+p.then(r=>console.log(r)).catch(e=>console.log(e));
 
 
 

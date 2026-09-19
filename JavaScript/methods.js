@@ -12,12 +12,15 @@ console.log("hello".search(/e/));                     // 1 (Regex index)
 // Extract & Parse
 console.log("hello".slice(1, 4));                     // "ell" (Supports negatives)
 console.log("hello".substring(1, 4));                 // "ell" (No negatives)
-console.log("hello".at(-1));                          // "o" (Gets char at index)
+console.log("hello".at(-1));                          // "o"   (Gets char at index)
 console.log("hello".charAt(1));                       // "e"
 console.log("A".charCodeAt(0));                       // 65 (ASCII value)
 console.log("cat".match(/a/));                        // ['a', index: 1, input: 'cat']
-console.log([..."cat".matchAll(/a/g)]);               // Array of regex match objects
-console.log("a,b,c".split(","));                      // ['a', 'b', 'c']
+console.log(Array.from("abc"));                       // [ 'a', 'b', 'c' ]     
+console.log("a,b,c".split(","));                      // [ 'a', 'b', 'c' ]
+console.log("cat".split(""));                         // [ 'c', 'a', 't' ]
+console.log([..."cat"]);                              // [ 'c', 'a', 't' ]
+
 
 // Transform & Format
 console.log("hello".toUpperCase());                   // "HELLO"
@@ -26,8 +29,8 @@ console.log("hello".replace("l", "r"));               // "herlo" (Replaces first
 console.log("hello".replaceAll("l", "r"));            // "herro" (Replaces all matches)
 console.log("Hello".concat(" World"));                // "Hello World"
 console.log("ha".repeat(3));                          // "hahaha"
-console.log("5".padStart(3, "0"));                    // "005"
-console.log("5".padEnd(3, "0"));                      // "500"
+console.log("5".padStart(3, "0"));                    // "005" (use str.length + 1)
+console.log("5".padEnd(3, "0"));                      // "500" (use str.length + 1)
 console.log("  hi  ".trim());                         // "hi"
 console.log(" hi".trimStart());                       // "hi"
 console.log("hi ".trimEnd());                         // "hi"
@@ -63,7 +66,7 @@ arr.pop();                                            // Removes last: [10, 20, 
 arr.unshift(5);                                       // Adds to start: [5, 10, 20, 30]
 arr.shift();                                          // Removes first: [10, 20, 30]
 arr.reverse();                                        // [30, 20, 10]
-arr.sort((a, b) => a - b);                            // [10, 20, 30] (Ascending sort)
+arr.sort((a, b) => a - b);                            // [10, 20, 30] (Ascending sort) // sort() -- based on first number -- 12,2,3
 arr.splice(1, 1, 99);                                 // [10, 99, 30] (Start, Delete Count, Insert)
 arr.fill(0, 1, 2);                                    // [10, 0, 30] (Value, Start, End)
 arr.copyWithin(0, 1, 2);                              // [0, 0, 30] (Target, Start, End)
@@ -117,6 +120,7 @@ let proto = { greet() { return "Hi"; } };
 let child = Object.create(proto);                     // Creates obj with prototype 'proto'
 
 // Check & Inspect
+console.log(user.hasOwnProperty("name"));             // true
 console.log(Object.hasOwn(user, "name"));             // true (Safer than hasOwnProperty)
 console.log(Object.is(NaN, NaN));                     // true (Strict equality check)
 console.log(Object.getPrototypeOf(child) === proto);  // true
@@ -136,7 +140,7 @@ console.log(Object.isExtensible(noExtObj));           // false
 // 4. NUMBER METHODS
 // -----------------------------------------------------------------------------------------
 console.log(Number.isInteger(4));                     // true
-console.log(Number.isSafeInteger(9007199254740991));  // true
+console.log(Number.isSafeInteger(9007887666777890));  // true
 console.log(Number.isNaN(NaN));                       // true
 console.log(Number.isFinite(10 / 0));                 // false (Infinity)
 console.log(Number.parseFloat("3.14px"));             // 3.14
@@ -146,7 +150,6 @@ let num = 123.456;
 console.log(num.toFixed(2));                          // "123.46" (String)
 console.log(num.toPrecision(4));                      // "123.5" (String)
 console.log(num.toExponential(2));                    // "1.23e+2" (String)
-console.log((255).toString(16));                      // "ff" (Convert to Base 16/Hex)
 
 
 // -----------------------------------------------------------------------------------------
@@ -177,7 +180,8 @@ console.log(Math.random());                           // Random float between 0 
 // 6. DATE METHODS
 // -----------------------------------------------------------------------------------------
 let now = new Date();                                 // Current Date & Time
-console.log(Date.now());                              // Timestamp (ms since 1970)
+console.log(now);                                     // 2026-09-18T13:38:58.131Z
+console.log(Date.now());                              // 1789738920812 (ms since 1970)
 
 let d = new Date("2024-01-15T12:00:00");
 console.log(d.getFullYear());                         // 2024
@@ -214,7 +218,6 @@ console.log([...map.values()]);                       // ["Sam", "Ten"]
 map.delete("name");                                   // Removes "name" key
 map.clear();                                          // Empties the Map
 
-
 // -----------------------------------------------------------------------------------------
 // 8. PROMISES (Asynchronous JS)
 // -----------------------------------------------------------------------------------------
@@ -250,3 +253,4 @@ let parsed = JSON.parse('{"name":"Sam"}');            // { name: "Sam" }
 console.log(parsed.name);                             // "Sam"
 
 
+ 
