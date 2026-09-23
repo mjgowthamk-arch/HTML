@@ -400,3 +400,336 @@ function waitTwoSecondsPromise() {
 }
 
 waitTwoSecondsPromise().then(result => console.log(result)); // Prints "Done waiting!" after 2 seconds
+
+// Async/await
+
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+
+  let result = await promise; // wait until the promise resolves (*)
+
+  alert(result); // "done!"
+}
+
+f();
+
+// ---------------------------------------
+
+const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
+async function run() {
+  console.log("Start");
+  await waitOneSecond(); // pauses only this function for 1s
+  console.log("End"); 
+}
+run();
+
+// ----------------------------------------
+
+const wos = ()=>new Promise(res => setTimeout(res, 1000));     
+async function run (){
+  for (let i=1;;++i){
+    console.log(i);
+    await wos();
+  }
+}
+run();
+
+// Generators
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+// "generator function" creates "generator object"
+let generator = generateSequence();
+alert(generator); // [object Generator]       
+
+// ----------------------------------------
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+let generator1 = generateSequence();
+
+let one = generator1.next();
+alert(JSON.stringify(one)); // {value: 1, done: false}
+
+let two = generator.next();
+alert(JSON.stringify(two)); // {value: 2, done: false}
+
+// ----------------------------------------
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+let generator2 = generateSequence();
+
+for(let value of generator2) {
+  alert(value); // 1, then 2       // for of ignores return
+}
+
+// ----------------------------------------
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+let sequence = [0, ...generateSequence()];
+alert(sequence); // 0, 1, 2, 3
+
+// ----------------------------------------
+// Generator composition
+
+function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) yield i;
+}
+function* generatePasswordCodes() {
+  // 0..9
+  yield* generateSequence(48, 57);
+  // A..Z
+  yield* generateSequence(65, 90);
+  // a..z
+  yield* generateSequence(97, 122);
+}
+let str = '';
+for(let code of generatePasswordCodes()) {
+  str += String.fromCharCode(code);
+}
+alert(str); // 0..9A..Za..z
+
+// generator.throw
+
+function* gen() {
+  try {
+    let result = yield "2 + 2 = ?"; // (1)
+
+    alert("The execution does not reach here, because the exception is thrown above");
+  } catch(e) {
+    alert(e); // shows the error
+  }
+}
+
+let generator3 = gen();
+let question = generator3.next().value;
+generator3.throw(new Error("The answer is not found in my database")); // (2)
+
+// generator.return
+
+function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const g = gen();
+
+g.next();        // { value: 1, done: false }
+g.return('foo'); // { value: "foo", done: true }
+g.next();        // { value: undefined, done: true }
+
+// Recall iterables
+
+let range = {
+  from: 1,
+  to: 5,
+
+  [Symbol.iterator]() { // called once, in the beginning of for..of
+    return {
+      current: this.from,
+      last: this.to,
+
+      next() { // called every iteration, to get the next value
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+for(let value of range) {
+  alert(value); // 1 then 2, then 3, then 4, then 5
+}
+
+// Async iterables
+
+let range1 = {
+  from: 1,
+  to: 5,
+
+  [Symbol.asyncIterator]() {
+    return {
+      current: this.from,
+      last: this.to,
+
+      async next() {
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
+
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+(async () => {
+
+  for await (let value of range1) { // (4)
+    alert(value); // 1,2,3,4,5
+  }
+
+})()
+
+// Recall generators
+
+function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) {
+    yield i;
+  }
+}
+
+for(let value of generateSequence(1, 5)) {
+  alert(value); // 1, then 2, then 3, then 4, then 5
+}
+
+// ----------------------------------------
+
+let range2 = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() { // a shorthand for [Symbol.iterator]: function*()
+    for(let value = this.from; value <= this.to; value++) {
+      yield value;
+    }
+  }
+};
+
+for(let value of range2) {
+  alert(value); // 1, then 2, then 3, then 4, then 5
+}
+
+// Async generators (finally)
+
+async function* generateSequence(start, end) {
+
+  for (let i = start; i <= end; i++) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    yield i;
+  }
+}
+
+(async () => {
+
+  let generator = generateSequence(1, 5);
+  for await (let value of generator) {
+    alert(value); // 1, then 2, then 3, then 4, then 5 (with delay between)
+  }
+
+})();
+
+// ----------------------------------------
+// Modules
+
+// sayHi.js
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+// main.js
+import {sayHi} from './sayHi.js';
+
+alert(sayHi); // function...
+sayHi('John'); // Hello, John!
+
+// ----------------------------------------
+
+/*
+<!doctype html>
+<script type="module">
+  import {sayHi} from './say.js';
+
+  document.body.innerHTML = sayHi('John');
+</script>
+*/
+
+export function sayHi(user) {
+  return `Hello, ${user}!`;
+}
+
+// Export and Import
+
+// export an array
+export let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+// export a constant
+export const MODULES_BECAME_STANDARD_YEAR = 2015;
+
+// export a class
+export class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// ----------------------------------------
+// say.js
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+function sayBye(user) {
+  alert(`Bye, ${user}!`);
+}
+export {sayHi, sayBye}; // a list of exported variables
+
+// main.js
+import {sayHi, sayBye} from './say.js';
+
+sayHi('John'); // Hello, John!
+sayBye('John'); // Bye, John!
+
+// Import*
+// main.js
+import * as say from './say.js';
+
+say.sayHi('John');
+say.sayBye('John');
+
+// Import/Export “as”
+// main.js
+import {sayHi as hi, sayBye as bye} from './say.js';
+
+hi('John'); // Hello, John!
+bye('John'); // Bye, John!
+
+// say.js
+export {sayHi as hi, sayBye as bye};
+
+// The import() expression
+
+// say.js
+export function hi() {
+  alert(`Hello`);
+}
+export function bye() {
+  alert(`Bye`);
+}
+let {hi, bye} = await import('./say.js');
+
+hi();
+bye();

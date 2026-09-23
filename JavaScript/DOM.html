@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <div>
+        <h1 class="head">First heading</h1>
+        <h1 class="head">First heading</h1>
+        <h1 class="head">First heading</h1>
+
+        <div id="div2">
+            <h1 class="head">heading</h1>
+        </div>
+    
+        <p id="message">JavaScript DOM</p>
+        <input type="radio" name="lang" value="JS">
+    </div> 
+
+    <div class="title">
+        <p class="text1">Welcome to JS 1</p>
+        <p class="text2">Welcome to JS 2</p>
+        <p class="text3">Welcome to JS 3</p>
+        <p class="text4">Welcome to JS 4</p>
+    </div>
+
+
+    <script>
+
+        //  Selecting elements using DOM
+
+        let msg= document.getElementById('message');
+        console.log(msg);
+
+        let btn=document.getElementsByName("lang");
+        console.log(btn);
+
+        let h1=document.getElementsByTagName('h1');
+        console.log(h1);
+
+        let head=document.getElementsByClassName("head");
+        console.log(head);
+
+        let div2=document.getElementById('div2');
+        let heading=div2.getElementsByTagName('h1');
+        console.log(heading); 
+
+        let msg1=document.querySelector(".head");
+        console.log(msg1);
+
+        let msg2=document.querySelectorAll(".head"); // #message, div, h1, (div h1), (div,h1)
+        console.log(msg2);
+
+        // Traversing elements
+
+        let txt= document.querySelector('.text1');
+        console.log(txt.parentElement);
+
+
+        let parent=document.querySelector(".title");
+        console.log(parent.firstElementChild); // firstChild => #text 
+        console.log(parent.lastElementChild);
+        console.log(parent.childNodes);
+
+        let second= document.querySelector(".text2");
+        console.log(second.previousElementSibling);
+        console.log(second.nextElementSibling);
+
+        let div=document.createElement("div");
+        div.innerHTML="<p>Welcome to JS 5</p>"
+         
+        
+
+
+
+
+
+
+
+         
+        
+
+
+
+
+
+        
+
+
+
+
+
+         
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+    
+</body>
+</html>

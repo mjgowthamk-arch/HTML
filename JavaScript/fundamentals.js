@@ -710,29 +710,8 @@
         console.log( sum3(1, 2) ); 
 
         // ----------------------------------------
-        // ----------------------------------------
-        
-        // A simple function that delays 1 second
+          
            
-        const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
-        async function run() {
-            console.log("Start");
-            await waitOneSecond(); // pauses only this function for 1s
-            console.log("End");
-        }
-        
-        run();
-
-        // ----------------------------------------
-
-        const wos = ()=>new Promise(res => setTimeout(res, 1000));     
-        async function run (){
-            for (let i=1;;++i){
-                console.log(i);
-                await wos();
-            }
-          }
-        run();
-
+       
                                                 
     
