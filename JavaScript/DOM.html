@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM</title>
+    <style>
+        /* For class manipulation */
+        .highlight { background-color: yellow; font-weight: bold; }
+    </style>
 </head>
 <body>
     <div>
         <h1 class="head">First heading</h1>
-        <h1 class="head">First heading</h1>
-        <h1 class="head">First heading</h1>
+        <h1 class="head">Second heading</h1>
+        <h1 class="head">Third heading</h1>
 
         <div id="div2">
             <h1 class="head">heading</h1>
@@ -26,104 +30,102 @@
         <p class="text4">Welcome to JS 4</p>
     </div>
 
-
     <script>
-
-        //  Selecting elements using DOM
-
-        let msg= document.getElementById('message');
+        // --- 1. SELECTING ELEMENTS ---
+        let msg = document.getElementById('message');
         console.log(msg);
 
-        let btn=document.getElementsByName("lang");
+        let btn = document.getElementsByName("lang");
         console.log(btn);
 
-        let h1=document.getElementsByTagName('h1');
+        let h1 = document.getElementsByTagName('h1');
         console.log(h1);
 
-        let head=document.getElementsByClassName("head");
+        let head = document.getElementsByClassName("head");
         console.log(head);
 
-        let div2=document.getElementById('div2');
-        let heading=div2.getElementsByTagName('h1');
+        let div2 = document.getElementById('div2');
+        let heading = div2.getElementsByTagName('h1');
         console.log(heading); 
 
-        let msg1=document.querySelector(".head");
-        console.log(msg1);
+        let msg1 = document.querySelector(".head");
+        console.log("(first match):", msg1);
 
-        let msg2=document.querySelectorAll(".head"); // #message, div, h1, (div h1), (div,h1)
-        console.log(msg2);
-
-        // Traversing elements
-
-        let txt= document.querySelector('.text1');
-        console.log(txt.parentElement);
+        let msg2 = document.querySelectorAll(".head"); 
+        console.log("(all matches):", msg2);
 
 
-        let parent=document.querySelector(".title");
-        console.log(parent.firstElementChild); // firstChild => #text 
-        console.log(parent.lastElementChild);
-        console.log(parent.childNodes);
+        // --- 2. TRAVERSING THE DOM ---
+        let txt = document.querySelector('.text1');
+        console.log("parentElement:", txt.parentElement);
 
-        let second= document.querySelector(".text2");
-        console.log(second.previousElementSibling);
-        console.log(second.nextElementSibling);
+        let parent = document.querySelector(".title");
+        console.log("firstElementChild:", parent.firstElementChild); 
+        console.log("lastElementChild:", parent.lastElementChild);
+        console.log("childNodes (includes text/spaces):", parent.childNodes);
 
-        let div=document.createElement("div");
-        div.innerHTML="<p>Welcome to JS 5</p>"
-         
+        let second = document.querySelector(".text2");
+        console.log("previousElementSibling:", second.previousElementSibling);
+        console.log("nextElementSibling:", second.nextElementSibling);
+
+
+        // --- 3. CREATING AND INSERTING ELEMENTS ---
+        // You created this div, now let's put it on the page
+        let div = document.createElement("div");
+        div.innerHTML = "<p>Welcome to JS 5</p>";
         
+        // appendChild adds it to the very end of the .title container
+        parent.appendChild(div);
+
+        // prepend adds it to the very beginning
+        let newStart = document.createElement("p");
+        newStart.textContent = "Welcome to JS 0";
+        parent.prepend(newStart);
 
 
+        // --- 4. REMOVING ELEMENTS ---
+        let text4 = document.querySelector(".text4");
+        text4.remove(); // Deletes "Welcome to JS 4" from the page completely
 
 
-
-
-
-         
+        // --- 5. MODIFYING ATTRIBUTES ---
+        let radioInput = document.querySelector("input[type='radio']");
         
-
-
-
-
-
+        radioInput.setAttribute("id", "js-radio"); // Adds a new id attribute
+        console.log("Get ID Attribute:", radioInput.getAttribute("id"));
         
+        radioInput.removeAttribute("name"); // Removes the 'name' attribute
+        console.log("Has name attribute?", radioInput.hasAttribute("name")); // Returns false
 
 
+        // --- 6. MODIFYING STYLES AND CLASSES ---
+        // Direct inline styles
+        msg.style.color = "red";
+        msg.style.fontSize = "24px";
+        msg.style.border = "1px solid black";
+
+        // Class manipulation (The preferred way to style)
+        let thirdHeading = head[2]; // Grabs the "Third heading"
+        thirdHeading.classList.add("highlight"); // Adds the CSS class defined in the <head>
+        // thirdHeading.classList.remove("highlight"); // Removes it
+        // thirdHeading.classList.toggle("highlight"); // Turns it on/off like a light switch
 
 
+        // --- 7. EVENT LISTENERS (Interactivity) ---
+        // Click event using the 'event' object you learned about
+        msg.addEventListener("click", function(event) {
+            console.log("You clicked the message!");
+            event.target.innerText = "You clicked me!";
+        });
 
-         
+        // Hover events
+        div2.addEventListener("mouseover", function() {
+            div2.style.backgroundColor = "lightblue";
+        });
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        div2.addEventListener("mouseout", function() {
+            div2.style.backgroundColor = "transparent";
+        });
     </script>
-    
-    
 </body>
 </html>

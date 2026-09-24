@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .box { padding: 20px; text-align: center; font-size: 20px; border: 2px solid black; }
+        /* CSS Class we want to toggle */
+        .dark-mode { background-color: #333; color: white; border-color: red; }
+    </style>
+</head>
+<body>
+    <div id="my-box" class="box">Click the button to change my look!</div>
+    <br>
+    <button id="toggleBtn">Toggle Dark Mode</button>
+    <button id="styleBtn">Change Inline Style</button>
+
+    <script>
+        let box = document.getElementById('my-box');           // Styles and Classes
+        
+        // Method 1: Using classList (BEST PRACTICE)
+        document.getElementById('toggleBtn').addEventListener('click', function() {
+            // .toggle() adds the class if it's missing, or removes it if it's there!
+            box.classList.toggle('dark-mode'); 
+        });
+
+        // Method 2: Inline Styles (Good for dynamic math, but harder to maintain)
+        document.getElementById('styleBtn').addEventListener('click', function() {
+            // CSS properties with dashes (border-radius) become camelCase (borderRadius)
+            box.style.borderRadius = "50px"; 
+            box.style.backgroundColor = "yellow"; 
+        });
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <form id="signupForm" style="padding: 20px; background: #eee;">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="email" name="userEmail" placeholder="Email Address" required />
+        <button type="submit">Sign Up</button>
+    </form>
+    
+    <div id="result" style="margin-top: 15px;"></div>
+
+    <script>
+        let myForm = document.getElementById('signupForm');          // Forms and Events
+        let resultDiv = document.getElementById('result');
+
+        // Listen for the form 'submit' event
+        myForm.addEventListener('submit', function(event) {
+            
+            // 1. CRITICAL: Stop the browser from refreshing the page!
+            event.preventDefault(); 
+            
+            // 2. Scoop up all the data typed into the form
+            let formData = new FormData(myForm);
+            
+            // 3. Read specific inputs using their HTML 'name' attribute
+            let name = formData.get('firstName');
+            let email = formData.get('userEmail');
+            
+            // 4. Update the page to show it worked
+            resultDiv.innerHTML = `<h3 style="color: green;">Welcome ${name}! We saved your email (${email}).</h3>`;
+            
+            // Optional: clear the form inputs after successful submit
+            myForm.reset();
+        });
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>table, td { border: 1px solid black; padding: 10px; font-size: 20px; }</style>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+            <td>Row 0, Col 0</td>
+            <td>Row 0, Col 1</td>
+        </tr>
+        <tr>
+            <td>Row 1, Col 0</td>
+            <td>Row 1, Col 1</td>
+        </tr>
+    </table>
+
+    <script>
+        let table = document.getElementById('myTable');                // HTML Tables Shortcuts
+
+        // Accessing the exact cell in the 2nd row (index 1), 2nd column (index 1)
+        let specificCell = table.rows[1].cells[1];
+        
+        specificCell.style.backgroundColor = "lightgreen";
+        specificCell.textContent = "I was found!";
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Browser Object Model (BOM)</h1>
+    <button id="delayBtn">Change color after 2 seconds</button>
+    <button id="urlBtn">Check URL</button>
+
+    <script>
+        // 1. Timers (setTimeout)
+        document.getElementById('delayBtn').addEventListener('click', function() {    // BOM (Browser Environment & Timers)
+            setTimeout(function() {
+                document.body.style.backgroundColor = "lightcoral";
+            }, 2000); // 2000 milliseconds = 2 seconds
+        });
+
+        // 2. Location (URL) and Window alerts
+        document.getElementById('urlBtn').addEventListener('click', function() {
+            // Read the current URL
+            console.log("You are currently at:", location.href);
+            
+            // confirm() gives a pop-up with OK/Cancel
+            if (confirm("Do you want to go to Wikipedia?")) {
+                location.href = "https://wikipedia.org"; // Redirects the browser
+            }
+        });
+
+        // 3. Window size
+        console.log("Your screen height is:", window.innerHeight, "pixels");
+    </script>
+</body>
+</html>

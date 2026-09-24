@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="info-box">I am a <b>DIV</b> tag.</div>
+    <div id="replace-box">I am about to be replaced!</div>
+    <button id="replaceBtn">Replace Box</button>
+
+    <script>
+        let infoBox = document.getElementById('info-box');           // Node Properties & outerHTML
+
+        // 1. nodeType and tagName
+        console.log("Tag Name:", infoBox.tagName); // Outputs: DIV
+        console.log("Node Type:", infoBox.nodeType); // 1 = Element, 3 = Text, 9 = Document
+
+        // 2. outerHTML (Replacing the element entirely)
+        document.getElementById('replaceBtn').addEventListener('click', function() {
+            let replaceBox = document.getElementById('replace-box');
+            
+            // This destroys the old <div> and puts a <p> in its place
+            replaceBox.outerHTML = "<p>I am a brand new paragraph!</p>";
+            
+            // BEWARE: The variable 'replaceBox' still holds the old DIV in memory, 
+            // even though it is gone from the screen!
+            console.log(replaceBox.outerHTML); 
+        });
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <input type="text" id="username" value="JohnDoe">
+    
+    <!-- Custom data attribute (data-role) -->
+    <div id="user-card" data-role="admin" class="card">User Info</div>
+
+    <script>
+        let input = document.getElementById('username');               // Attributes vs Properties
+        let card = document.getElementById('user-card');
+
+        // 1. Standard DOM Properties (Simple dot notation)                
+        input.value = "JaneDoe"; // Changes what is typed in the box
+        console.log("Input value:", input.value);
+
+        // 2. Standard HTML Attributes (Using get/set)
+        card.setAttribute('title', 'Hover text!'); // Adds a tooltip
+        console.log("Does it have a class?", card.hasAttribute('class')); // true
+
+        // 3. Custom Data Attributes (data-*)
+        // Always use '.dataset' for these!
+        console.log("Current role:", card.dataset.role); // Outputs: admin
+        card.dataset.role = "super-admin"; // Updates it instantly
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #measure-box {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid black;
+            overflow: auto; /* Adds a scrollbar if text is too long */
+        }
+    </style>
+</head>
+<body>
+    <div id="measure-box">
+        Look at the console to see my exact measurements! 
+        I have padding and borders that change my true size.
+    </div>
+
+    <script>
+        let box1 = document.getElementById('measure-box');                 // Element Sizes (Geometry)
+
+        // 1. Outer Size (Content + Padding + Borders)
+        console.log("Total Width (offsetWidth):", box1.offsetWidth);   // 250px
+        console.log("Total Height (offsetHeight):", box1.offsetHeight); // 150px
+
+        // 2. Inner Size (Content + Padding ONLY. Ignores borders)
+        console.log("Inner Width (clientWidth):", box1.clientWidth);   // 240px
+        console.log("Inner Height (clientHeight):", box1.clientHeight); // 140px
+
+        // 3. Full Window Size
+        console.log("Full Browser Width:", window.innerWidth);
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { height: 2000px; /* Makes the page super tall so we can scroll */ }
+        #target-box { margin-top: 1000px; background: yellow; padding: 50px; }
+        #scrollBtn { position: fixed; top: 20px; left: 20px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <button id="scrollBtn">Scroll Down to Yellow Box</button>
+    
+    <div id="target-box">I am way down the page!</div>
+
+    <script>
+        let box = document.getElementById('target-box');            // Scrolling & Coordinates
+
+        // 1. Smooth Scrolling
+        document.getElementById('scrollBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: 1000, 
+                behavior: "smooth" // Gives it a nice gliding animation
+            });
+        });
+
+        // 2. Coordinates (getBoundingClientRect)
+        // Run this whenever you click anywhere on the page
+        document.body.addEventListener('click', function() {
+            let rect = box.getBoundingClientRect();
+            
+            // This tells you how far the box is from the TOP of your current screen view
+            // (Notice the number gets smaller as you scroll down towards it!)
+            console.log("Distance from top of screen to box:", rect.top);
+        });
+    </script>
+</body>
+</html>

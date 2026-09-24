@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 id="main-title">DOM Searching</h1>
+    
+    <ul id="fruit-list">
+        <li class="apple">First Apple</li>
+        <li class="apple">Second Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <script>
+        let title = document.getElementById('main-title');         // Searching the DOM (Selectors)
+        title.style.color = "blue"; 
+
+        let firstApple = document.querySelector('.apple'); 
+        firstApple.style.fontWeight = "bold"; 
+
+        let allApples = document.querySelectorAll('.apple');
+        for (let apple of allApples) {
+            apple.style.color = "red"; 
+        }
+    </script> 
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="family-tree" style="padding: 20px; border: 2px solid black;">
+        <h2>Parent Box</h2>
+        <p class="child-1">Child 1</p>
+        <p class="child-2">Child 2</p>
+        <p class="child-3">Child 3</p>
+    </div>
+
+    <script>
+        let middleChild = document.querySelector('.child-2');             // Walking the DOM (Navigation)
+        middleChild.style.backgroundColor = "yellow"; 
+
+        let parent = middleChild.parentElement;
+        parent.style.borderColor = "blue";
+
+        let olderSibling = middleChild.previousElementSibling;
+        olderSibling.style.color = "red"; 
+
+        let youngerSibling = middleChild.nextElementSibling;
+        youngerSibling.style.color = "green";
+       
+        let firstTagInsideParent = parent.firstElementChild; 
+        console.log("The first tag is:", firstTagInsideParent.tagName); // H2
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="safe-box" style="margin-bottom: 20px; border: 1px solid black; padding: 10px;"></div>
+    <div id="danger-box" style="border: 1px solid black; padding: 10px;"></div>
+
+    <script>
+        let safeBox = document.getElementById('safe-box');            // Changing Content (innerHTML vs textContent)
+        let dangerBox = document.getElementById('danger-box');
+
+        // textContent: Treats everything as plain text (SAFE)
+        // If you type HTML tags here, it will just show them as text on the screen.
+        safeBox.textContent = "<b>Hello!</b> I am safe text.";
+
+        // innerHTML: Renders actual HTML tags (POWERFUL)
+        // The browser will actually make the word "Hello" bold.
+        dangerBox.innerHTML = "<b>Hello!</b> I am rendered HTML.";
+
+        // innerHTML += (Adding to existing content without deleting what's there)
+        dangerBox.innerHTML += " <i>(And this was added later!)</i>";
+    </script>
+</body>
+</html>
+
+<!--------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="container" style="border: 2px solid black; padding: 20px;">
+        <p>Original Content inside the box.</p>
+    </div>
+
+    <script>
+        let box = document.getElementById('container');            // Creating and Inserting Elements
+
+        // 1. Create a brand new element in memory
+        let newTitle = document.createElement('h2');
+        newTitle.textContent = "I was made in JavaScript!";
+        newTitle.style.color = "purple";
+
+        // 2. Put it on the page (Uncomment one at a time to see where it goes)
+        
+        box.prepend(newTitle); // INSIDE the box, at the TOP
+        // box.append(newTitle);  // INSIDE the box, at the BOTTOM
+        // box.before(newTitle);  // OUTSIDE the box, ABOVE it
+        // box.after(newTitle);   // OUTSIDE the box, BELOW it
+
+        // 3. Deleting an element
+        // newTitle.remove(); // Un-comment to instantly delete it again
+    </script>
+</body>
+</html>
+
+
+
+
