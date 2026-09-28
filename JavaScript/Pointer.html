@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- Pointer events -->
+
+<button id="myButton">Press Me</button>
+
+<script>
+  const button = document.getElementById('myButton');
+
+  // This one event handles mice, fingers, and styluses
+  button.onpointerdown = function() {
+    button.innerText = "You pressed me!";
+  };
+</script>
+
+
+<!-- Knowing Your Device (pointerType) -->
+
+
+<div id="deviceBox" style="width: 200px; height: 100px; background: lightblue;">
+  Touch or click me
+</div>
+
+<script>
+  const box = document.getElementById('deviceBox');
+
+  box.onpointerdown = function(event) {
+    if (event.pointerType === "mouse") {
+      box.innerText = "You used a MOUSE";
+    } else if (event.pointerType === "touch") {
+      box.innerText = "You used a FINGER";
+    } else if (event.pointerType === "pen") {
+      box.innerText = "You used a PEN";
+    }
+  };
+</script>
+
+
+<!-- Multi-touch and isPrimary -->
+
+
+<div id="touchBox" style="width: 200px; height: 100px; background: lightgreen;">
+  Touch with multiple fingers
+</div>
+
+<script>
+  const touchBox = document.getElementById('touchBox');
+
+  touchBox.onpointerdown = function(event) {
+    if (event.isPrimary === true) {
+      touchBox.innerText = "First finger detected! (ID: " + event.pointerId + ")";
+    } else {
+      console.log("Ignored an extra finger.");
+    }
+  };
+</script>
+
+
+
+<!-- Stopping the Browser (pointercancel) -->
+
+
+
+<!-- touch-action: none prevents the phone from scrolling when you touch this box -->
+<div id="safeBox" style="width: 200px; height: 100px; background: pink; touch-action: none;">
+  Try dragging here
+</div>
+
+<script>
+  const safeBox = document.getElementById('safeBox');
+
+  // Prevents desktop browsers from trying to natively drag the element
+  safeBox.ondragstart = () => false;
+
+  safeBox.onpointerdown = function() {
+    safeBox.innerText = "Interaction started";
+  };
+
+  // If we didn't add touch-action: none, moving our finger would trigger pointercancel
+  safeBox.onpointercancel = function() {
+    safeBox.innerText = "Browser ruined the interaction!"; 
+  };
+</script>
+
+
+
+<!-- Pointer Capturing -->
+
+
+
+<div id="captureBox" style="width: 200px; height: 100px; background: orange; touch-action: none;">
+  Click, hold, and drag outside me
+</div>
+
+<script>
+  const captureBox = document.getElementById('captureBox');
+  captureBox.ondragstart = () => false;
+
+  captureBox.onpointerdown = function(event) {
+    // Lock the mouse/finger to this box
+    captureBox.setPointerCapture(event.pointerId);
+    captureBox.innerText = "Captured! Keep dragging.";
+
+    // Track movement
+    captureBox.onpointermove = function(e) {
+      console.log("Pointer is at X: " + e.clientX);
+    };
+  };
+
+  captureBox.onpointerup = function() {
+    // Clean up when the user lets go
+    captureBox.onpointermove = null;
+    captureBox.innerText = "Released.";
+  };
+</script>
+
+
+<!-- Keyboard: keydown and keyup --> 
+
+
+<p id="status">Press any key...</p>
+
+<script>
+  const status = document.getElementById('status');
+
+  // Listen for the press
+  document.addEventListener('keydown', function() {
+    status.innerText = "Key is pressed DOWN!";
+    status.style.color = "red";
+  });
+
+  // Listen for the release
+  document.addEventListener('keyup', function() {
+    status.innerText = "Key was let go (UP!).";
+    status.style.color = "green";
+  });
+</script>
+
+
+<!-- event.key vs event.code --> 
+
+
+<input type="text" id="myInput" placeholder="Type a capital letter here">
+<p id="output"></p>
+
+<script>
+  const input = document.getElementById('myInput');
+  const output = document.getElementById('output');
+
+  input.addEventListener('keydown', function(event) {
+    // If you type Shift + Z:
+    // event.key will be "Z"
+    // event.code will be "KeyZ"
+    output.innerText = `You typed the character: ${event.key}, using the physical button: ${event.code}`;
+  });
+</script>
+
+
+<!-- Detecting Held Keys (event.repeat) --> 
+
+
+<script>
+  document.addEventListener('keydown', function(event) {
+    // If the browser is auto-repeating because the key is held, ignore it!
+    if (event.repeat) {
+        return; 
+    }
+    
+    console.log(`You pressed ${event.key}. This will only print ONCE even if you hold it.`);
+  });
+</script>
+
+
+<!-- Preventing Default Actions --> 
+
+
+<input id="phone" placeholder="Phone, please" type="tel">
+<p id="warning" style="color:red; display:none;">Only numbers and +-() allowed!</p>
+
+<script>
+  const phoneInput = document.getElementById('phone');
+  const warning = document.getElementById('warning');
+
+  phoneInput.addEventListener('keydown', function(event) {
+    
+    // 1. Create a list of allowed keys
+    const isNumber = (event.key >= '0' && event.key <= '9');
+    const isSymbol = ['+', '(', ')', '-', 'ArrowLeft', 'ArrowRight', 'Delete', 'Backspace'].includes(event.key);
+
+    // 2. If the key is NOT a number and NOT a valid symbol
+    if (!isNumber && !isSymbol) {
+      
+      // Stop the letter from appearing in the input box!
+      event.preventDefault(); 
+      
+      // Show a warning
+      warning.style.display = "block";
+    } else {
+      warning.style.display = "none";
+    }
+  });
+</script>
+
+
+
+<!-- Tracking the Scroll Position -->
+
+
+
+<!-- A fixed box that stays at the top of the screen -->
+<div id="scrollLogger" style="position: fixed; top: 10px; background: yellow; padding: 10px;">
+  Current Scroll: 0px
+</div>
+
+<!-- A very tall invisible box to make the page scrollable -->
+<div style="height: 1000px;"></div>
+
+<script>
+  const scrollLogger = document.getElementById('scrollLogger');
+
+  // Listen to the whole window for scrolling
+  window.addEventListener('scroll', function() {
+    
+    // Get the current vertical scroll position
+    let currentPosition = window.scrollY; // You can also use pageYOffset
+    
+    // Update the text on the screen
+    scrollLogger.innerText = `Current Scroll: ${Math.round(currentPosition)}px`;
+  });
+</script>
+
+
+
+<!-- Show/Hide" based on scroll -->
+
+
+<!-- The button (hidden by default) -->
+<button id="backToTop" style="position: fixed; bottom: 20px; right: 20px; display: none;">
+  ⬆ Back to Top
+</button>
+
+<div style="height: 1000px;">Scroll down to see the button appear!</div>
+
+<script>
+  const topButton = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', function() {
+    // If the user scrolls down more than 500 pixels...
+    if (window.scrollY > 500) {
+      topButton.style.display = 'block'; // Show it
+    } else {
+      topButton.style.display = 'none';  // Hide it
+    }
+  });
+
+  // Make the button actually work when clicked
+  topButton.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll smoothly back to top
+  });
+</script>
+
+
+<!-- Practical Use Case: Infinite Scrolling -->
+
+<p id="scrollStatus">Scroll to the very bottom...</p>
+<div style="height: 1000px; background: linear-gradient(white, gray);"></div>
+
+<script>
+  window.addEventListener('scroll', function() {
+    
+    let scrolled = window.scrollY;
+    let screenHeight = window.innerHeight;
+    let totalHeight = document.body.offsetHeight;
+
+    // We subtract a few pixels (like 10) as a buffer so it triggers right BEFORE the absolute bottom
+    if (scrolled + screenHeight >= totalHeight - 10) {
+      document.getElementById('scrollStatus').innerText = "🔥 YOU REACHED THE BOTTOM! Loading more data... 🔥";
+      document.getElementById('scrollStatus').style.background = "gold";
+    }
+  });
+</script>
+
+
+<!-- Preventing Scrolling -->
+
+
+<button id="lockBtn">Lock Screen</button>
+<button id="unlockBtn">Unlock Screen</button>
+<div style="height: 1000px;"></div>
+
+<script>
+  const lockBtn = document.getElementById('lockBtn');
+  const unlockBtn = document.getElementById('unlockBtn');
+
+  lockBtn.addEventListener('click', function() {
+    // This entirely disables scrolling on the webpage
+    document.body.style.overflow = 'hidden'; 
+    console.log("Scrolling is now LOCKED.");
+  });
+
+  unlockBtn.addEventListener('click', function() {
+    // This restores normal scrolling
+    document.body.style.overflow = ''; 
+    console.log("Scrolling is now UNLOCKED.");
+  });
+</script>
+
+
+</body>
+</html>

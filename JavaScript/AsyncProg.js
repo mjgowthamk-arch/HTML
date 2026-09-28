@@ -510,6 +510,20 @@ f();
 // ---------------------------------------
 // async/await 
 
+async function getpost(){
+  try{
+    let url = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    let data = await url.json();
+    console.log(data);
+  }
+  catch(err){
+    console.log('error:', err.message);
+  }
+}
+getpost();
+
+// ----------------------------------------
+
 const waitOneSecond = () => new Promise(res => setTimeout(() => res() , 1000));  // (res => setTimeout(res, 1000));
 async function run() {
   console.log("Start");

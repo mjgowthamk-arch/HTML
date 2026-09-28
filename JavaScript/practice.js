@@ -683,5 +683,14 @@ let p=new Promise((resolve,reject) => {
 
 p.then(r=>console.log(r)).catch(e=>console.log(e));
 
+// ----------------------------------------
 
+ul.addEventListener('click', (event) => {
+  // event.target is the specific <li> you clicked
+  // event.target.textContent gives us the word (like "Bananas")
+  
+  p.textContent = event.target.textContent;
+});
 
+// let name = input.value; // form <input> 
+// ----------------------------------------
