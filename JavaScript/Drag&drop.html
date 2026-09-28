@@ -1,0 +1,22 @@
+<!-- The two drop zones -->
+<div class="zone" style="height: 100px; border: 2px solid black; margin: 10px;">
+  <!-- The draggable item (Must have draggable="true" and an ID) -->
+  <div id="item" draggable="true" style="background: green; color: white;">DRAG ME</div>
+</div>
+
+<div class="zone" style="height: 100px; border: 2px solid black; margin: 10px;"></div>
+
+<script>
+  // 1. START DRAG: Save the ID of the item being dragged
+  document.addEventListener('dragstart', e => e.dataTransfer.setData('id', e.target.id));
+
+  // 2. ALLOW DROP: Browsers block dropping by default. Prevent default to allow it.
+  document.addEventListener('dragover', e => e.preventDefault());
+
+  // 3. DROP: Get the saved ID and move that element into the target zone
+  document.addEventListener('drop', e => {
+    if (e.target.className === 'zone') { // Only drop inside .zone elements
+      e.target.appendChild(document.getElementById(e.dataTransfer.getData('id')));
+    }
+  });
+</script>

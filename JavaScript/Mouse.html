@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* A big box to test your mouse events on */
+    #test-box {
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      text-align: center;
+      line-height: 200px; /* Centers text vertically */
+      cursor: crosshair;
+      user-select: none;  /* Prevents text highlighting on double click */
+    }
+    
+    /* A place to show what event just happened */
+    #log {
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- The element we will interact with -->
+  <div id="test-box">Interact with me!</div>
+  
+  <!-- The element where we will display the results -->
+  <div id="log">Waiting for mouse event...</div>
+
+  <script>
+    const box = document.getElementById('test-box');
+    const log = document.getElementById('log');
+
+    // Helper function to update the text on the screen
+    function logEvent(eventName) {
+      log.innerText = `Last Event: ${eventName}`;
+    }
+
+    // 1. mousedown - Triggers the instant you press any mouse button down
+    box.addEventListener('mousedown', () => logEvent('mousedown (Button pressed)'));
+
+    // 2. mouseup - Triggers the instant you let go of the mouse button
+    box.addEventListener('mouseup', () => logEvent('mouseup (Button released)'));
+
+    // 3. mouseover - Triggers when the cursor enters the box
+    box.addEventListener('mouseover', () => {
+      box.style.backgroundColor = 'lightgreen'; // visually show it
+      logEvent('mouseover (Entered box)');
+    });
+
+    // 4. mouseout - Triggers when the cursor leaves the box
+    box.addEventListener('mouseout', () => {
+      box.style.backgroundColor = 'lightblue'; // reset color
+      logEvent('mouseout (Left box)');
+    });
+
+    // 5. mousemove - Triggers constantly as long as the mouse is moving inside
+    box.addEventListener('mousemove', (event) => {
+      // Showing coordinates like your previous input example!
+      logEvent(`mousemove (X: ${event.clientX}, Y: ${event.clientY})`);
+    });
+
+    // 6. click - Triggers only after a full mousedown + mouseup on the same element
+    box.addEventListener('click', () => logEvent('click (Full click completed)'));
+
+    // 7. dblclick - Triggers if you click twice very quickly
+    box.addEventListener('dblclick', () => logEvent('dblclick (Double clicked!)'));
+
+    // 8. contextmenu - Triggers when you Right-Click to open the menu
+    box.addEventListener('contextmenu', (event) => {
+      // event.preventDefault(); // Uncomment this if you want to STOP the default right-click menu from appearing
+      logEvent('contextmenu (Right-clicked)');
+    });
+
+  </script>
+</body>
+</html>

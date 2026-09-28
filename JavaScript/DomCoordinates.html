@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      position: relative; /* Crucial: Makes the ball's absolute position relative to this field */
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #ball {
+      position: absolute; /* Moves freely inside the relative parent (#field) */
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      transition: all 1s; 
+    }
+  </style>
+</head>
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br>
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+  </div>
+
+  <script>
+    // THE EVENT HANDLER: Listens for a click anywhere on the green field
+    field.onclick = function(event) {
+
+      // 1. Get the field's exact position relative to the browser window.
+      // This tells us where the outer edges of the black border are.
+      let fieldCoords = this.getBoundingClientRect();
+
+      // 2. Calculate the exact X and Y for the ball.
+      let ballCoords = {
+        // HOW WE CALCULATE TOP (Y-axis):
+        // event.clientY           -> Where the mouse clicked relative to the browser window
+        // - fieldCoords.top       -> Subtract the distance from the top of the window to the field (shifts our math to start at the field's outer edge)
+        // - field.clientTop       -> Subtract the thickness of the top black border (shifts our math to the *inside* of the field)
+        // - ball.clientHeight / 2 -> Subtract half the ball's height so the center of the ball lands exactly on the mouse cursor (otherwise the top-left corner of the ball would land on the cursor)
+        top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+        
+        // HOW WE CALCULATE LEFT (X-axis):
+        // Same logic as above, but for the horizontal axis.
+        left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
+      };
+
+      // 3. BOUNDARY CHECKS
+      // These four 'if' statements act as walls so the ball cannot escape the green area.
+
+      // Top Wall: If the calculation pushes the ball past the top edge (negative number), force it to 0.
+      if (ballCoords.top < 0) ballCoords.top = 0;
+
+      // Left Wall: If the calculation pushes the ball past the left edge, force it to 0.
+      if (ballCoords.left < 0) ballCoords.left = 0;
+
+      // Right Wall: field.clientWidth is the inner width of the green space. 
+      // If the ball's left edge + the ball's width is wider than the field, 
+      // we force the ball to stop exactly at (Field Width - Ball Width).
+      if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+        ballCoords.left = field.clientWidth - ball.clientWidth;
+      }
+
+      // Bottom Wall: Same logic as the right wall, but for height.
+      if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+        ballCoords.top = field.clientHeight - ball.clientHeight;
+      }
+
+      // 4. MOVE THE BALL
+      // Finally, apply the calculated and restricted coordinates to the ball's CSS.
+      // We must add 'px' because CSS requires units (e.g., '150px', not just '150').
+      ball.style.left = ballCoords.left + 'px';
+      ball.style.top = ballCoords.top + 'px';
+    }
+  </script>
+</body>
+</html>

@@ -369,6 +369,10 @@ group.showList();
 // Object properties
 // ----------------------------------------
 
+console.log(Array.prototype.hasOwnProperty("map")); // true
+
+// ----------------------------------------
+
 let user4 = {
   name: "John"
 };
@@ -388,7 +392,8 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 obj={};
 Object.defineProperty(obj, "name",{ value:'harry'});
 a=Object.getOwnPropertyDescriptor(obj,'name');
-alert( JSON.stringify(a, null, 2 ) );
+alert( JSON.stringify(a, null, 2 ) ); // or (a)
+alert( obj.hasOwnProperty('name')) // true
 
 /*
 {
@@ -706,6 +711,19 @@ alert( john.age );      // 33
 // ----------------------------------------
 // Prototypal inheritance
 
+const animals = { eats: true };
+const rabbits = Object.create(animals); 
+console.log(rabbits.eats); // true (read via prototype)
+
+// ----------------------------------------
+
+const animals1 = { eats: true };
+const rabbits1 = {}
+rabbits1.__proto__ = animals1
+console.log(rabbits1.eats);
+
+// ----------------------------------------
+
 let animal = {
   eats: true
 };
@@ -868,6 +886,19 @@ let rabbit = new Rabbit("White Rabbit"); // 'new' builds the object and wires th
 alert( rabbit.eats ); // true 
 
 // ----------------------------------------
+
+function Dog(name) { 
+  this.name = name; 
+}
+
+Dog.prototype.bark = function() { 
+  return `${this.name} barks!`; 
+};
+
+const puppy = new Dog("Buddy");
+console.log(puppy.bark()); // "Buddy barks!"
+
+// ----------------------------------------
 // Changing native prototypes
 
 String.prototype.show = function() {
@@ -1023,6 +1054,15 @@ alert(error.message); // Things happen o_O
 // ----------------------------------------
 // “Throw” operator
 
+function checkEmail(email) {
+  if (!email.includes("@")) {
+    throw "Invalid email"; // STOPS RIGHT HERE! 
+  }
+  return true; // Never reached if the email is bad
+}
+
+// ----------------------------------------
+
 let json1 = '{ "age": 30 }'; // incomplete data
 
 try {
@@ -1107,3 +1147,27 @@ function f() {
   }
 }
 f(); // cleanup!
+
+// ----------------------------------------
+
+// 1. Function that throws a custom error object
+function validateEmail(email) {
+  if (!email.includes("@")) {
+    throw {
+      type: "VALIDATION_ERROR",
+      message: "Invalid email: missing '@'"
+    };
+  }
+  return true;
+}
+
+// 2. Handling it safely
+try {
+  validateEmail("bademail.com");
+} catch (err) {
+  if (err.type === "VALIDATION_ERROR") {
+    console.warn("Handled with object:", err.message);
+  } else {
+    console.error("Unknown error:", err);
+  }
+}

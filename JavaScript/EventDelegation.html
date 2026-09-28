@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse; 
+      cursor: pointer;
+      margin: 20px;
+    }
+    th, td {
+      border: 3px solid red; 
+      padding: 10px; 
+      text-align: center; 
+    }
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <table id="bagua-table">
+    <tr>
+      <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+      <td class="n"><strong>North</strong><br>Water<br>Blue<br>Career</td>
+      <td class="ne"><strong>Northeast</strong><br>Earth<br>Yellow<br>Knowledge</td>
+    </tr>
+    <tr>
+      <td class="w"><strong>West</strong><br>Metal<br>White<br>Children</td>
+      <td class="c"><strong>Center</strong><br>Earth<br>Brown<br>Health</td>
+      <td class="e"><strong>East</strong><br>Wood<br>Green<br>Family</td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Southwest</strong><br>Earth<br>Brown<br>Love</td>
+      <td class="s"><strong>South</strong><br>Fire<br>Red<br>Fame</td>
+      <td class="se"><strong>Southeast</strong><br>Wood<br>Green<br>Wealth</td>
+    </tr>
+  </table>
+
+  <script>
+    let table = document.getElementById('bagua-table');
+    
+    // This variable keeps track of the currently highlighted cell across clicks
+    let selectedTd; 
+
+    // Event Delegation: We put ONE listener on the parent <table> instead of 9 on the <td>s
+    table.onclick = function(event) {
+      
+      // 1. event.target is exactly what was clicked (could be a <strong> tag, text, etc.).
+      // .closest('td') climbs up the HTML tree to find the nearest <td> wrapper.
+      let td = event.target.closest('td'); 
+
+      // 2. If they clicked outside a <td> (like on a <th> or the table border),
+      // td will be null. We exit the function immediately.
+      if (!td) return; 
+
+      // 3. Safety check: In case there are nested tables on the page, 
+      // we ensure the <td> actually belongs to our specific #bagua-table.
+      if (!table.contains(td)) return; 
+
+      // 4. We found a valid cell, so we pass it to the helper function below.
+      highlight(td); 
+    };
+
+    // Helper function to handle the color switching
+    function highlight(td) {
+      
+      // If a cell was already clicked previously, it will be stored in selectedTd.
+      // We need to remove the yellow background from the old cell first.
+      if (selectedTd) {
+        selectedTd.classList.remove('highlight');
+      }
+      
+      // Update our global tracker to point to the newly clicked cell
+      selectedTd = td;
+      
+      // Add the yellow background class to the new cell
+      selectedTd.classList.add('highlight');
+    }
+  </script>
+
+</body>
+</html>

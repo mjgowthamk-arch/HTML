@@ -1,3 +1,54 @@
+// Asynchronous Programming
+// Introduction: Callbacks
+
+function badFetchData(a) {
+  alert(a)
+}
+function result(callback){
+  callback("hi")
+}
+result(badFetchData);
+
+// ----------------------------------------
+
+function fetchData(callback) {
+  setTimeout(() => callback("Payload loaded"), 500);
+}
+fetchData(data => console.log(data));
+
+// ----------------------------------------
+
+// ❌ THIS DOES NOT WORK:
+function badFetchData() {
+  setTimeout(() => {
+    return "Payload loaded"; // This returns to setTimeout, NOT to you!
+  }, 500);
+}
+
+const result = badFetchData();
+console.log(result); // undefined!
+
+// ----------------------------------------
+
+// The Modern Way: Promises & async/await
+
+// Modern Promise version of the same code:
+function fetchData() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Payload loaded"), 500);
+  });
+}
+
+// Using it with async / await:
+async function run() {
+  const data = await fetchData();
+  console.log(data); // "Payload loaded" after 0.5s
+}
+
+run();
+
+// ----------------------------------------
+
 // Callback in callback
 
 // 1. Define the callback function
@@ -83,6 +134,14 @@ downloadFile("song1.mp3", function(error1, file1) {
 // ----------------------------------------
 // Promise
 
+// Instant Success Promise
+let successPromise = Promise.resolve("done!");
+
+// Instant Fail Promise 
+let failPromise = Promise.reject(new Error("Whoops!"));
+
+// ----------------------------------------
+
 let promise = new Promise(function(resolve, reject) {
   // the function is executed automatically when the promise is constructed
 
@@ -120,12 +179,24 @@ promise3.then(              // then => 2 function, catch => 1 funtion
 
 // ----------------------------------------
 
+let promise31 = new Promise(function(resolve, reject) {
+
+  setTimeout(() => resolve("done!"), 1000);
+}).then(
+  result => alert(result), 
+  error => alert(error)
+);
+
+alert(promise31)
+
+// ----------------------------------------
+
 let promise4 = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
 // reject runs the second function in .then
-promise4.then(              
+promise4.then(                                                           // .catch() CANNOT handle both, it lets the success pass through
   result => alert(result), // doesn't run
   error => alert(error)   // shows "Error: Whoops!" after 1 second
 );
@@ -138,6 +209,25 @@ let promise5 = new Promise((resolve, reject) => {
 
 // .catch(f) is the same as promise.then(null, f)
 promise5.catch(alert); // shows "Error: Whoops!" after 1 second
+
+// ----------------------------------------
+
+let promis = new Promise((resolve, reject) => resolve("Success!"));
+
+promis
+
+.then(result => {
+  alrt(result); // ❌ TYPO! It crashes...
+})
+.catch(error => {
+  alert("Caught an error: " + error); // ✅ CAUGHT! It safely catches the typo!
+});
+
+// ----------------------------------------
+
+let promis1 = new Promise((resolve, reject) => resolve("Success!"));
+
+promis1.then(result => alrt(result)).catch(error => alert("Caught an error: " + error));
 
 // ----------------------------------------
 // finally
@@ -208,14 +298,14 @@ promise6.then(script => alert('Another handler...'));
 
 new Promise(function(resolve, reject) {
 
-  setTimeout(() => resolve(1), 1000); // (*)
+  setTimeout(() => resolve(1), 1000); 
 
-}).then(function(result) { // (**)
+}).then(function(result) { 
 
   alert(result); // 1
   return result * 2;
 
-}).then(function(result) { // (***)
+}).then(function(result) {
 
   alert(result); // 2
   return result * 2;
@@ -263,7 +353,7 @@ new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");})
   .catch(()=> alert("The error is handled, continue normally"))   // .catch(function(error) { alert("The error is handled, continue normally");})
-  .then(() => alert("Next successful handler runs"));             // argument // .then((data) => alert("Hello " + data.name)) 
+  .then(() => alert("Next successful handler runs")); // argument // .then((data) => alert("Hello " + data.name)) 
 
 // ----------------------------------------
 // Unhandled rejections
@@ -320,7 +410,7 @@ let requests = urls.map(url => fetch(url));
 Promise.all(requests)
   .then(responses => responses.forEach(
     response => alert(`${response.url}: ${response.status}`)
-  ));
+  )).catch(err => alert(err.message));
 
 // ----------------------------------------
 // Promise.allSettled
@@ -331,7 +421,7 @@ Promise.all(requests)
   Promise.resolve("Success 3")
 ])
   .then(results => {
-    // This WILL run because allSettled never rejects the whole batch!
+    // This will run because allSettled never rejects the whole batch!
     results.forEach((result, index) => {
       if (result.status === "fulfilled") {
         console.log(`Item ${index + 1} succeeded with:`, result.value);
@@ -343,7 +433,8 @@ Promise.all(requests)
   });
 
 // ----------------------------------------
-// We use a for...of loop instead of .forEach()
+// We use a for...of loop instead of .forEach()   
+// status, result, reason built-in properties
 
   Promise.allSettled([
   Promise.resolve("Success 1"),
@@ -409,7 +500,7 @@ async function f() {
     setTimeout(() => resolve("done!"), 1000)
   });
 
-  let result = await promise; // wait until the promise resolves (*)
+  let result = await promise; // wait until the promise resolves 
 
   alert(result); // "done!"
 }
@@ -417,8 +508,9 @@ async function f() {
 f();
 
 // ---------------------------------------
+// async/await 
 
-const waitOneSecond = () => new Promise(res => setTimeout(res, 1000));               // async/await
+const waitOneSecond = () => new Promise(res => setTimeout(() => res() , 1000));  // (res => setTimeout(res, 1000));
 async function run() {
   console.log("Start");
   await waitOneSecond(); // pauses only this function for 1s
