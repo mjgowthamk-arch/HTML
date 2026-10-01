@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Load</title>
+</head>
+<body>
+    <h1>Check your console!</h1>
+    <input type="text" id="demoInput" placeholder="Type something...">
+    <!-- A large image to delay the 'load' event slightly -->
+    <img src="https://picsum.photos/1000/1000" alt="Random large image">
+
+    <script>
+       
+        // 1. DOMContentLoaded fires first
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("1. DOMContentLoaded: HTML is ready. We can touch the input now.");
+            document.getElementById('demoInput').value = "DOM is ready!";
+        });
+
+        // 2. load fires after the large image finishes downloading
+        window.addEventListener("load", () => {
+            console.log("2. load: Everything, including the heavy image, is fully downloaded.");
+        });
+
+        // 3. beforeunload fires when you try to leave
+        window.addEventListener("beforeunload", (event) => {
+            // Triggers a browser warning popup
+            event.returnValue = "You have unsaved changes!";
+        });
+
+        // 4. unload fires as the screen goes blank
+        window.addEventListener("unload", () => {
+            // You can't console.log here because the page is dying.
+            // This is where you would send a background analytics ping.
+            navigator.sendBeacon('/api/analytics', JSON.stringify({ status: 'left page' }));
+        });
+        
+       setTimeout(() => { console.log(document.readyState); }, 200);
+
+    </script>
+</body>
+</html>

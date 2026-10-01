@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Range API</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .section { border: 2px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .playground { font-size: 24px; padding: 20px; background: #f9f9f9; border: 2px dashed #666; margin-bottom: 10px; }
+        .output { border: 1px solid blue; padding: 10px; min-height: 20px; margin-top: 10px; background: #eef; }
+        button { margin: 5px; padding: 8px 12px; cursor: pointer; background: #333; color: white; border: none; border-radius: 4px; }
+        button:hover { background: #555; }
+        .reset-btn { background: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <h2>The Range Playground</h2>
+        <!-- This is our target paragraph -->
+        <div class="playground" id="playground">
+            <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+        </div>
+        <button class="reset-btn" onclick="resetPlayground()">🔄 Reset </button>
+        
+        <div class="output" id="result">Extracted or Cloned content will appear here...</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- GROUP 1: SELECTING (Setting Boundaries)    -->
+    <!-- ========================================== -->
+    <div class="section">
+        <h3>1. Creating & Setting Boundaries (Highlighting)</h3>
+        
+        <button onclick="testSetStartEnd()">setStart / setEnd</button>
+        <button onclick="testSelectNode()">selectNode</button>
+        <button onclick="testSelectNodeContents()">selectNodeContents</button>
+        <button onclick="testSetBeforeAfter()">setStartBefore / setEndAfter</button>
+        <button onclick="testCollapse()">collapse(true)</button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- GROUP 2: EDITING (Modifying the DOM)       -->
+    <!-- ========================================== -->
+    <div class="section">
+        <h3>2. Editing Contents (Warning: Changes the text!)</h3>
+        
+        <button onclick="testClone()">cloneContents()</button>
+        <button onclick="testExtract()">extractContents()</button>
+        <button onclick="testDelete()">deleteContents()</button>
+        <button onclick="testInsert()">insertNode()</button>
+        <button onclick="testSurround()">surroundContents()</button>
+    </div>
+
+<script>
+    // Global variables
+    let p = document.getElementById('p');
+    let result = document.getElementById('result');
+    let range = new Range();
+
+    // Helper Function: Makes the invisible Range visibly highlighted on the screen
+    function visuallyHighlight() {
+        let selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+
+    // Helper Function: Resets the paragraph back to normal
+    function resetPlayground() {
+        document.getElementById('playground').innerHTML = `<p id="p">Example: <i>italic</i> and <b>bold</b></p>`;
+        p = document.getElementById('p'); // re-grab the new paragraph
+        result.innerHTML = "Extracted or Cloned content will appear here...";
+        window.getSelection().removeAllRanges();
+        range = new Range();
+    }
+
+
+    /* ==========================================
+       GROUP 1: SELECTING METHODS
+       ========================================== */
+
+    // setStart & setEnd: Selects specific characters inside a text node
+    function testSetStartEnd() {
+        range.setStart(p.firstChild, 0); // Start at index 0 of "Example: "
+        range.setEnd(p.firstChild, 7);   // End at index 7 ("Example")
+        visuallyHighlight();
+    }
+
+    // selectNode: Grabs an ENTIRE HTML element (tags included)
+    function testSelectNode() {
+        let iTag = p.querySelector('i'); // Find the <i> tag
+        range.selectNode(iTag);          // Selects <i>italic</i>
+        visuallyHighlight();
+    }
+
+    // selectNodeContents: Grabs only the text/content inside an element (ignores the outer tags)
+    function testSelectNodeContents() {
+        range.selectNodeContents(p); // Selects everything INSIDE the <p> tag
+        visuallyHighlight();
+    }
+
+    // setStartBefore & setEndAfter: Wraps around an element perfectly
+    function testSetBeforeAfter() {
+        let bTag = p.querySelector('b'); // Find the <b> tag
+        range.setStartBefore(bTag);      // Put start boundary just before <b>
+        range.setEndAfter(bTag);         // Put end boundary just after </b>
+        visuallyHighlight();
+    }
+
+    // collapse: Shrinks the range into a single blinking cursor point
+    // true = collapse to Start. false = collapse to End.
+    function testCollapse() {
+        testSelectNodeContents(); // First, highlight everything
+        setTimeout(() => {
+            range.collapse(true); // Half a second later, collapse it to the very front!
+            visuallyHighlight();
+        }, 500);
+    }
+
+
+    /* ==========================================
+       GROUP 2: EDITING METHODS
+       ========================================== */
+
+    // cloneContents: Copies the range (Leaves original intact)
+    function testClone() {
+        testSelectNodeContents(); // Highlight everything first
+        let copiedDOM = range.cloneContents(); 
+        result.innerHTML = "<b>Cloned: </b>";
+        result.append(copiedDOM); // Paste it in the blue box
+    }
+
+    // extractContents: Cuts the range out of the page completely, allowing you to paste it elsewhere
+    function testExtract() {
+        testSelectNode(); // Highlight just the <i> tag
+        let cutDOM = range.extractContents(); 
+        result.innerHTML = "<b>Extracted (Cut): </b>";
+        result.append(cutDOM); // Paste it in the blue box
+    }
+
+    // deleteContents: Erases whatever is in the range
+    function testDelete() {
+        testSetStartEnd(); // Highlight the word "Example"
+        range.deleteContents(); // Poof! It's gone.
+    }
+
+    // insertNode: Injects a brand new HTML element at the START of the range
+    function testInsert() {
+        testSelectNodeContents(); // Select the whole paragraph
+        let newNode = document.createElement('span');
+        newNode.style.backgroundColor = "yellow";
+        newNode.innerText = " ⭐NEW⭐ ";
+        
+        range.insertNode(newNode); // Injects the yellow star span!
+    }
+
+    // surroundContents: Wraps the range inside a brand new HTML tag
+    function testSurround() {
+        testSelectNodeContents(); // Select the whole paragraph
+        let wrapper = document.createElement('mark'); // <mark> highlights text in HTML
+        
+        try {
+            range.surroundContents(wrapper);
+        } catch (e) {
+            alert("Error: You can't wrap a range that splits a tag in half!");
+        }
+    }
+</script>
+
+</body>
+</html>

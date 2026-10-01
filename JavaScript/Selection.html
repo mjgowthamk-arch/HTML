@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selection API</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .section { border: 2px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .output { border: 1px dashed blue; padding: 10px; min-height: 20px; margin-top: 10px; }
+        button { margin: 5px 0; padding: 5px 10px; cursor: pointer; }
+        
+        /* CONCEPT 3: CSS UNSELECTABLE */
+        .no-select-css {
+            user-select: none; /* Prevents selection via CSS */
+            background: #ffcccc; padding: 10px; margin-top: 5px;
+        }
+        #no-select-js {
+            background: #ccffcc; padding: 10px; margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- CONCEPT 1: DOCUMENT SELECTION & RANGES     -->
+    <!-- ========================================== -->
+    <div class="section">
+        <h2>1. Document Selection (HTML Elements)</h2>
+        <p id="docText">Highlight me: I contain <b>bold</b> and <i>italic</i> tags!</p>
+        
+        <button id="btnSelectAllDoc">setBaseAndExtent() - Select All</button>
+        <button id="btnCloneDoc">cloneContents() - Copy with HTML</button>
+        <button id="btnDeleteDoc">deleteFromDocument() - Delete Selection</button>
+        
+        <div class="output" id="cloneOutput">Cloned HTML will appear here...</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONCEPT 2: FORM CONTROL SELECTION          -->
+    <!-- ========================================== -->
+    <div class="section">
+        <h2>2. Form Selection (Inputs & Textareas)</h2>
+        <!-- Value is exactly set so index 10-14 is the word "text" -->
+        <input type="text" id="formInput" value="Grab this text here" style="width: 250px; font-size: 16px;">
+        <br>
+        
+        <button id="btnSelectForm">select() - Grab Everything</button>
+        <button id="btnSetRangeForm">setSelectionRange() - Highlight "text"</button>
+        <button id="btnReplaceForm">setRangeText() - Replace Highlight</button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONCEPT 3: MAKING ELEMENTS UNSELECTABLE    -->
+    <!-- ========================================== -->
+    <div class="section">
+        <h2>3. Making Elements Unselectable</h2>
+        <div class="no-select-css">You cannot highlight me! (Blocked by CSS: user-select: none)</div>
+        <div id="no-select-js">You cannot highlight me! (Blocked by JS: onselectstart)</div>
+    </div>
+
+
+<script>
+    /* ==========================================
+       JAVASCRIPT FOR CONCEPT 1: DOCUMENT SELECTION
+       ========================================== */
+    const docText = document.getElementById('docText');
+    const cloneOutput = document.getElementById('cloneOutput');
+
+    // Method: setBaseAndExtent (Replaces current selection with a new one covering the whole node)
+    document.getElementById('btnSelectAllDoc').onclick = () => {
+        let selection = document.getSelection();
+        selection.setBaseAndExtent(docText, 0, docText, docText.childNodes.length);
+    };
+
+    // Method: cloneContents (Grabs the exact HTML you highlighted and copies it)
+    document.getElementById('btnCloneDoc').onclick = () => {
+        let selection = document.getSelection();
+        if (selection.rangeCount > 0) {
+            let range = selection.getRangeAt(0); // Get the first highlight
+            cloneOutput.innerHTML = ""; // Clear old output
+            cloneOutput.append(range.cloneContents()); // Paste the copied HTML
+        }
+    };
+
+    // Method: deleteFromDocument (Deletes whatever you currently have highlighted on the page)
+    document.getElementById('btnDeleteDoc').onclick = () => {
+        document.getSelection().deleteFromDocument();
+    };
+
+
+    /* ==========================================
+       JAVASCRIPT FOR CONCEPT 2: FORM SELECTION
+       ========================================== */
+    const formInput = document.getElementById('formInput');
+
+    // Method: select() (Highlights all text inside the input box)
+    document.getElementById('btnSelectForm').onclick = () => {
+        formInput.select();
+    };
+
+    // Method: setSelectionRange(start, end) (Forces the highlight between specific index numbers)
+    document.getElementById('btnSetRangeForm').onclick = () => {
+        formInput.setSelectionRange(10, 14); // Highlights index 10 to 14 (the word "text")
+        formInput.focus(); // Make the highlight visible
+    };
+
+    // Method: setRangeText(newText, start, end, behavior) (Replaces highlighted text)
+    document.getElementById('btnReplaceForm').onclick = () => {
+        // If nothing is highlighted, it inserts "🚀" at the cursor.
+        // If something IS highlighted, it replaces it with "🚀".
+        formInput.setRangeText("🚀", formInput.selectionStart, formInput.selectionEnd, "select");
+        formInput.focus();
+    };
+
+
+    /* ==========================================
+       JAVASCRIPT FOR CONCEPT 3: UNSELECTABLE
+       ========================================== */
+    
+    // Method: onselectstart = () => false (Cancels the mouse selection event completely)
+    document.getElementById('no-select-js').onselectstart = () => {
+        return false; 
+    };
+
+</script>
+</body>
+</html>
