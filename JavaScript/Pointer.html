@@ -101,7 +101,7 @@
 
 <script>
   const captureBox = document.getElementById('captureBox');
-  captureBox.ondragstart = () => false;
+  captureBox.ondragstart = () => true;
 
   captureBox.onpointerdown = function(event) {
     // Lock the mouse/finger to this box

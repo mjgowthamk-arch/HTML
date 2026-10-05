@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Events</title>
+
   <style>
     /* A big box to test your mouse events on */
     #test-box {
@@ -20,6 +24,7 @@
       font-size: 16px;
     }
   </style>
+  
 </head>
 <body>
 
@@ -71,6 +76,7 @@
     // 8. contextmenu - Triggers when you Right-Click to open the menu
     box.addEventListener('contextmenu', (event) => {
       // event.preventDefault(); // Uncomment this if you want to STOP the default right-click menu from appearing
+      document.body.style.backgroundColor = 'lightcoral';
       logEvent('contextmenu (Right-clicked)');
     });
 
