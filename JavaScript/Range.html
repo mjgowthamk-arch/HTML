@@ -82,7 +82,7 @@
     // setStart & setEnd: Selects specific characters inside a text node
     function testSetStartEnd() {
         range.setStart(p.firstChild, 0); // Start at index 0 of "Example: "
-        range.setEnd(p.firstChild, 7);   // End at index 7 ("Example")
+        range.setEnd(p.firstChild, p.firstChild.length-1);   // End at the last character ("Example")
         visuallyHighlight();
     }
 

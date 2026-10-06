@@ -1019,7 +1019,7 @@ try {
 
 try {
   noSuchVariable;
-} catch { // Notice: No (err) here at all!
+} catch { // Notice: No (err) here
   alert("Something broke, but we safely caught it.");
 }
 

@@ -8,7 +8,7 @@ alert(target.test); // 5, the property appeared in target!
 
 alert(proxy.test); // 5, we can read it from proxy too 
 
-for(let key in proxy) alert(key); // test, iteration works 
+for(let key in proxy) alert(key); // test
 
 // ---------------------------------------- 
 

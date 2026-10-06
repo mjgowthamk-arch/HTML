@@ -122,6 +122,11 @@
         return false; 
     };
 
+    // or
+    document.getElementById('no-select-js').onselectstart = (event) => {
+        event.preventDefault(); 
+    };
+
 </script>
 </body>
 </html>
