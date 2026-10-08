@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+</head>
+<body>
+
+<script>
+// ==========================================
+// 1. WRITING A COOKIE
+// ==========================================
+let name = "user";
+let value = "John Smith";
+
+// We encode to safely handle the space in "John Smith"
+document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+console.log("Raw cookies string:", document.cookie);
+
+
+// ==========================================
+// 2. READING A SINGLE COOKIE 
+// ==========================================
+let rawCookieString = document.cookie;
+
+// We split by ';' first just in case there are multiple cookies, 
+// grab the first one [0], and then split by '=' to get the value
+let rawValue = rawCookieString.split(';')[0].split('=')[1]; 
+
+let actualValue = decodeURIComponent(rawValue);
+console.log("Your single cookie value:", actualValue); // Output: John Smith
+
+
+// ==========================================
+// 3. WRITING A COOKIE WITH RULES (Attributes)
+// ==========================================
+// Let's add a "theme" cookie that works on all pages and lives for 1 hour (3600 seconds)
+document.cookie = "theme=dark; path=/; max-age=3600";
+console.log("Added a theme cookie with rules.");
+
+
+// ==========================================
+// 4. READING MULTIPLE COOKIES (The standard way)
+// ==========================================
+// Now that we have two cookies ("user" and "theme"), we need a function to find a specific one.
+function getCookie(targetName) {
+    // 1. Chop the long string into an array of separate cookies
+    let allCookies = document.cookie.split('; ');
+
+    // 2. Look at each cookie one by one
+    for (let i = 0; i < allCookies.length; i++) {
+        let piece = allCookies[i]; 
+        
+        // 3. If this piece starts with our target name (e.g., "theme=")
+        if (piece.startsWith(targetName + "=")) {
+            // Chop it at the '=' and return the second half (the value)
+            let val = piece.split('=')[1];
+            return decodeURIComponent(val);
+        }
+    }
+    return null; // Return nothing if it's not found
+}
+
+console.log("Using the function to find theme:", getCookie("theme")); // Output: dark
+
+
+// ==========================================
+// 5. DELETING A COOKIE
+// ==========================================
+// Overwrite the cookie name, empty the value, and set max-age to 0
+document.cookie = "theme=; max-age=0; path=/";
+console.log("Deleted the theme cookie.");
+
+// Let's prove it's gone
+console.log("Trying to find theme after deletion:", getCookie("theme")); // Output: null
+
+</script>
+
+</body>
+</html>

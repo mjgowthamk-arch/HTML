@@ -24,7 +24,7 @@
         for (let i=1;i<=2;i++){
             try{
                 let responce=await fetch(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`);
-                console.log('res:' + responce.status);
+                console.log('Status:' + responce.status);
 
                 if (!responce.ok){
                     throw new Error('network issue')

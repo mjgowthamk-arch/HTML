@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+        }
+
+        .wrapper {
+            display: flex; 
+            width: 95%;  
+            height: 90vh;
+            gap: 25px;
+        }
+
+        .admin-dashboard {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .admin-dashboard h1 {
+            color: darkblue;   
+            margin: 0 0 5px 0;
+            font-size: 24px;
+        }
+
+        .admin-dashboard h2 {
+            color: darkblue;
+            margin: 0 0 20px 0;
+            font-size: 18px;
+        }
+
+        .admin-dashboard h3 {
+            color: darkgreen;
+            margin: 0 0 15px 0;
+            font-size: 17px;
+        }
+
+        .admin-dashboard label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .admin-dashboard input,
+        .admin-dashboard select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 11px;
+            margin-top: 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-link {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .intern-list {
+            flex: 2;
+            padding: 30px;
+            background-color: white;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .intern-list h1 {
+            color: darkblue;
+            margin: 0 0 15px 0;
+        }
+
+        .table-container {
+            overflow-y: auto; 
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border: 2px solid black;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="admin-dashboard">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <h2>Welcome, HR Admin!</h2>
+
+                <h3>Add New Intern</h3>
+
+                <form id="addIntern" onsubmit="event.preventDefault(); addIntern();">
+                    <label for="internName">Full Name:</label>
+                    <input type="text" id="internName" name="internName" required>
+
+                    <label for="internEmail">Email:</label>
+                    <input type="email" id="internEmail" name="internEmail" required>
+
+                    <label for="internRole">Role:</label>
+                    <select id="internRole" name="internRole" required>
+                        <option value="">Select Role</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="Android Developer">Android Developer</option>
+                    </select>
+
+                    <label for="manager">Assign to Manager:</label>
+                    <select id="manager" name="manager" required>
+                        <option value="">Select Manager</option>
+                        <option value="Manager 1">Manager 1</option>
+                        <option value="Manager 2">Manager 2</option>
+                    </select>
+
+                    <button type="submit" class="add-btn">Add Intern</button>
+                </form>
+            </div>
+            
+            <a href="index.html" class="logout-link">Logout</a>
+        </div>
+
+        <div class="intern-list">
+            <h1>Intern List</h1>
+            <div class="table-container">
+                <table id="intern-table">
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showInterns() {
+            const table = document.getElementById('intern-table');
+            const savedData = localStorage.getItem('interns');
+            const interns = JSON.parse(savedData) || [];
+
+            table.innerHTML = `
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Manager</th>
+                    <th>Action</th>
+                </tr>
+            `;
+
+            for (let i = 0; i < interns.length; i++) {
+                const row = table.insertRow();
+                row.insertCell(0).textContent = interns[i].name;
+                row.insertCell(1).textContent = interns[i].email;
+                row.insertCell(2).textContent = interns[i].role;
+                row.insertCell(3).textContent = interns[i].manager;
+                row.insertCell(4).innerHTML = `<button class="delete-btn" onclick="deleteIntern(${i})">Delete</button>`;
+            }
+        }
+
+        function addIntern() {
+            const name = document.getElementById('internName').value;
+            const email = document.getElementById('internEmail').value; 
+            const role = document.getElementById('internRole').value;
+            const manager = document.getElementById('manager').value;
+
+            const savedData = localStorage.getItem('interns');
+            const interns = JSON.parse(savedData) || [];
+
+            const newIntern = {
+                name: name,
+                email: email,
+                role: role,
+                manager: manager,
+                week1: '-',
+                week2: '-',
+                week3: '-',
+                week4: '-'
+            };
+
+            interns.push(newIntern);
+            localStorage.setItem('interns', JSON.stringify(interns));
+
+            document.getElementById('addIntern').reset();
+            showInterns();
+        }
+
+        function deleteIntern(index) {
+            const savedData = localStorage.getItem('interns');
+            const interns = JSON.parse(savedData) || [];
+
+            interns.splice(index, 1);
+            localStorage.setItem('interns', JSON.stringify(interns));
+            showInterns();
+        }
+
+        window.onload = showInterns;
+    </script>
+</body>
+</html>

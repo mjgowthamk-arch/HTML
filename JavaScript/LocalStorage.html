@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+</head>
+<body>
+    <p>Open this exact same file in a <b>second tab</b> to see the Storage Event in action!</p>
+
+<script>
+// ==========================================
+// 1. THE BASICS (localStorage)
+// Data survives browser restarts and is shared across all tabs.
+// ==========================================
+console.log("--- 1. BASIC METHODS ---");
+
+// Write (Set) a key/value pair
+localStorage.setItem('username', 'JohnSmith');
+localStorage.setItem('theme', 'dark');
+
+// Read (Get) a value
+let user = localStorage.getItem('username');
+console.log("Read username:", user); // Output: JohnSmith
+
+// Remove a specific key
+localStorage.removeItem('theme');
+console.log("Read theme after removal:", localStorage.getItem('theme')); // Output: null
+
+// Delete EVERYTHING in localStorage
+// localStorage.clear(); // (Commented out so we can use the data below)
+
+
+// ==========================================
+// 2. STORING OBJECTS & ARRAYS (The String Rule)
+// ==========================================
+console.log("\n--- 2. STORING OBJECTS (JSON) ---");
+// Web Storage ONLY stores strings. If you put an object in, it turns into "[object Object]".
+// You MUST use JSON.stringify() to save it, and JSON.parse() to read it back.
+
+let userSettings = {
+    fontSize: 16,
+    notifications: true
+};
+
+// Saving an object: Convert to string first
+localStorage.setItem('settings', JSON.stringify(userSettings));
+
+// Reading an object: Parse the string back into a real JavaScript object
+let rawData = localStorage.getItem('settings');
+let parsedSettings = JSON.parse(rawData);
+
+console.log("Parsed Object:", parsedSettings);
+console.log("Accessing a property:", parsedSettings.fontSize); // Output: 16
+
+
+// ==========================================
+// 3. LOOPING OVER STORAGE
+// ==========================================
+console.log("\n--- 3. LOOPING & GETTING ALL KEYS ---");
+// Storage is not a standard array, so you can't use standard loops easily.
+// Never use standard "for...in" loops because they pull built-in methods by accident.
+
+// The Best Way: Use Object.keys() to get an array of just your keys
+let allKeys = Object.keys(localStorage);
+
+for (let key of allKeys) {
+    console.log(`Key: ${key}, Value: ${localStorage.getItem(key)}`);
+}
+
+// Alternative Way: Using the built-in .key() and .length methods
+console.log("Total items stored:", localStorage.length);
+for (let i = 0; i < localStorage.length; i++) {
+    let keyName = localStorage.key(i);
+    // console.log("Found key by index:", keyName);
+}
+
+
+// ==========================================
+// 4. SESSION STORAGE
+// ==========================================
+console.log("\n--- 4. SESSION STORAGE ---");
+// sessionStorage uses the EXACT same methods as localStorage.
+// The ONLY difference: It is strictly tied to the current tab. 
+// If you duplicate the tab or open a new one, it starts completely empty.
+// It survives page refreshes, but dies when the tab is closed.
+
+sessionStorage.setItem('current_page', 'dashboard');
+console.log("Session value:", sessionStorage.getItem('current_page'));
+
+
+// ==========================================
+// 5. THE STORAGE EVENT (Cross-Tab Communication)
+// ==========================================
+// When localStorage is updated, the browser fires a "storage" event.
+// IMPORTANT: This event ONLY triggers in *OTHER* tabs looking at the same site, 
+// not the tab that made the change.
+
+window.addEventListener('storage', function(event) {
+    console.log("\n🚨 OTHER TAB UPDATED STORAGE!");
+    console.log("What key changed? ->", event.key);
+    console.log("Old Value ->", event.oldValue);
+    console.log("New Value ->", event.newValue);
+    console.log("Which storage? ->", event.storageArea); // Shows if it was local or session
+});
+
+// To test this:
+// 1. Open this HTML file in Tab A and Tab B.
+// 2. Open the console in Tab A.
+// 3. Go to Tab B, open the console, and type: localStorage.setItem('message', 'Hello Tab A!')
+// 4. Look back at Tab A's console to see the event fire!
+
+</script>
+</body>
+</html>

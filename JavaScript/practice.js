@@ -694,3 +694,17 @@ ul.addEventListener('click', (event) => {
 
 // let name = input.value; // form <input> 
 // ----------------------------------------
+
+
+var vehicleIds = ['TRK-01', 'TRK-02', 'TRK-03'];
+var connections = [];
+
+for (let i = 0; i < vehicleIds.length; i++) {
+    connections.push(function() {
+        console.log("Connecting to vehicle: " + vehicleIds[i]);
+    });
+}
+
+connections[0]();
+connections[1]();
+connections[2]();

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB</title>
+</head>
+<body>
+    <p>Refresh the page multiple times. Notice that "UPGRADE NEEDED" only runs the very first time (or if you change the version number).</p>
+
+<script>
+// ==========================================
+// 1. OPENING THE DATABASE & VERSIONING
+// ==========================================
+console.log("--- 1. OPENING DB ---");
+
+let db;
+let dbName = "MyLibraryDB";
+let dbVersion = 1; // Increase this number to trigger 'onupgradeneeded' again
+
+let openRequest = indexedDB.open(dbName, dbVersion);
+
+// This ONLY runs if the database doesn't exist, OR if you increased the version number.
+// This is the ONLY place you can create or delete Object Stores (Tables) and Indexes.
+openRequest.onupgradeneeded = function(event) {
+    console.log("🛠️ UPGRADE NEEDED: Creating Object Stores...");
+    db = event.target.result;
+
+    // Create an Object Store (like a Table) called "books"
+    // keyPath: 'id' means the 'id' property of our objects will be the primary key
+    let booksStore = db.createObjectStore('books', { keyPath: 'id' });
+
+    // Create an Index to search by price (Name of index, Property to track)
+    booksStore.createIndex('price_idx', 'price');
+};
+
+openRequest.onerror = function() {
+    console.error("Error opening database:", openRequest.error);
+};
+
+// This runs every time you successfully connect to the database
+openRequest.onsuccess = function(event) {
+    console.log("✅ DATABASE OPENED SUCCESSFULLY");
+    db = event.target.result;
+    
+    // Now that the DB is open, we can run our operations
+    runDatabaseOperations();
+};
+
+
+// ==========================================
+// 2. TRANSACTIONS & WRITING DATA
+// ==========================================
+function runDatabaseOperations() {
+    
+    // Start a "readwrite" transaction for the "books" store
+    let writeTx = db.transaction("books", "readwrite");
+    let booksStore = writeTx.objectStore("books");
+
+    let book1 = { id: 'js101', title: 'Learn JS', price: 10 };
+    let book2 = { id: 'css202', title: 'CSS Mastery', price: 25 };
+    let book3 = { id: 'html303', title: 'HTML Basics', price: 10 };
+
+    // Use .put() to add or update. (Use .add() if you want it to fail if it already exists)
+    booksStore.put(book1);
+    booksStore.put(book2);
+    booksStore.put(book3);
+
+    writeTx.oncomplete = function() {
+        console.log("💾 Wrote books to the database.");
+    };
+
+
+    // ==========================================
+    // 3. READING DATA (BY KEY)
+    // ==========================================
+    let readTx = db.transaction("books", "readonly");
+    let readStore = readTx.objectStore("books");
+
+    // Get a single book by its primary key (id)
+    let getRequest = readStore.get('js101');
+    
+    getRequest.onsuccess = function() {
+        console.log("\n--- 3. READ BY KEY ---");
+        console.log("Found book:", getRequest.result);
+    };
+
+
+    // ==========================================
+    // 4. SEARCHING VIA INDEXES
+    // ==========================================
+    let indexTx = db.transaction("books", "readonly");
+    let indexStore = indexTx.objectStore("books");
+    
+    // Access the index we created in step 1
+    let priceIndex = indexStore.index('price_idx');
+    
+    // Get ALL books that cost exactly 10
+    let searchRequest = priceIndex.getAll(10);
+    
+    searchRequest.onsuccess = function() {
+        console.log("\n--- 4. SEARCH BY INDEX ---");
+        console.log("Books that cost $10:", searchRequest.result);
+    };
+
+
+    // ==========================================
+    // 5. CURSORS (LOOPING THROUGH DATA)
+    // ==========================================
+    // Cursors are used when you have too much data to load into an array at once.
+    // It grabs one record at a time.
+    let cursorTx = db.transaction("books", "readonly");
+    let cursorStore = cursorTx.objectStore("books");
+    
+    let cursorRequest = cursorStore.openCursor();
+    
+    console.log("\n--- 5. CURSOR LOOP ---");
+    cursorRequest.onsuccess = function(event) {
+        let cursor = event.target.result;
+        
+        if (cursor) {
+            console.log(`Cursor found: ID=${cursor.key}, Title="${cursor.value.title}"`);
+            cursor.continue(); // Move to the next record
+        } else {
+            console.log("Cursor finished all records.");
+        }
+    };
+}
+</script>
+</body>
+</html>
