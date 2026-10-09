@@ -31,7 +31,7 @@
             flex: 1;
             background-color: white;
             padding: 30px;
-            border-radius: 6px;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -59,22 +59,22 @@
             display: block;
             margin-top: 12px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .manager-form-panel input,
         .manager-form-panel select {
             width: 100%;
-            padding: 9px;
+            padding: 10px;
             margin-top: 5px;
             margin-bottom: 12px;
-            border-radius: 4px;
+            border-radius: 5px;
             border: 1px solid #ccc;
         }
 
         .add-btn {
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             margin-top: 15px;
             background-color: blue;
             color: white;
@@ -101,7 +101,7 @@
             flex: 2;
             padding: 30px;
             background-color: white;
-            border-radius: 6px;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
         }
@@ -125,7 +125,7 @@
             padding: 10px 12px;
             text-align: left;
             border: 2px solid black;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         th {
@@ -142,7 +142,7 @@
 
                 <h3>Assign Weekly Performance</h3>
 
-                <form id="manageinternForm" onsubmit="event.preventDefault(); manageIntern();">
+                <form id="internForm" onsubmit="event.preventDefault(); addPoints();">
                     <label for="selectIntern">Select Intern:</label>
                     <select id="selectIntern" required>
                         <option value="">-- Select Intern --</option>
@@ -164,7 +164,7 @@
                 </form>
             </div>
 
-            <a href="index.html" class="logout-link">Logout</a>
+            <a href="login.html" class="logout-link">Logout</a>
         </div>
 
         <div class="manager-table-panel">
@@ -178,10 +178,89 @@
     </div>
 
     <script>
-        
 
-    </script>
+    const myManagerName = localStorage.getItem('currentManager');
 
-    
+    if (!myManagerName) {
+        alert("Access Denied! Please log in first.");
+        window.location.href = "login.html"; 
+    }
+
+    document.getElementById('welcomeText').textContent = "Welcome, " + myManagerName + "!";
+
+    function loadData() {
+
+        const savedData = localStorage.getItem('interns');
+        const interns = JSON.parse(savedData) || [];
+
+        const select = document.getElementById('selectIntern');
+
+        for (let i = 0; i < interns.length; i++) {
+
+            if (interns[i].manager === myManagerName) {
+                const option = document.createElement('option');
+                option.value = interns[i].name;
+                option.textContent = interns[i].name + " (" + interns[i].role + ")";
+                select.append(option);
+            }
+        }
+
+        const table = document.getElementById('intern-table');
+        table.innerHTML = `
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Week 1</th>
+                <th>Week 2</th>
+                <th>Week 3</th> 
+                <th>Week 4</th>
+            </tr>
+        `;
+
+        for (let i = 0; i < interns.length; i++) {
+
+            if (interns[i].manager === myManagerName) {
+                const row = table.insertRow();
+                row.insertCell(0).textContent = interns[i].name;
+                row.insertCell(1).textContent = interns[i].role;
+                row.insertCell(2).textContent = interns[i].week1;
+                row.insertCell(3).textContent = interns[i].week2;
+                row.insertCell(4).textContent = interns[i].week3;
+                row.insertCell(5).textContent = interns[i].week4;
+            }
+        }
+    }
+
+    function addPoints() {
+        const selectedName = document.getElementById('selectIntern').value;
+        const selectedWeek = document.getElementById('week').value;
+        const points = document.getElementById('points').value;
+
+        const savedData = localStorage.getItem('interns');
+        const interns = JSON.parse(savedData) || [];
+
+        for (let i = 0; i < interns.length; i++) {
+            if (interns[i].name === selectedName) {
+                interns[i][selectedWeek] = points; 
+                break;
+            }
+        }
+
+        localStorage.setItem('interns', JSON.stringify(interns));
+
+        alert(points + " points assigned for " + selectedName + " (" + selectedWeek + ")");
+
+        document.getElementById('internForm').reset();
+        loadData();
+    }
+
+    function logout() {
+        localStorage.removeItem('currentManager'); 
+        window.location.href = "login.html";       
+    }
+
+    window.onload = loadData;
+</script>
+
 </body>
 </html>
