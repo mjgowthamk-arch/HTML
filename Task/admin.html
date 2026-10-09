@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin Dashboard</title>
 
     <style>
         * {
@@ -90,7 +90,7 @@
             background-color: #0056b3;
         }
 
-        .logout {
+        .logout-link {
             color: red;
             text-decoration: none;
             font-weight: bold;
@@ -178,7 +178,7 @@
                 </form>
             </div>
             
-            <a href="#" onclick="logout();" class="logout">Logout</a>
+            <a href="#" onclick="logout();" class="logout-link">Logout</a>
         </div>
 
         <div class="intern-list">
@@ -232,10 +232,10 @@
         localStorage.setItem('interns', JSON.stringify(interns));
 
         form.reset();
-        showInterns();
+        showIntern();
     }
     
-    function showInterns(){
+    function showIntern(){
 
         const savedData=localStorage.getItem('interns');
         const interns=JSON.parse(savedData) || [];
@@ -258,7 +258,7 @@
             row.insertCell(1).textContent=interns[i].email;
             row.insertCell(2).textContent=interns[i].role;
             row.insertCell(3).textContent=interns[i].manager;
-            row.insertCell(4).innerHTML=`<button class='delete-btn' onclick=deleteIntern(${i})>Delete</button>`;   
+            row.insertCell(4).innerHTML=`<button class='delete-btn' onclick="deleteIntern(${i})">Delete</button>`;   
         } 
     }
 
@@ -270,10 +270,10 @@
         interns.splice(index,1);
         localStorage.setItem('interns',JSON.stringify(interns));  
 
-        showInterns();
+        showIntern();
     }
 
-    window.onload=showInterns;
+    window.onload=showIntern;
     
     </script>
 

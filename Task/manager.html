@@ -145,7 +145,7 @@
                 <form id="internForm" onsubmit="event.preventDefault(); addPoints();">
                     <label for="selectIntern">Select Intern:</label>
                     <select id="selectIntern" required>
-                        <option value="">-- Select Intern --</option>
+                        
                     </select>
 
                     <label for="week">Weekly performance:</label>
@@ -164,7 +164,7 @@
                 </form>
             </div>
 
-            <a href="login.html" class="logout-link">Logout</a>
+            <a href="#" onclick="logout();" class="logout-link">Logout</a>
         </div>
 
         <div class="manager-table-panel">
@@ -194,6 +194,8 @@
         const interns = JSON.parse(savedData) || [];
 
         const select = document.getElementById('selectIntern');
+
+        select.innerHTML='<option value="">-- Select Intern --</option>';
 
         for (let i = 0; i < interns.length; i++) {
 
