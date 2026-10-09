@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMS Login</title>
+    <title>Login - KTT IMS</title>
     
     <style>
         * {
@@ -131,22 +131,28 @@
     </div>
 
     <script>
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
+        
+        function login(){
 
-            if (username === 'admin' && password === '123' && role === 'admin') {
-                window.open('admin.html', '_blank');
+            const user=document.getElementById('username').value;
+            const password=document.getElementById('password').value;
+            const role=document.getElementById('role').value;
+  
+            if (user==='admin' && password==='123' && role==='admin'){
+                localStorage.setItem('isAdmin', 'true');
+                window.location.href='admin.html';  
             }
-            else if (username === 'manager' && password === '123' && (role === 'Manager 1' || role === 'Manager 2')) {
+
+            else if(user==='manager' && password==='123' && (role==='Manager 1' || role==='Manager 2')){
+
                 localStorage.setItem('currentManager', role);
-                window.open('manager.html','_blank');
+                window.location.href='manager.html'; 
             }
-            else {
-                alert('Invalid credentials or role. Please try again.');
+            else{
+                  alert('Invalid. Please try again')
             }
         }
+
     </script>
 </body>
 </html>

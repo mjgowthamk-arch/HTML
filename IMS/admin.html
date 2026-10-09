@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+    <title>Admin</title>
 
     <style>
         * {
@@ -90,7 +91,7 @@
             background-color: #0056b3;
         }
 
-        .logout-link {
+        .logout {
             color: red;
             text-decoration: none;
             font-weight: bold;
@@ -178,7 +179,7 @@
                 </form>
             </div>
             
-            <a href="index.html" class="logout-link">Logout</a>
+            <a href="#" onclick="logout();" class="logout">Logout</a>
         </div>
 
         <div class="intern-list">
@@ -190,70 +191,95 @@
             </div>
         </div>
     </div>
-
+    
     <script>
-        function showInterns() {
-            const table = document.getElementById('intern-table');
-            const savedData = localStorage.getItem('interns');
-            const interns = JSON.parse(savedData) || [];
 
-            table.innerHTML = `
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Manager</th>
-                    <th>Action</th>
-                </tr>
-            `;
+        if (localStorage.getItem('isAdmin') !== 'true') {
 
-            for (let i = 0; i < interns.length; i++) {
-                const row = table.insertRow();
-                row.insertCell(0).textContent = interns[i].name;
-                row.insertCell(1).textContent = interns[i].email;
-                row.insertCell(2).textContent = interns[i].role;
-                row.insertCell(3).textContent = interns[i].manager;
-                row.insertCell(4).innerHTML = `<button class="delete-btn" onclick="deleteIntern(${i})">Delete</button>`;
-            }
+            alert("Please log in as Admin first!");        
+            window.location.href = 'login.html';
         }
 
-        function addIntern() {
-            const name = document.getElementById('internName').value;
-            const email = document.getElementById('internEmail').value; 
-            const role = document.getElementById('internRole').value;
-            const manager = document.getElementById('manager').value;
-
-            const savedData = localStorage.getItem('interns');
-            const interns = JSON.parse(savedData) || [];
-
-            const newIntern = {
-                name: name,
-                email: email,
-                role: role,
-                manager: manager,
-                week1: '-',
-                week2: '-',
-                week3: '-',
-                week4: '-'
-            };
-
-            interns.push(newIntern);
-            localStorage.setItem('interns', JSON.stringify(interns));
-
-            document.getElementById('addIntern').reset();
-            showInterns();
+        function logout() {
+            localStorage.removeItem('isAdmin');
+            window.location.href = 'login.html';
         }
+    
+    function addIntern(){
 
-        function deleteIntern(index) {
-            const savedData = localStorage.getItem('interns');
-            const interns = JSON.parse(savedData) || [];
+        const name=document.getElementById('internName').value;
+        const email=document.getElementById('internEmail').value;
+        const role=document.getElementById('internRole').value;
+        const manager=document.getElementById('manager').value;
 
-            interns.splice(index, 1);
-            localStorage.setItem('interns', JSON.stringify(interns));
-            showInterns();
-        }
+        const form=document.getElementById('addIntern');
 
-        window.onload = showInterns;
+        const savedData=localStorage.getItem('interns');
+        const interns=JSON.parse(savedData) || [];
+
+
+        const newIntern={
+            name:name,
+            email:email,
+            role:role,
+            manager:manager,
+            week1:'-',
+            week2:'-',
+            week3:'-',
+            week4:'-',
+        };
+
+        interns.push(newIntern);
+        localStorage.setItem('interns', JSON.stringify(interns));
+
+        form.reset();
+        showInterns();
+    }
+    
+    function showInterns(){
+
+        const savedData=localStorage.getItem('interns');
+        const interns=JSON.parse(savedData) || [];
+
+        const table=document.getElementById('intern-table');
+
+        table.innerHTML=`
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Manager</th>
+            <th>Action</th>
+        </tr>`;
+
+        for(let i=0;i<interns.length;i++){
+  
+            const row=table.insertRow();
+            row.insertCell(0).textContent=interns[i].name;
+            row.insertCell(1).textContent=interns[i].email;
+            row.insertCell(2).textContent=interns[i].role;
+            row.insertCell(3).textContent=interns[i].manager;
+            row.insertCell(4).innerHTML=`<button class='delete-btn' onclick=deleteIntern(${i})>Delete</button>`;   
+        } 
+    }
+
+    function deleteIntern(index){
+
+        const savedData=localStorage.getItem('interns');
+        const interns=JSON.parse(savedData) || [];
+
+        interns.splice(index,1);
+        localStorage.setItem('interns',JSON.stringify(interns));  
+
+        showInterns();
+    }
+
+    window.onload=showInterns;
+
+
+   
+    
     </script>
+
 </body>
 </html>
